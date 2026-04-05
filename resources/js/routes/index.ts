@@ -78,8 +78,8 @@ logout.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 })
 
 /**
-* @see \App\Http\Controllers\RegisterController::__invoke
-* @see app/Http/Controllers/RegisterController.php:12
+* @see \App\Http\Controllers\Auth\RegisterController::__invoke
+* @see app/Http/Controllers/Auth/RegisterController.php:13
 * @route '/register'
 */
 export const register = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -93,8 +93,8 @@ register.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\RegisterController::__invoke
-* @see app/Http/Controllers/RegisterController.php:12
+* @see \App\Http\Controllers\Auth\RegisterController::__invoke
+* @see app/Http/Controllers/Auth/RegisterController.php:13
 * @route '/register'
 */
 register.url = (options?: RouteQueryOptions) => {
@@ -102,8 +102,8 @@ register.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see \App\Http\Controllers\RegisterController::__invoke
-* @see app/Http/Controllers/RegisterController.php:12
+* @see \App\Http\Controllers\Auth\RegisterController::__invoke
+* @see app/Http/Controllers/Auth/RegisterController.php:13
 * @route '/register'
 */
 register.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -112,8 +112,8 @@ register.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see \App\Http\Controllers\RegisterController::__invoke
-* @see app/Http/Controllers/RegisterController.php:12
+* @see \App\Http\Controllers\Auth\RegisterController::__invoke
+* @see app/Http/Controllers/Auth/RegisterController.php:13
 * @route '/register'
 */
 register.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -123,7 +123,7 @@ register.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:13
+* @see app/Http/Controllers/HomeController.php:12
 * @route '/'
 */
 export const home = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -138,7 +138,7 @@ home.definition = {
 
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:13
+* @see app/Http/Controllers/HomeController.php:12
 * @route '/'
 */
 home.url = (options?: RouteQueryOptions) => {
@@ -147,7 +147,7 @@ home.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:13
+* @see app/Http/Controllers/HomeController.php:12
 * @route '/'
 */
 home.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -157,7 +157,7 @@ home.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:13
+* @see app/Http/Controllers/HomeController.php:12
 * @route '/'
 */
 home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
