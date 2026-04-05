@@ -1,0 +1,17 @@
+@import '../css/fonts.css';
+@import './bootstrap/bootstrap.scss';
+@import './bootstrap/style.scss';
+@import '../../node_modules/vue-sonner/lib/index.css';
+
+.icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px; /* Equal width */
+    height: 18px; /* Equal height */
+    border-radius: 50%;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

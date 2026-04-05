@@ -1,0 +1,769 @@
+/* =============================================================================
+   _flat-ui-custom.scss (atau flat-ui-custom.css)
+   Bootstrap 5.3.x — Flat UI + Kids Theme Custom CSS
+   Import file ini SETELAH Bootstrap selesai dikompilasi.
+
+   Cara import di main.scss:
+     @import "bootstrap";
+     @import "flat-ui-custom";
+
+   Atau sebagai CSS biasa:
+     <link rel="stylesheet" href="bootstrap.min.css">
+     <link rel="stylesheet" href="flat-ui-custom.css">
+   ============================================================================= */
+
+/* =============================================================================
+   1. FONT IMPORT — Nunito (playful & rounded) + Fira Code (monospace)
+   ============================================================================= */
+// @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+
+/* =============================================================================
+   2. CSS CUSTOM PROPERTIES — Dark mode aware variables
+   ============================================================================= */
+:root {
+    --flat-transition: all 0.2s ease-in-out;
+    --flat-shadow-color: rgba(0, 0, 0, 0.08);
+    --flat-shadow: 0 4px 16px var(--flat-shadow-color);
+    --flat-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.14);
+}
+
+[data-bs-theme='dark'] {
+    --flat-shadow-color: rgba(0, 0, 0, 0.3);
+    --flat-shadow: 0 4px 16px var(--flat-shadow-color);
+    --flat-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+/* =============================================================================
+   3. GLOBAL BASE — Body, Typography
+   ============================================================================= */
+body {
+    font-family: 'Poppins', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+/* =============================================================================
+   4. BUTTONS — Flat UI: no box shadow, bold, smooth hover transform
+   ============================================================================= */
+.btn {
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.01em;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    transition:
+        var(--flat-transition),
+        transform 0.1s ease;
+    box-shadow: none !important;
+}
+
+.btn:hover:not(:disabled):not(.disabled) {
+    transform: translateY(-1px);
+}
+
+.btn:active:not(:disabled):not(.disabled) {
+    transform: translateY(0);
+}
+
+/* Pill buttons — tambahkan .btn-pill ke tombol mana saja */
+.btn-pill {
+    border-radius: 50rem !important;
+    padding-left: 1.75rem !important;
+    padding-right: 1.75rem !important;
+}
+
+/* Flat button dengan border bawah sebagai aksen (Flat UI khas) */
+.btn-flat {
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+}
+
+.btn-flat.btn-primary {
+    border-bottom-color: shade-color($primary, 20%);
+}
+.btn-flat.btn-success {
+    border-bottom-color: shade-color($success, 20%);
+}
+.btn-flat.btn-danger {
+    border-bottom-color: shade-color($danger, 20%);
+}
+.btn-flat.btn-warning {
+    border-bottom-color: shade-color($warning, 20%);
+}
+.btn-flat.btn-info {
+    border-bottom-color: shade-color($info, 20%);
+}
+
+/* Ukuran button lebih proposional */
+.btn-sm {
+    padding: 0.375rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.8125rem;
+}
+
+.btn-lg {
+    padding: 0.75rem 2rem;
+    border-radius: 0.75rem;
+    font-size: 1.0625rem;
+}
+
+/* =============================================================================
+   5. FORM CONTROLS — Flat style: clean border, smooth focus
+   ============================================================================= */
+[data-bs-theme='dark'] .form-control,
+[data-bs-theme='dark'] .form-select {
+    background-color: #2d3436;
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #dfe6e9;
+}
+
+[data-bs-theme='dark'] .form-control:focus,
+[data-bs-theme='dark'] .form-select:focus {
+    border-color: rgba($primary, 0.8);
+    background-color: #2d3436;
+}
+
+/* Label font weight */
+.form-label {
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 0.375rem;
+}
+
+/* Input group addon */
+.input-group-text {
+    border-width: 2px;
+    font-weight: 600;
+    border-radius: 0.5rem;
+}
+
+/* Form check & switch */
+.form-check-input {
+    cursor: pointer;
+    width: 1.125em;
+    height: 1.125em;
+    border-width: 2px;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.form-check-input:checked {
+    background-color: $primary;
+    border-color: $primary;
+}
+
+.form-switch .form-check-input {
+    width: 2.5em;
+    height: 1.375em;
+    border-radius: 50rem;
+}
+
+/* =============================================================================
+   6. CARDS — Rounded, shadow, hover lift
+   ============================================================================= */
+.card {
+    border-radius: 0.75rem;
+    border-width: 1px;
+    box-shadow: var(--flat-shadow);
+    transition:
+        var(--flat-transition),
+        box-shadow 0.2s ease;
+    overflow: hidden; /* Penting agar image tidak keluar radius */
+}
+
+.card-hover:hover,
+.card[data-flat-hover]:hover {
+    box-shadow: var(--flat-shadow-hover);
+    transform: translateY(-3px);
+}
+
+.card-header {
+    border-bottom-width: 1px;
+    font-weight: 700;
+    padding: 1rem 1.25rem;
+}
+
+.card-footer {
+    border-top-width: 1px;
+    padding: 0.875rem 1.25rem;
+}
+
+/* Card dengan accent color di bagian atas */
+.card-accent-primary {
+    border-top: 3px solid $primary;
+}
+.card-accent-success {
+    border-top: 3px solid $success;
+}
+.card-accent-danger {
+    border-top: 3px solid $danger;
+}
+.card-accent-warning {
+    border-top: 3px solid $warning;
+}
+.card-accent-info {
+    border-top: 3px solid $info;
+}
+
+/* =============================================================================
+   7. BADGES — Flat, rounded, bold
+   ============================================================================= */
+.badge {
+    font-weight: 700;
+    font-size: 0.75em;
+    padding: 0.4em 0.75em;
+    border-radius: 0.5rem;
+    letter-spacing: 0.02em;
+}
+
+.badge-pill,
+.rounded-pill.badge {
+    border-radius: 50rem !important;
+    padding: 0.4em 0.875em;
+}
+
+/* =============================================================================
+   8. ALERTS — Flat style dengan left border accent
+   ============================================================================= */
+.alert {
+    border-radius: 0.75rem;
+    border-width: 1px;
+    border-left-width: 4px;
+    padding: 1rem 1.25rem;
+    font-weight: 500;
+}
+
+.alert .btn-close {
+    padding: 1.125rem;
+}
+
+/* =============================================================================
+   9. NAVBAR — Flat UI navbar
+   ============================================================================= */
+.navbar {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: -0.01em;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 600;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    transition: var(--flat-transition);
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link.active {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+/* =============================================================================
+   10. DROPDOWNS — Rounded, shadow, smooth items
+   ============================================================================= */
+.dropdown-menu {
+    border-radius: 0.75rem;
+    border-width: 1px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    padding: 0.5rem;
+    overflow: hidden;
+}
+
+.dropdown-item {
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-weight: 500;
+    transition: var(--flat-transition);
+}
+
+.dropdown-item:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+    color: $primary;
+}
+
+.dropdown-item:active {
+    background-color: $primary;
+    color: #fff;
+}
+
+.dropdown-divider {
+    margin: 0.375rem 0;
+    opacity: 0.1;
+}
+
+/* =============================================================================
+   11. MODALS — Rounded, clean
+   ============================================================================= */
+.modal-content {
+    border-radius: 1.25rem;
+    border-width: 1px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom-width: 1px;
+}
+
+.modal-header .modal-title {
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+
+.modal-body {
+    padding: 1.25rem 1.5rem;
+}
+
+.modal-footer {
+    padding: 1rem 1.5rem;
+    border-top-width: 1px;
+    gap: 0.5rem;
+}
+
+/* =============================================================================
+   12. TABLES — Flat, clean, rounded wrapper
+   ============================================================================= */
+.table {
+    vertical-align: middle;
+}
+
+.table th {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    color: var(--bs-secondary-color);
+}
+
+/* Table dengan wrapper rounded */
+.table-rounded {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: var(--flat-shadow);
+}
+
+.table-rounded .table {
+    margin-bottom: 0;
+}
+
+/* =============================================================================
+   13. PROGRESS — Pill shape, animated
+   ============================================================================= */
+.progress {
+    border-radius: 50rem;
+    height: 0.875rem;
+    background-color: rgba(0, 0, 0, 0.08);
+    overflow: visible;
+}
+
+[data-bs-theme='dark'] .progress {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.progress-bar {
+    border-radius: 50rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Progress label inside */
+.progress-labeled {
+    height: 1.375rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+/* =============================================================================
+   14. LIST GROUP — Flat, rounded
+   ============================================================================= */
+.list-group {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: var(--flat-shadow);
+}
+
+.list-group-item {
+    padding: 0.75rem 1.25rem;
+    font-weight: 500;
+    transition: var(--flat-transition);
+    border-left-width: 0;
+    border-right-width: 0;
+}
+
+.list-group-item:first-child {
+    border-top-width: 0;
+}
+
+.list-group-item:last-child {
+    border-bottom-width: 0;
+}
+
+.list-group-item-action:hover {
+    background-color: rgba(52, 152, 219, 0.08);
+    color: $primary;
+}
+
+/* =============================================================================
+   15. PAGINATION — Flat, rounded individual items
+   ============================================================================= */
+.pagination {
+    gap: 0.25rem;
+}
+
+.page-link {
+    border-radius: 0.5rem !important;
+    font-weight: 600;
+    border-width: 2px;
+    transition: var(--flat-transition);
+    padding: 0.5rem 0.875rem;
+    margin-left: 0;
+}
+
+.page-link:hover {
+    transform: translateY(-1px);
+}
+
+.page-item.active .page-link {
+    background-color: $primary;
+    border-color: $primary;
+}
+
+/* =============================================================================
+   16. ACCORDION — Clean, flat, rounded
+   ============================================================================= */
+.accordion {
+    --bs-accordion-border-radius: 0.75rem;
+    --bs-accordion-inner-border-radius: calc(0.75rem - 1px);
+}
+
+.accordion-item {
+    border-radius: 0.75rem !important;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+    border-width: 1px;
+    box-shadow: var(--flat-shadow);
+}
+
+.accordion-item:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+.accordion-button {
+    font-weight: 700;
+    border-radius: 0.75rem !important;
+    padding: 1rem 1.25rem;
+}
+
+.accordion-button:not(.collapsed) {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    box-shadow: none;
+}
+
+.accordion-button::after {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* =============================================================================
+   17. TOOLTIPS & POPOVERS
+   ============================================================================= */
+.tooltip-inner {
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.8125rem;
+    padding: 0.375rem 0.75rem;
+}
+
+.popover {
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    border-width: 1px;
+}
+
+.popover-header {
+    border-radius: 0.75rem 0.75rem 0 0;
+    font-weight: 700;
+    padding: 0.75rem 1rem;
+}
+
+/* =============================================================================
+   19. SPINNERS — Flat style adjustment
+   ============================================================================= */
+.spinner-border {
+    border-width: 0.2em;
+}
+
+/* =============================================================================
+   20. TABS — Flat UI clean tabs
+   ============================================================================= */
+.nav-tabs {
+    border-bottom-width: 2px;
+    gap: 0.25rem;
+}
+
+.nav-tabs .nav-link {
+    border-radius: 0.5rem 0.5rem 0 0;
+    font-weight: 600;
+    border-bottom-width: 2px;
+    margin-bottom: -2px;
+    transition: var(--flat-transition);
+}
+
+.nav-tabs .nav-link.active {
+    border-bottom-color: var(--bs-body-bg);
+    color: $primary;
+    font-weight: 700;
+}
+
+.nav-pills .nav-link {
+    border-radius: 50rem;
+    font-weight: 600;
+    transition: var(--flat-transition);
+}
+
+/* =============================================================================
+   21. FLAT UI UTILITY CLASSES — Extra helpers
+   ============================================================================= */
+
+/* Shadow helpers */
+.shadow-flat {
+    box-shadow: var(--flat-shadow) !important;
+}
+.shadow-flat-hover:hover {
+    box-shadow: var(--flat-shadow-hover) !important;
+}
+
+/* Lift effect on hover */
+.lift {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+.lift:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--flat-shadow-hover) !important;
+}
+
+/* Rounded wrapper box */
+.box-flat {
+    background: var(--bs-body-bg);
+    border-radius: 0.75rem;
+    border: 1px solid var(--bs-border-color);
+    box-shadow: var(--flat-shadow);
+    padding: 1.25rem;
+}
+
+/* Section divider dengan icon */
+.divider-flat {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    color: var(--bs-secondary-color);
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.divider-flat::before,
+.divider-flat::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: var(--bs-border-color);
+    border-radius: 1px;
+}
+
+/* Flat color blocks — Kids-themed color squares */
+.color-swatch {
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Glassmorphism card (opsional, untuk dark mode) */
+[data-bs-theme='dark'] .card-glass {
+    background: rgba(45, 52, 54, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* =============================================================================
+   22. DARK MODE ENHANCEMENTS — Specific dark mode overrides
+   ============================================================================= */
+[data-bs-theme='dark'] body {
+    background-color: #1e272e;
+}
+
+[data-bs-theme='dark'] .card {
+    background-color: #2d3436;
+    border-color: rgba(255, 255, 255, 0.07);
+}
+
+[data-bs-theme='dark'] .card-header,
+[data-bs-theme='dark'] .card-footer {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.07);
+}
+
+[data-bs-theme='dark'] .list-group-item {
+    background-color: #2d3436;
+    border-color: rgba(255, 255, 255, 0.07);
+}
+
+[data-bs-theme='dark'] .dropdown-menu {
+    background-color: #2d3436;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme='dark'] .dropdown-item:hover {
+    background-color: rgba(52, 152, 219, 0.15);
+    color: tint-color($primary, 45%);
+}
+
+[data-bs-theme='dark'] .modal-content {
+    background-color: #2d3436;
+    border-color: rgba(255, 255, 255, 0.07);
+}
+
+[data-bs-theme='dark'] .modal-header,
+[data-bs-theme='dark'] .modal-footer {
+    border-color: rgba(255, 255, 255, 0.07);
+}
+
+[data-bs-theme='dark'] .accordion-item {
+    background-color: #2d3436;
+    border-color: rgba(255, 255, 255, 0.07);
+}
+
+[data-bs-theme='dark'] .accordion-button {
+    background-color: #2d3436;
+    color: #dfe6e9;
+}
+
+[data-bs-theme='dark'] .accordion-button:not(.collapsed) {
+    background-color: rgba(52, 152, 219, 0.12);
+    color: tint-color($primary, 45%);
+}
+
+[data-bs-theme='dark'] .table {
+    --bs-table-bg: #2d3436;
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.03);
+    --bs-table-hover-bg: rgba(52, 152, 219, 0.08);
+    border-color: rgba(255, 255, 255, 0.07);
+}
+
+[data-bs-theme='dark'] .input-group-text {
+    background-color: #3d4a4c;
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #dfe6e9;
+}
+
+[data-bs-theme='dark'] .form-check-input {
+    background-color: #3d4a4c;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-bs-theme='dark'] .nav-tabs {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-bs-theme='dark'] .nav-tabs .nav-link.active {
+    background-color: #2d3436;
+    border-color: rgba(255, 255, 255, 0.1) rgba(255, 255, 255, 0.1) #2d3436;
+}
+
+[data-bs-theme='dark'] .page-link {
+    background-color: #2d3436;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: tint-color($primary, 45%);
+}
+
+[data-bs-theme='dark'] .page-link:hover {
+    background-color: rgba(52, 152, 219, 0.15);
+}
+
+[data-bs-theme='dark'] .page-item.active .page-link {
+    background-color: $primary;
+    border-color: $primary;
+    color: #fff;
+}
+
+[data-bs-theme='dark'] .popover {
+    background-color: #2d3436;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme='dark'] .popover-header {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.07);
+}
+
+[data-bs-theme='dark'] .box-flat {
+    background-color: #2d3436;
+    border-color: rgba(255, 255, 255, 0.07);
+}
+
+/* =============================================================================
+   23. RESPONSIVE ADJUSTMENTS
+   ============================================================================= */
+@media (max-width: 576px) {
+    .btn {
+        padding: 0.5rem 1.25rem;
+    }
+
+    .card {
+        border-radius: 0.625rem;
+    }
+
+    .modal-content {
+        border-radius: 1rem;
+    }
+}
+
+/* =============================================================================
+   24. PRINT STYLES
+   ============================================================================= */
+@media print {
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #dee2e6 !important;
+    }
+
+    .btn {
+        box-shadow: none !important;
+        transform: none !important;
+    }
+}

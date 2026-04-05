@@ -1,0 +1,70 @@
+<?php
+
+use App\Enums\RegistrationType;
+use App\Models\District;
+use App\Models\Province;
+use App\Models\Regency;
+use App\Models\Religion;
+use App\Models\SubDistrict;
+use App\Models\User;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('candidates', function (Blueprint $table) {
+            $table->uuid('id')
+                ->primary()
+                ->unique();
+            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Province::class)->nullable();
+            $table->foreignIdFor(Regency::class)->nullable();
+            $table->foreignIdFor(District::class)->nullable();
+            $table->foreignIdFor(SubDistrict::class)->nullable();
+            $table->string('kk_number', 16)->nullable();
+            $table->string('nik_number', 16)->nullable();
+            $table->string('name')->nullable();
+            $table->string('nisn', 10)->nullable();
+            $table->string('gender')->nullable();
+            $table->string('birth_certificate_number')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->string('birth_place')->nullable();
+            $table->longText('address')->nullable();
+            $table->string('father_name')->nullable();
+            $table->string('mother_name')->nullable();
+            $table->foreignIdFor(Religion::class)
+                ->nullable()
+                ->constrained('religions')
+                ->onDelete('restrict');
+            $table->enum('type', RegistrationType::cases())
+                ->nullable();
+
+            $table->fullText([
+                'nisn',
+                'name',
+                'kk_number',
+                'nik_number',
+                'birth_place',
+                'address',
+                'father_name',
+                'mother_name',
+                'birth_certificate_number'
+            ]);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('candidates');
+    }
+};
