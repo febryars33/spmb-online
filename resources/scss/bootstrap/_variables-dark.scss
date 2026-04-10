@@ -11,7 +11,10 @@
 //
 
 // scss-docs-start theme-text-dark-variables
-$primary-text-emphasis-dark: tint-color($primary, 50%) !default; // Lebih terang di dark
+$primary-text-emphasis-dark: tint-color(
+    $primary,
+    50%
+) !default; // Lebih terang di dark
 $secondary-text-emphasis-dark: tint-color($secondary, 40%) !default;
 $success-text-emphasis-dark: tint-color($success, 50%) !default;
 $info-text-emphasis-dark: tint-color($info, 50%) !default;

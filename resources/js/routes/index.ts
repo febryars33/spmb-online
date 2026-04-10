@@ -123,7 +123,7 @@ register.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:12
+* @see app/Http/Controllers/HomeController.php:13
 * @route '/'
 */
 export const home = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -138,7 +138,7 @@ home.definition = {
 
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:12
+* @see app/Http/Controllers/HomeController.php:13
 * @route '/'
 */
 home.url = (options?: RouteQueryOptions) => {
@@ -147,7 +147,7 @@ home.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:12
+* @see app/Http/Controllers/HomeController.php:13
 * @route '/'
 */
 home.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -157,7 +157,7 @@ home.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:12
+* @see app/Http/Controllers/HomeController.php:13
 * @route '/'
 */
 home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -207,7 +207,7 @@ check.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\FaqController::__invoke
-* @see app/Http/Controllers/FaqController.php:13
+* @see app/Http/Controllers/FaqController.php:14
 * @route '/faq'
 */
 export const faq = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -222,7 +222,7 @@ faq.definition = {
 
 /**
 * @see \App\Http\Controllers\FaqController::__invoke
-* @see app/Http/Controllers/FaqController.php:13
+* @see app/Http/Controllers/FaqController.php:14
 * @route '/faq'
 */
 faq.url = (options?: RouteQueryOptions) => {
@@ -231,7 +231,7 @@ faq.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\FaqController::__invoke
-* @see app/Http/Controllers/FaqController.php:13
+* @see app/Http/Controllers/FaqController.php:14
 * @route '/faq'
 */
 faq.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -241,7 +241,7 @@ faq.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\FaqController::__invoke
-* @see app/Http/Controllers/FaqController.php:13
+* @see app/Http/Controllers/FaqController.php:14
 * @route '/faq'
 */
 faq.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

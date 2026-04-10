@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Candidate;
 use App\Models\Religion;
+use App\Models\StudentParent;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 
@@ -36,11 +38,19 @@ class FormController extends Controller
         ]);
     }
 
-    public function show(Candidate $candidate)
+    public function form(Candidate $candidate)
     {
         Gate::authorize('view', $candidate);
 
-        $candidate->loadMissing(['religion']);
+        $candidate->loadMissing(['religion', 'parents']);
+
+        $candidate->setRelation('parents', $candidate->parents->mapWithKeys(function ($item) {
+            return [$item->type => [
+                'id'      => $item->id,
+                'name'    => $item->name,
+                'address' => $item->address,
+            ]];
+        }));
 
         return Inertia::render('Dashboard/Form', [
             'religions'  =>  Religion::all(),
@@ -57,8 +67,6 @@ class FormController extends Controller
         Gate::authorize('view', $candidate);
 
         $candidate->load(['documentable.document_type']);
-
-        // dd($candidate->toArray());
 
         return Inertia::render('Dashboard/Document', [
             'candidate' =>  $candidate,
@@ -97,14 +105,34 @@ class FormController extends Controller
 
     public function update(Request $request, Candidate $candidate)
     {
-        $candidate->update($request->all());
 
-        return back();
+        DB::transaction(function () use ($request, $candidate) {
+            /** @var array  $parents */
+            $parents = $request->array('parents');
+
+            $candidate->update($request->only([
+                'name', 'kk_number', 'nik_number', 'nisn', 'birth_place', 'birth_date', 'address', 'religion_id', 'gender', 'birth_certificate_number',
+            ]));
+
+            foreach ($parents as $type => $data) {
+                if (empty(array_filter($data))) {
+                    continue;
+                }
+
+                $candidate->parents()->updateOrCreate(['type' => $type], $data);
+            }
+
+            return back();
+        });
     }
 
     public function destroy(Candidate $candidate)
     {
         $candidate->delete();
+
+        $candidate->parents()->delete();
+
+        $candidate->documentable()->delete();
 
         Inertia::flash([
             'message' => 'Pendaftaran berhasil dihapus.',

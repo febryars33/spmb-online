@@ -20,6 +20,7 @@
         "laravel/tinker": "^3.0",
         "laravel/wayfinder": "^0.1.15",
         "log1x/laravel-webfonts": "^2.0",
+        "ralphjsmit/laravel-seo": "^1.8",
         "snairbef/regional": "^2.0"
     },
     "require-dev": {

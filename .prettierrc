@@ -1,10 +1,9 @@
 {
-    "semi": false,
+    "semi": true,
     "singleQuote": true,
     "singleAttributePerLine": false,
     "htmlWhitespaceSensitivity": "css",
-    "printWidth": 150,
-    "plugins": ["prettier-plugin-organize-imports"],
+    "printWidth": 80,
     "tabWidth": 4,
     "overrides": [
         {

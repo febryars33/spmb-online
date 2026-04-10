@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::guide
-* @see app/Http/Controllers/Dashboard/FormController.php:15
+* @see app/Http/Controllers/Dashboard/FormController.php:17
 * @route '/dashboard/{candidate}'
 */
 export const guide = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ guide.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::guide
-* @see app/Http/Controllers/Dashboard/FormController.php:15
+* @see app/Http/Controllers/Dashboard/FormController.php:17
 * @route '/dashboard/{candidate}'
 */
 guide.url = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions) => {
@@ -49,7 +49,7 @@ guide.url = (args: { candidate: string | { id: string } } | [candidate: string |
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::guide
-* @see app/Http/Controllers/Dashboard/FormController.php:15
+* @see app/Http/Controllers/Dashboard/FormController.php:17
 * @route '/dashboard/{candidate}'
 */
 guide.get = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -59,7 +59,7 @@ guide.get = (args: { candidate: string | { id: string } } | [candidate: string |
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::guide
-* @see app/Http/Controllers/Dashboard/FormController.php:15
+* @see app/Http/Controllers/Dashboard/FormController.php:17
 * @route '/dashboard/{candidate}'
 */
 guide.head = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -68,26 +68,26 @@ guide.head = (args: { candidate: string | { id: string } } | [candidate: string 
 })
 
 /**
-* @see \App\Http\Controllers\Dashboard\FormController::show
-* @see app/Http/Controllers/Dashboard/FormController.php:39
+* @see \App\Http\Controllers\Dashboard\FormController::form
+* @see app/Http/Controllers/Dashboard/FormController.php:41
 * @route '/dashboard/{candidate}/form'
 */
-export const show = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: show.url(args, options),
+export const form = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: form.url(args, options),
     method: 'get',
 })
 
-show.definition = {
+form.definition = {
     methods: ["get","head"],
     url: '/dashboard/{candidate}/form',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\Dashboard\FormController::show
-* @see app/Http/Controllers/Dashboard/FormController.php:39
+* @see \App\Http\Controllers\Dashboard\FormController::form
+* @see app/Http/Controllers/Dashboard/FormController.php:41
 * @route '/dashboard/{candidate}/form'
 */
-show.url = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions) => {
+form.url = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { candidate: args }
     }
@@ -110,34 +110,34 @@ show.url = (args: { candidate: string | { id: string } } | [candidate: string | 
         : args.candidate,
     }
 
-    return show.definition.url
+    return form.definition.url
             .replace('{candidate}', parsedArgs.candidate.toString())
             .replace(/\/+$/, '') + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\Dashboard\FormController::show
-* @see app/Http/Controllers/Dashboard/FormController.php:39
+* @see \App\Http\Controllers\Dashboard\FormController::form
+* @see app/Http/Controllers/Dashboard/FormController.php:41
 * @route '/dashboard/{candidate}/form'
 */
-show.get = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: show.url(args, options),
+form.get = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: form.url(args, options),
     method: 'get',
 })
 
 /**
-* @see \App\Http\Controllers\Dashboard\FormController::show
-* @see app/Http/Controllers/Dashboard/FormController.php:39
+* @see \App\Http\Controllers\Dashboard\FormController::form
+* @see app/Http/Controllers/Dashboard/FormController.php:41
 * @route '/dashboard/{candidate}/form'
 */
-show.head = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: show.url(args, options),
+form.head = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: form.url(args, options),
     method: 'head',
 })
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::document
-* @see app/Http/Controllers/Dashboard/FormController.php:55
+* @see app/Http/Controllers/Dashboard/FormController.php:65
 * @route '/dashboard/{candidate}/document'
 */
 export const document = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -152,7 +152,7 @@ document.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::document
-* @see app/Http/Controllers/Dashboard/FormController.php:55
+* @see app/Http/Controllers/Dashboard/FormController.php:65
 * @route '/dashboard/{candidate}/document'
 */
 document.url = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions) => {
@@ -185,7 +185,7 @@ document.url = (args: { candidate: string | { id: string } } | [candidate: strin
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::document
-* @see app/Http/Controllers/Dashboard/FormController.php:55
+* @see app/Http/Controllers/Dashboard/FormController.php:65
 * @route '/dashboard/{candidate}/document'
 */
 document.get = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -195,7 +195,7 @@ document.get = (args: { candidate: string | { id: string } } | [candidate: strin
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::document
-* @see app/Http/Controllers/Dashboard/FormController.php:55
+* @see app/Http/Controllers/Dashboard/FormController.php:65
 * @route '/dashboard/{candidate}/document'
 */
 document.head = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -205,7 +205,7 @@ document.head = (args: { candidate: string | { id: string } } | [candidate: stri
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::send
-* @see app/Http/Controllers/Dashboard/FormController.php:72
+* @see app/Http/Controllers/Dashboard/FormController.php:80
 * @route '/dashboard/{candidate}/send'
 */
 export const send = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -220,7 +220,7 @@ send.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::send
-* @see app/Http/Controllers/Dashboard/FormController.php:72
+* @see app/Http/Controllers/Dashboard/FormController.php:80
 * @route '/dashboard/{candidate}/send'
 */
 send.url = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions) => {
@@ -253,7 +253,7 @@ send.url = (args: { candidate: string | { id: string } } | [candidate: string | 
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::send
-* @see app/Http/Controllers/Dashboard/FormController.php:72
+* @see app/Http/Controllers/Dashboard/FormController.php:80
 * @route '/dashboard/{candidate}/send'
 */
 send.get = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -263,7 +263,7 @@ send.get = (args: { candidate: string | { id: string } } | [candidate: string | 
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::send
-* @see app/Http/Controllers/Dashboard/FormController.php:72
+* @see app/Http/Controllers/Dashboard/FormController.php:80
 * @route '/dashboard/{candidate}/send'
 */
 send.head = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -273,7 +273,7 @@ send.head = (args: { candidate: string | { id: string } } | [candidate: string |
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::review
-* @see app/Http/Controllers/Dashboard/FormController.php:85
+* @see app/Http/Controllers/Dashboard/FormController.php:93
 * @route '/dashboard/{candidate}/review'
 */
 export const review = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -288,7 +288,7 @@ review.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::review
-* @see app/Http/Controllers/Dashboard/FormController.php:85
+* @see app/Http/Controllers/Dashboard/FormController.php:93
 * @route '/dashboard/{candidate}/review'
 */
 review.url = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions) => {
@@ -321,7 +321,7 @@ review.url = (args: { candidate: string | { id: string } } | [candidate: string 
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::review
-* @see app/Http/Controllers/Dashboard/FormController.php:85
+* @see app/Http/Controllers/Dashboard/FormController.php:93
 * @route '/dashboard/{candidate}/review'
 */
 review.get = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -331,7 +331,7 @@ review.get = (args: { candidate: string | { id: string } } | [candidate: string 
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::review
-* @see app/Http/Controllers/Dashboard/FormController.php:85
+* @see app/Http/Controllers/Dashboard/FormController.php:93
 * @route '/dashboard/{candidate}/review'
 */
 review.head = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -341,7 +341,7 @@ review.head = (args: { candidate: string | { id: string } } | [candidate: string
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::update
-* @see app/Http/Controllers/Dashboard/FormController.php:98
+* @see app/Http/Controllers/Dashboard/FormController.php:106
 * @route '/dashboard/{candidate}'
 */
 export const update = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -356,7 +356,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::update
-* @see app/Http/Controllers/Dashboard/FormController.php:98
+* @see app/Http/Controllers/Dashboard/FormController.php:106
 * @route '/dashboard/{candidate}'
 */
 update.url = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions) => {
@@ -389,7 +389,7 @@ update.url = (args: { candidate: string | { id: string } } | [candidate: string 
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::update
-* @see app/Http/Controllers/Dashboard/FormController.php:98
+* @see app/Http/Controllers/Dashboard/FormController.php:106
 * @route '/dashboard/{candidate}'
 */
 update.put = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -399,7 +399,7 @@ update.put = (args: { candidate: string | { id: string } } | [candidate: string 
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::destroy
-* @see app/Http/Controllers/Dashboard/FormController.php:105
+* @see app/Http/Controllers/Dashboard/FormController.php:129
 * @route '/dashboard/{candidate}'
 */
 export const destroy = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -414,7 +414,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::destroy
-* @see app/Http/Controllers/Dashboard/FormController.php:105
+* @see app/Http/Controllers/Dashboard/FormController.php:129
 * @route '/dashboard/{candidate}'
 */
 destroy.url = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions) => {
@@ -447,7 +447,7 @@ destroy.url = (args: { candidate: string | { id: string } } | [candidate: string
 
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::destroy
-* @see app/Http/Controllers/Dashboard/FormController.php:105
+* @see app/Http/Controllers/Dashboard/FormController.php:129
 * @route '/dashboard/{candidate}'
 */
 destroy.delete = (args: { candidate: string | { id: string } } | [candidate: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -455,6 +455,6 @@ destroy.delete = (args: { candidate: string | { id: string } } | [candidate: str
     method: 'delete',
 })
 
-const FormController = { guide, show, document, send, review, update, destroy }
+const FormController = { guide, form, document, send, review, update, destroy }
 
 export default FormController

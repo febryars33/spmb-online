@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Middleware\DisableSSR;
 use App\Http\Middleware\HandleInertiaRequests;
+use App\Http\Middleware\MinifyHtmlOutput;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -13,8 +15,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->alias(aliases: [
+            'disable-ssr' => DisableSSR::class,
+        ]);
+
         $middleware->web(append: [
             HandleInertiaRequests::class,
+            // DisableSSR::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

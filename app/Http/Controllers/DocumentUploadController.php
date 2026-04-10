@@ -26,7 +26,7 @@ class DocumentUploadController extends Controller
             ],
         ]);
 
-        (int) $id = $request->id;
+        $id = (int) $request->id;
         $file = $request->file('file');
 
         $document = Document::find($id);
@@ -37,6 +37,8 @@ class DocumentUploadController extends Controller
         $mime = $file->getMimeType();
 
         $path = $file->storeAs("documents/$document->documentable_id", $name, 'public');
+
+        // dd($path);
 
         $document->update([
             'path' => $path,

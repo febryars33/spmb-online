@@ -35,211 +35,241 @@
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Components/Footer.vue": [
+  "resources/js/components/Footer.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Components/Forms/PersonalData.vue": [
+  "resources/js/components/Forms/Dropzone.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Components/Forms/PersonalData.vue?vue&type=script&setup=true&lang.ts": [
+  "resources/js/components/Forms/Dropzone.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Components/Forms/Select.vue": [
+  "resources/js/components/Forms/PersonalData.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Components/Forms/Select.vue?vue&type=script&setup=true&lang.ts": [
+  "resources/js/components/Forms/PersonalData.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Components/Forms/Select.vue?vue&type=style&index=0&scoped=631e6ff7&lang.css": [
+  "resources/js/components/Forms/Select.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Components/Hero.vue": [
+  "resources/js/components/Forms/Select.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Components/Hero.vue?vue&type=script&setup=true&lang.ts": [
+  "resources/js/components/Forms/Select.vue?vue&type=style&index=0&scoped=cbbb0ceb&lang.css": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Components/Navbar.vue": [
+  "resources/js/components/Hero.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Components/Navbar.vue?vue&type=script&setup=true&lang.ts": [
+  "resources/js/components/Hero.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Layouts/App.vue": [
+  "resources/js/components/Navbar.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Layouts/App.vue?vue&type=script&setup=true&lang.ts": [
+  "resources/js/components/Navbar.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Layouts/Form.vue": [
+  "resources/js/components/RegistrationForms/StudentParent.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Layouts/Form.vue?vue&type=script&setup=true&lang.ts": [
+  "resources/js/components/RegistrationForms/StudentParent.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Auth/Login.vue": [
+  "resources/js/layouts/App.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Auth/Login.vue?vue&type=script&setup=true&lang.ts": [
+  "resources/js/layouts/App.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Auth/Register.vue": [
+  "resources/js/layouts/Form.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Check.vue": [
+  "resources/js/layouts/Form.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Check.vue?vue&type=script&setup=true&lang.ts": [
+  "resources/js/pages/Auth/Login.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Dashboard/Document.vue": [
+  "resources/js/pages/Auth/Login.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Dashboard/Document.vue?vue&type=script&setup=true&lang.ts": [
+  "resources/js/pages/Auth/Register.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Dashboard/Form.vue": [
+  "resources/js/pages/Check.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Dashboard/Form.vue?vue&type=script&setup=true&lang.ts": [
+  "resources/js/pages/Check.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Dashboard/Guide.vue": [
+  "resources/js/pages/Dashboard/Document.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Dashboard/Guide.vue?vue&type=script&setup=true&lang.ts": [
+  "resources/js/pages/Dashboard/Document.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Dashboard/Home.vue": [
+  "resources/js/pages/Dashboard/Form.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Dashboard/Home.vue?vue&type=script&setup=true&lang.ts": [
+  "resources/js/pages/Dashboard/Form.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Dashboard/Review.vue": [
+  "resources/js/pages/Dashboard/Guide.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Dashboard/Review.vue?vue&type=script&setup=true&lang.ts": [
+  "resources/js/pages/Dashboard/Guide.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Dashboard/Send.vue": [
+  "resources/js/pages/Dashboard/Home.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Dashboard/Send.vue?vue&type=script&setup=true&lang.ts": [
+  "resources/js/pages/Dashboard/Home.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Faq.vue": [
+  "resources/js/pages/Dashboard/Review.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Faq.vue?vue&type=script&setup=true&lang.ts": [
+  "resources/js/pages/Dashboard/Review.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Home.vue": [
+  "resources/js/pages/Dashboard/Send.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
-  "resources/js/Pages/Home.vue?vue&type=script&setup=true&lang.ts": [
+  "resources/js/pages/Dashboard/Send.vue?vue&type=script&setup=true&lang.ts": [
+    "/build/assets/facebook-48-CIEVyuPs.png",
+    "/build/assets/instagram-48-0hFP1FUJ.png",
+    "/build/assets/tiktok-48-D0cvbkfR.png",
+    "/build/assets/youtube-48-Dp9a8xPi.png"
+  ],
+  "resources/js/pages/Faq.vue": [
+    "/build/assets/facebook-48-CIEVyuPs.png",
+    "/build/assets/instagram-48-0hFP1FUJ.png",
+    "/build/assets/tiktok-48-D0cvbkfR.png",
+    "/build/assets/youtube-48-Dp9a8xPi.png"
+  ],
+  "resources/js/pages/Faq.vue?vue&type=script&setup=true&lang.ts": [
+    "/build/assets/facebook-48-CIEVyuPs.png",
+    "/build/assets/instagram-48-0hFP1FUJ.png",
+    "/build/assets/tiktok-48-D0cvbkfR.png",
+    "/build/assets/youtube-48-Dp9a8xPi.png"
+  ],
+  "resources/js/pages/Home.vue": [
+    "/build/assets/facebook-48-CIEVyuPs.png",
+    "/build/assets/instagram-48-0hFP1FUJ.png",
+    "/build/assets/tiktok-48-D0cvbkfR.png",
+    "/build/assets/youtube-48-Dp9a8xPi.png"
+  ],
+  "resources/js/pages/Home.vue?vue&type=script&setup=true&lang.ts": [
+    "/build/assets/facebook-48-CIEVyuPs.png",
+    "/build/assets/instagram-48-0hFP1FUJ.png",
+    "/build/assets/tiktok-48-D0cvbkfR.png",
+    "/build/assets/youtube-48-Dp9a8xPi.png"
+  ],
+  "resources/js/routes/dashboard/form/document/index.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
@@ -258,6 +288,12 @@
     "/build/assets/youtube-48-Dp9a8xPi.png"
   ],
   "resources/js/routes/dashboard/index.ts": [
+    "/build/assets/facebook-48-CIEVyuPs.png",
+    "/build/assets/instagram-48-0hFP1FUJ.png",
+    "/build/assets/tiktok-48-D0cvbkfR.png",
+    "/build/assets/youtube-48-Dp9a8xPi.png"
+  ],
+  "resources/js/routes/document/index.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",

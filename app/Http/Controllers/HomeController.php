@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class HomeController extends Controller
 {
@@ -12,10 +13,10 @@ class HomeController extends Controller
     public function __invoke()
     {
         return Inertia::render('Home', [
-            'meta' => [
-                'title' => 'Selamat datang di SPMB',
-                'description' => 'Selamat datang di SPMB',
-            ],
+            'seo' => new SEOData(
+                title: 'Selamat datang di SPMB',
+                description: 'SPMB SMA PGRI 1 Bandung',
+            )
         ]);
     }
 }

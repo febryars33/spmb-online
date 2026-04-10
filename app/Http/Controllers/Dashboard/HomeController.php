@@ -40,8 +40,22 @@ class HomeController extends Controller
             ],
         ]);
 
-        $this->candidate()->create([
+        $candidate = $this->candidate()->create([
             'type' => $request->type,
+        ]);
+
+        // TODO: In the future, this will be changed to layering, namely using Service + Repository.
+        $candidate->documentable()->createMany([
+            ['document_type_id' => 1],
+            ['document_type_id' => 2],
+            ['document_type_id' => 3],
+            ['document_type_id' => 4],
+        ]);
+
+        $candidate->parents()->createMany([
+            ['type' => 'father'],
+            ['type' => 'mother'],
+            ['type' => 'guardian'],
         ]);
 
         Inertia::flash([

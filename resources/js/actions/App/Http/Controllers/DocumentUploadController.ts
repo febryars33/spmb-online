@@ -35,7 +35,7 @@ DocumentUploadController.post = (options?: RouteQueryOptions): RouteDefinition<'
 
 /**
 * @see \App\Http\Controllers\DocumentUploadController::setToNull
-* @see app/Http/Controllers/DocumentUploadController.php:52
+* @see app/Http/Controllers/DocumentUploadController.php:54
 * @route '/dashboard/{candidate}/document/{document}'
 */
 export const setToNull = (args: { candidate: string | { id: string }, document: number | { id: number } } | [candidate: string | { id: string }, document: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -50,7 +50,7 @@ setToNull.definition = {
 
 /**
 * @see \App\Http\Controllers\DocumentUploadController::setToNull
-* @see app/Http/Controllers/DocumentUploadController.php:52
+* @see app/Http/Controllers/DocumentUploadController.php:54
 * @route '/dashboard/{candidate}/document/{document}'
 */
 setToNull.url = (args: { candidate: string | { id: string }, document: number | { id: number } } | [candidate: string | { id: string }, document: number | { id: number } ], options?: RouteQueryOptions) => {
@@ -80,7 +80,7 @@ setToNull.url = (args: { candidate: string | { id: string }, document: number | 
 
 /**
 * @see \App\Http\Controllers\DocumentUploadController::setToNull
-* @see app/Http/Controllers/DocumentUploadController.php:52
+* @see app/Http/Controllers/DocumentUploadController.php:54
 * @route '/dashboard/{candidate}/document/{document}'
 */
 setToNull.patch = (args: { candidate: string | { id: string }, document: number | { id: number } } | [candidate: string | { id: string }, document: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'patch'> => ({

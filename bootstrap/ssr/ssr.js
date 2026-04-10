@@ -1,7 +1,9 @@
-import { Fragment, createBlock, createCommentVNode, createSSRApp, createTextVNode, createVNode, defineComponent, h, isRef, mergeModels, mergeProps, onMounted, openBlock, ref, renderList, renderSlot, toDisplayString, unref, useModel, useSSRContext, useTemplateRef, vModelSelect, vModelText, withCtx, withDirectives, withModifiers } from "vue";
+import { Fragment, TransitionGroup, createBlock, createCommentVNode, createSSRApp, createTextVNode, createVNode, defineComponent, h, isRef, mergeModels, mergeProps, onMounted, openBlock, ref, renderList, renderSlot, toDisplayString, unref, useModel, useSSRContext, useTemplateRef, vModelSelect, vModelText, withCtx, withDirectives, withModifiers } from "vue";
 import { renderToString, ssrGetDirectiveProps, ssrIncludeBooleanAttr, ssrInterpolate, ssrLooseContain, ssrLooseEqual, ssrRenderAttr, ssrRenderAttrs, ssrRenderClass, ssrRenderComponent, ssrRenderDynamicModel, ssrRenderList, ssrRenderSlot, ssrRenderStyle, ssrRenderTeleport } from "vue/server-renderer";
 import { Head, InfiniteScroll, Link, createInertiaApp, useForm, usePage } from "@inertiajs/vue3";
-import { ArrowLeft, ArrowLeftRight, Calendar, Check, CircleAlert, CircleCheckBig, CircleQuestionMark, Clock, ClockFading, CreditCard, Eye, EyeClosed, FileSearchCorner, FileText, FileUp, Files, Form, GalleryHorizontalEnd, Image, Lock, Mail, Phone, ScanText, School, Search, SquareStack, Trash, Upload, User, UserPlus, Users } from "@lucide/vue";
+import { ArrowLeft, ArrowLeftRight, Calendar, Check, CircleAlert, CircleCheckBig, CircleQuestionMark, Clock, ClockFading, CreditCard, Eye, EyeClosed, FileSearchCorner, FileText, FileUp, Files, Form, GalleryHorizontalEnd, Hand, Image, Lock, Mail, Phone, ScanText, School, Search, SquareStack, Trash, Upload, User, UserPlus, Users } from "@lucide/vue";
+import { BOverlay } from "bootstrap-vue-next/components/BOverlay";
+import { onClickOutside, useDropZone, useFileDialog } from "@vueuse/core";
 import { BApp } from "bootstrap-vue-next/components/BApp";
 import { BApp as BApp$1, useModal } from "bootstrap-vue-next";
 import { Toaster, toast } from "vue-sonner";
@@ -9,11 +11,9 @@ import { BButton } from "bootstrap-vue-next/components/BButton";
 import { BBadge } from "bootstrap-vue-next/components/BBadge";
 import { BCardText } from "bootstrap-vue-next/components/BCard";
 import { BTab, BTabs } from "bootstrap-vue-next/components/BTabs";
-import { BOverlay } from "bootstrap-vue-next/components/BOverlay";
 import { BFormTextarea } from "bootstrap-vue-next/components/BFormTextarea";
 import { BFormRadio, BFormRadioGroup } from "bootstrap-vue-next/components/BFormRadio";
 import { BFormInput } from "bootstrap-vue-next/components/BFormInput";
-import { onClickOutside } from "@vueuse/core";
 import { BModal } from "bootstrap-vue-next/components/BModal";
 import { BProgress } from "bootstrap-vue-next/components/BProgress";
 import createServer from "@inertiajs/vue3/server";
@@ -153,8 +153,8 @@ logout.post = (options) => ({
 	method: "post"
 });
 /**
-* @see \App\Http\Controllers\RegisterController::__invoke
-* @see app/Http/Controllers/RegisterController.php:12
+* @see \App\Http\Controllers\Auth\RegisterController::__invoke
+* @see app/Http/Controllers/Auth/RegisterController.php:13
 * @route '/register'
 */
 var register = (options) => ({
@@ -166,16 +166,16 @@ register.definition = {
 	url: "/register"
 };
 /**
-* @see \App\Http\Controllers\RegisterController::__invoke
-* @see app/Http/Controllers/RegisterController.php:12
+* @see \App\Http\Controllers\Auth\RegisterController::__invoke
+* @see app/Http/Controllers/Auth/RegisterController.php:13
 * @route '/register'
 */
 register.url = (options) => {
 	return register.definition.url + queryParams(options);
 };
 /**
-* @see \App\Http\Controllers\RegisterController::__invoke
-* @see app/Http/Controllers/RegisterController.php:12
+* @see \App\Http\Controllers\Auth\RegisterController::__invoke
+* @see app/Http/Controllers/Auth/RegisterController.php:13
 * @route '/register'
 */
 register.get = (options) => ({
@@ -183,8 +183,8 @@ register.get = (options) => ({
 	method: "get"
 });
 /**
-* @see \App\Http\Controllers\RegisterController::__invoke
-* @see app/Http/Controllers/RegisterController.php:12
+* @see \App\Http\Controllers\Auth\RegisterController::__invoke
+* @see app/Http/Controllers/Auth/RegisterController.php:13
 * @route '/register'
 */
 register.head = (options) => ({
@@ -231,7 +231,7 @@ home$1.head = (options) => ({
 	method: "head"
 });
 /**
-* @see routes/web.php:9
+* @see routes/web.php:10
 * @route '/check'
 */
 var check = (options) => ({
@@ -243,14 +243,14 @@ check.definition = {
 	url: "/check"
 };
 /**
-* @see routes/web.php:9
+* @see routes/web.php:10
 * @route '/check'
 */
 check.url = (options) => {
 	return check.definition.url + queryParams(options);
 };
 /**
-* @see routes/web.php:9
+* @see routes/web.php:10
 * @route '/check'
 */
 check.get = (options) => ({
@@ -258,7 +258,7 @@ check.get = (options) => ({
 	method: "get"
 });
 /**
-* @see routes/web.php:9
+* @see routes/web.php:10
 * @route '/check'
 */
 check.head = (options) => ({
@@ -267,7 +267,7 @@ check.head = (options) => ({
 });
 /**
 * @see \App\Http\Controllers\FaqController::__invoke
-* @see app/Http/Controllers/FaqController.php:13
+* @see app/Http/Controllers/FaqController.php:14
 * @route '/faq'
 */
 var faq = (options) => ({
@@ -280,7 +280,7 @@ faq.definition = {
 };
 /**
 * @see \App\Http\Controllers\FaqController::__invoke
-* @see app/Http/Controllers/FaqController.php:13
+* @see app/Http/Controllers/FaqController.php:14
 * @route '/faq'
 */
 faq.url = (options) => {
@@ -288,7 +288,7 @@ faq.url = (options) => {
 };
 /**
 * @see \App\Http\Controllers\FaqController::__invoke
-* @see app/Http/Controllers/FaqController.php:13
+* @see app/Http/Controllers/FaqController.php:14
 * @route '/faq'
 */
 faq.get = (options) => ({
@@ -297,7 +297,7 @@ faq.get = (options) => ({
 });
 /**
 * @see \App\Http\Controllers\FaqController::__invoke
-* @see app/Http/Controllers/FaqController.php:13
+* @see app/Http/Controllers/FaqController.php:14
 * @route '/faq'
 */
 faq.head = (options) => ({
@@ -305,7 +305,7 @@ faq.head = (options) => ({
 	method: "head"
 });
 //#endregion
-//#region resources/js/Pages/Auth/Login.vue?vue&type=script&setup=true&lang.ts
+//#region resources/js/pages/Auth/Login.vue?vue&type=script&setup=true&lang.ts
 var Login_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
 	__name: "Login",
 	__ssrInlineRender: true,
@@ -339,7 +339,7 @@ var Login_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCo
 			_push(ssrRenderComponent(unref(Clock), { size: 24 }, null, _parent));
 			_push(`</div><span class="fw-medium">Update Status Real-time</span></div></div><div class="col-12"><div class="d-flex align-items-center bg-primary-subtle text-primary p-3 rounded-4"><div class="me-3">`);
 			_push(ssrRenderComponent(unref(CreditCard), { size: 24 }, null, _parent));
-			_push(`</div><span class="fw-medium">Pembayaran Mudah</span></div></div></div></div></div><div class="col-lg-6 p-4 p-md-5 bg-body-tertiary"><div class="mb-4"><h3 class="fw-bold mb-1">Selamat Datang</h3><p class="text-secondary">Silahkan masuk ke akun orang tua Anda.</p></div><form><div class="mb-4"><label class="form-label small fw-bold">Alamat Email</label><div class="input-group has-validation"><span class="input-group-text">`);
+			_push(`</div><span class="fw-medium">Pembayaran Mudah</span></div></div></div></div></div><div class="col-lg-6 p-4 p-md-5 bg-body-tertiary"><div class="mb-4"><h3 class="fw-bold mb-1">Selamat Datang</h3><p class="text-secondary">Silahkan masuk ke akun orang tua Anda.</p></div><form><div class="mb-4"><label class="form-label small fw-bold">Email Peserta Didik</label><div class="input-group has-validation"><span class="input-group-text">`);
 			_push(ssrRenderComponent(unref(Mail), { size: 16 }, null, _parent));
 			_push(`</span><input${ssrRenderAttr("value", unref(form).email)} class="${ssrRenderClass([{ "is-invalid": unref(form).errors.email }, "form-control"])}" placeholder="nama@email.com" type="email"><div class="invalid-feedback">${ssrInterpolate(unref(form).errors.email)}</div></div></div><div class="mb-4"><div class="d-flex justify-content-between align-items-center mb-2"><label class="form-label small fw-bold mb-0">Kata Sandi</label><a size="14" class="text-decoration-none small fw-bold" href="/forgot-password" data-discover="true">Lupa Sandi?</a></div><div class="input-group has-validation"><span class="input-group-text">`);
 			_push(ssrRenderComponent(unref(Lock), { size: 16 }, null, _parent));
@@ -351,13 +351,13 @@ var Login_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCo
 	}
 });
 //#endregion
-//#region resources/js/Pages/Auth/Login.vue
+//#region resources/js/pages/Auth/Login.vue
 var Login_exports = /* @__PURE__ */ __exportAll({ default: () => Login_default });
-var _sfc_setup$17 = Login_vue_vue_type_script_setup_true_lang_default.setup;
+var _sfc_setup$19 = Login_vue_vue_type_script_setup_true_lang_default.setup;
 Login_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Auth/Login.vue");
-	return _sfc_setup$17 ? _sfc_setup$17(props, ctx) : void 0;
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Auth/Login.vue");
+	return _sfc_setup$19 ? _sfc_setup$19(props, ctx) : void 0;
 };
 var Login_default = Login_vue_vue_type_script_setup_true_lang_default;
 //#endregion
@@ -368,21 +368,21 @@ var _plugin_vue_export_helper_default = (sfc, props) => {
 	return target;
 };
 //#endregion
-//#region resources/js/Pages/Auth/Register.vue
+//#region resources/js/pages/Auth/Register.vue
 var Register_exports = /* @__PURE__ */ __exportAll({ default: () => Register_default });
 var _sfc_main$1 = {};
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs) {
 	_push(`<div${ssrRenderAttrs(_attrs)}><p>register</p></div>`);
 }
-var _sfc_setup$16 = _sfc_main$1.setup;
+var _sfc_setup$18 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Auth/Register.vue");
-	return _sfc_setup$16 ? _sfc_setup$16(props, ctx) : void 0;
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Auth/Register.vue");
+	return _sfc_setup$18 ? _sfc_setup$18(props, ctx) : void 0;
 };
 var Register_default = /* @__PURE__ */ _plugin_vue_export_helper_default(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1]]);
 //#endregion
-//#region resources/js/Pages/Check.vue?vue&type=script&setup=true&lang.ts
+//#region resources/js/pages/Check.vue?vue&type=script&setup=true&lang.ts
 var Check_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
 	__name: "Check",
 	__ssrInlineRender: true,
@@ -460,15 +460,68 @@ var Check_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCo
 	}
 });
 //#endregion
-//#region resources/js/Pages/Check.vue
+//#region resources/js/pages/Check.vue
 var Check_exports = /* @__PURE__ */ __exportAll({ default: () => Check_default });
-var _sfc_setup$15 = Check_vue_vue_type_script_setup_true_lang_default.setup;
+var _sfc_setup$17 = Check_vue_vue_type_script_setup_true_lang_default.setup;
 Check_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Check.vue");
-	return _sfc_setup$15 ? _sfc_setup$15(props, ctx) : void 0;
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Check.vue");
+	return _sfc_setup$17 ? _sfc_setup$17(props, ctx) : void 0;
 };
 var Check_default = Check_vue_vue_type_script_setup_true_lang_default;
+//#endregion
+//#region resources/js/components/Forms/Dropzone.vue?vue&type=script&setup=true&lang.ts
+var Dropzone_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
+	__name: "Dropzone",
+	__ssrInlineRender: true,
+	props: { itemId: [String, Number] },
+	emits: ["dropped"],
+	setup(__props, { emit: __emit }) {
+		const emit = __emit;
+		const dropZoneRef = useTemplateRef("dropZoneRef");
+		const props = __props;
+		const onDrop = (files) => {
+			emit("dropped", {
+				id: props.itemId,
+				files
+			});
+		};
+		const { isOverDropZone } = useDropZone(dropZoneRef, {
+			onDrop,
+			multiple: false,
+			dataTypes: [
+				"image/jpeg",
+				"image/png",
+				"image/jpg",
+				"application/pdf"
+			]
+		});
+		const { open, onChange } = useFileDialog({ accept: "image/jpeg, image/png, image/jpg, application/pdf" });
+		onChange((files) => onDrop(files));
+		return (_ctx, _push, _parent, _attrs) => {
+			_push(`<div${ssrRenderAttrs(mergeProps({
+				ref_key: "dropZoneRef",
+				ref: dropZoneRef,
+				class: ["rounded-4 p-4 border text-center", { "bg-primary-subtle border-primary": unref(isOverDropZone) }]
+			}, _attrs))}><div class="mb-3"><div class="bg-primary-subtle d-inline-flex p-3 rounded-circle text-primary mb-2">`);
+			if (!unref(isOverDropZone)) _push(ssrRenderComponent(unref(FileUp), null, null, _parent));
+			else _push(ssrRenderComponent(unref(Hand), null, null, _parent));
+			_push(`</div>`);
+			if (!unref(isOverDropZone)) _push(`<p class="small text-secondary mb-0">Klik untuk pilih file atau seret ke sini</p>`);
+			else _push(`<p class="small text-secondary mb-0">Lepaskan file di sini</p>`);
+			_push(`</div><button type="button" class="btn btn-sm btn-primary rounded-pill px-4 py-2 fw-bold small cursor-pointer"${ssrIncludeBooleanAttr(unref(isOverDropZone)) ? " disabled" : ""}> Pilih Berkas </button></div>`);
+		};
+	}
+});
+//#endregion
+//#region resources/js/components/Forms/Dropzone.vue
+var _sfc_setup$16 = Dropzone_vue_vue_type_script_setup_true_lang_default.setup;
+Dropzone_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
+	const ssrContext = useSSRContext();
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Forms/Dropzone.vue");
+	return _sfc_setup$16 ? _sfc_setup$16(props, ctx) : void 0;
+};
+var Dropzone_default = Dropzone_vue_vue_type_script_setup_true_lang_default;
 //#endregion
 //#region resources/img/facebook-48.png
 var facebook_48_default = "/build/assets/facebook-48-CIEVyuPs.png";
@@ -482,16 +535,16 @@ var tiktok_48_default = "/build/assets/tiktok-48-D0cvbkfR.png";
 //#region resources/img/youtube-48.png
 var youtube_48_default = "/build/assets/youtube-48-Dp9a8xPi.png";
 //#endregion
-//#region resources/js/Components/Footer.vue
+//#region resources/js/components/Footer.vue
 var _sfc_main = {};
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
 	_push(`<div${ssrRenderAttrs(mergeProps({ class: "container py-5" }, _attrs))}><div class="row"><div class="col-lg-3"><h3>Tentang Kami</h3><ul class="list-unstyled small"><li class="mb-2"><a class="text-decoration-none text-secondary" href="/" data-discover="true">Beranda</a></li><li class="mb-2"><a class="text-decoration-none text-secondary" href="/cek-status" data-discover="true">Cek Status</a></li><li class="mb-2"><a class="text-decoration-none text-secondary" href="/login" data-discover="true">Login</a></li><li class="mb-2"><a class="text-decoration-none text-secondary" href="/register" data-discover="true">Daftar</a></li></ul></div><div class="col-lg-3"><h3>Dukungan</h3><ul class="list-unstyled small"><li class="mb-2"><a href="#" class="text-decoration-none text-secondary">Alur Pendaftaran</a></li><li class="mb-2"><a href="#" class="text-decoration-none text-secondary">Biaya Pendidikan</a></li><li class="mb-2"><a href="#" class="text-decoration-none text-secondary">Beasiswa</a></li><li class="mb-2"><a href="#" class="text-decoration-none text-secondary">FAQ</a></li></ul></div><div class="col-lg-3"><ul class="list-unstyled small"><h2 class="d-none d-lg-block"> </h2><li class="mb-2"><a href="#" class="text-decoration-none text-secondary">Alur Pendaftaran</a></li><li class="mb-2"><a href="#" class="text-decoration-none text-secondary">Biaya Pendidikan</a></li><li class="mb-2"><a href="#" class="text-decoration-none text-secondary">Beasiswa</a></li><li class="mb-2"><a href="#" class="text-decoration-none text-secondary">FAQ</a></li></ul></div><div class="col-lg-3"><h1>Connect With Us</h1><ul class="list-inline"><li class="list-inline-item"><img${ssrRenderAttr("src", facebook_48_default)} alt="facebook" class="img-fluid" width="48px"></li><li class="list-inline-item"><img${ssrRenderAttr("src", instagram_48_default)} alt="instagram" class="img-fluid" width="48px"></li><li class="list-inline-item"><img${ssrRenderAttr("src", tiktok_48_default)} alt="instagram" class="img-fluid" width="48px"></li><li class="list-inline-item"><img${ssrRenderAttr("src", youtube_48_default)} alt="instagram" class="img-fluid" width="48px"></li></ul><p>Laborum minima ipsam facere? Ad nulla culpa explicabo</p></div></div><div class="col-lg-9"><span class="small text-secondary"> Officia dolor esse quo harum nemo unde magni sed repudiandae, consequatur placeat corporis, culpa, quidem veritatis a. Error praesentium sit necessitatibus repellendus. </span></div></div>`);
 }
-var _sfc_setup$14 = _sfc_main.setup;
+var _sfc_setup$15 = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/Footer.vue");
-	return _sfc_setup$14 ? _sfc_setup$14(props, ctx) : void 0;
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Footer.vue");
+	return _sfc_setup$15 ? _sfc_setup$15(props, ctx) : void 0;
 };
 var Footer_default = /* @__PURE__ */ _plugin_vue_export_helper_default(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 //#endregion
@@ -570,10 +623,52 @@ var home = {
 	store: Object.assign(store, store)
 };
 //#endregion
+//#region resources/js/routes/dashboard/form/document/index.ts
+/**
+* @see \App\Http\Controllers\DocumentUploadController::nullMethod
+* @see app/Http/Controllers/DocumentUploadController.php:54
+* @route '/dashboard/{candidate}/document/{document}'
+*/
+var nullMethod = (args, options) => ({
+	url: nullMethod.url(args, options),
+	method: "patch"
+});
+nullMethod.definition = {
+	methods: ["patch"],
+	url: "/dashboard/{candidate}/document/{document}"
+};
+/**
+* @see \App\Http\Controllers\DocumentUploadController::nullMethod
+* @see app/Http/Controllers/DocumentUploadController.php:54
+* @route '/dashboard/{candidate}/document/{document}'
+*/
+nullMethod.url = (args, options) => {
+	if (Array.isArray(args)) args = {
+		candidate: args[0],
+		document: args[1]
+	};
+	args = applyUrlDefaults(args);
+	const parsedArgs = {
+		candidate: typeof args.candidate === "object" ? args.candidate.id : args.candidate,
+		document: typeof args.document === "object" ? args.document.id : args.document
+	};
+	return nullMethod.definition.url.replace("{candidate}", parsedArgs.candidate.toString()).replace("{document}", parsedArgs.document.toString()).replace(/\/+$/, "") + queryParams(options);
+};
+/**
+* @see \App\Http\Controllers\DocumentUploadController::nullMethod
+* @see app/Http/Controllers/DocumentUploadController.php:54
+* @route '/dashboard/{candidate}/document/{document}'
+*/
+nullMethod.patch = (args, options) => ({
+	url: nullMethod.url(args, options),
+	method: "patch"
+});
+var document$2 = { null: Object.assign(nullMethod, nullMethod) };
+//#endregion
 //#region resources/js/routes/dashboard/form/index.ts
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::guide
-* @see app/Http/Controllers/Dashboard/FormController.php:15
+* @see app/Http/Controllers/Dashboard/FormController.php:17
 * @route '/dashboard/{candidate}'
 */
 var guide = (args, options) => ({
@@ -586,7 +681,7 @@ guide.definition = {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::guide
-* @see app/Http/Controllers/Dashboard/FormController.php:15
+* @see app/Http/Controllers/Dashboard/FormController.php:17
 * @route '/dashboard/{candidate}'
 */
 guide.url = (args, options) => {
@@ -599,7 +694,7 @@ guide.url = (args, options) => {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::guide
-* @see app/Http/Controllers/Dashboard/FormController.php:15
+* @see app/Http/Controllers/Dashboard/FormController.php:17
 * @route '/dashboard/{candidate}'
 */
 guide.get = (args, options) => ({
@@ -608,7 +703,7 @@ guide.get = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::guide
-* @see app/Http/Controllers/Dashboard/FormController.php:15
+* @see app/Http/Controllers/Dashboard/FormController.php:17
 * @route '/dashboard/{candidate}'
 */
 guide.head = (args, options) => ({
@@ -617,7 +712,7 @@ guide.head = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::form
-* @see app/Http/Controllers/Dashboard/FormController.php:39
+* @see app/Http/Controllers/Dashboard/FormController.php:41
 * @route '/dashboard/{candidate}/form'
 */
 var form = (args, options) => ({
@@ -630,7 +725,7 @@ form.definition = {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::form
-* @see app/Http/Controllers/Dashboard/FormController.php:39
+* @see app/Http/Controllers/Dashboard/FormController.php:41
 * @route '/dashboard/{candidate}/form'
 */
 form.url = (args, options) => {
@@ -643,7 +738,7 @@ form.url = (args, options) => {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::form
-* @see app/Http/Controllers/Dashboard/FormController.php:39
+* @see app/Http/Controllers/Dashboard/FormController.php:41
 * @route '/dashboard/{candidate}/form'
 */
 form.get = (args, options) => ({
@@ -652,7 +747,7 @@ form.get = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::form
-* @see app/Http/Controllers/Dashboard/FormController.php:39
+* @see app/Http/Controllers/Dashboard/FormController.php:41
 * @route '/dashboard/{candidate}/form'
 */
 form.head = (args, options) => ({
@@ -661,51 +756,51 @@ form.head = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::document
-* @see app/Http/Controllers/Dashboard/FormController.php:55
+* @see app/Http/Controllers/Dashboard/FormController.php:65
 * @route '/dashboard/{candidate}/document'
 */
-var document = (args, options) => ({
-	url: document.url(args, options),
+var document$1 = (args, options) => ({
+	url: document$1.url(args, options),
 	method: "get"
 });
-document.definition = {
+document$1.definition = {
 	methods: ["get", "head"],
 	url: "/dashboard/{candidate}/document"
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::document
-* @see app/Http/Controllers/Dashboard/FormController.php:55
+* @see app/Http/Controllers/Dashboard/FormController.php:65
 * @route '/dashboard/{candidate}/document'
 */
-document.url = (args, options) => {
+document$1.url = (args, options) => {
 	if (typeof args === "string" || typeof args === "number") args = { candidate: args };
 	if (typeof args === "object" && !Array.isArray(args) && "id" in args) args = { candidate: args.id };
 	if (Array.isArray(args)) args = { candidate: args[0] };
 	args = applyUrlDefaults(args);
 	const parsedArgs = { candidate: typeof args.candidate === "object" ? args.candidate.id : args.candidate };
-	return document.definition.url.replace("{candidate}", parsedArgs.candidate.toString()).replace(/\/+$/, "") + queryParams(options);
+	return document$1.definition.url.replace("{candidate}", parsedArgs.candidate.toString()).replace(/\/+$/, "") + queryParams(options);
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::document
-* @see app/Http/Controllers/Dashboard/FormController.php:55
+* @see app/Http/Controllers/Dashboard/FormController.php:65
 * @route '/dashboard/{candidate}/document'
 */
-document.get = (args, options) => ({
-	url: document.url(args, options),
+document$1.get = (args, options) => ({
+	url: document$1.url(args, options),
 	method: "get"
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::document
-* @see app/Http/Controllers/Dashboard/FormController.php:55
+* @see app/Http/Controllers/Dashboard/FormController.php:65
 * @route '/dashboard/{candidate}/document'
 */
-document.head = (args, options) => ({
-	url: document.url(args, options),
+document$1.head = (args, options) => ({
+	url: document$1.url(args, options),
 	method: "head"
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::send
-* @see app/Http/Controllers/Dashboard/FormController.php:68
+* @see app/Http/Controllers/Dashboard/FormController.php:80
 * @route '/dashboard/{candidate}/send'
 */
 var send = (args, options) => ({
@@ -718,7 +813,7 @@ send.definition = {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::send
-* @see app/Http/Controllers/Dashboard/FormController.php:68
+* @see app/Http/Controllers/Dashboard/FormController.php:80
 * @route '/dashboard/{candidate}/send'
 */
 send.url = (args, options) => {
@@ -731,7 +826,7 @@ send.url = (args, options) => {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::send
-* @see app/Http/Controllers/Dashboard/FormController.php:68
+* @see app/Http/Controllers/Dashboard/FormController.php:80
 * @route '/dashboard/{candidate}/send'
 */
 send.get = (args, options) => ({
@@ -740,7 +835,7 @@ send.get = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::send
-* @see app/Http/Controllers/Dashboard/FormController.php:68
+* @see app/Http/Controllers/Dashboard/FormController.php:80
 * @route '/dashboard/{candidate}/send'
 */
 send.head = (args, options) => ({
@@ -749,7 +844,7 @@ send.head = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::review
-* @see app/Http/Controllers/Dashboard/FormController.php:81
+* @see app/Http/Controllers/Dashboard/FormController.php:93
 * @route '/dashboard/{candidate}/review'
 */
 var review = (args, options) => ({
@@ -762,7 +857,7 @@ review.definition = {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::review
-* @see app/Http/Controllers/Dashboard/FormController.php:81
+* @see app/Http/Controllers/Dashboard/FormController.php:93
 * @route '/dashboard/{candidate}/review'
 */
 review.url = (args, options) => {
@@ -775,7 +870,7 @@ review.url = (args, options) => {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::review
-* @see app/Http/Controllers/Dashboard/FormController.php:81
+* @see app/Http/Controllers/Dashboard/FormController.php:93
 * @route '/dashboard/{candidate}/review'
 */
 review.get = (args, options) => ({
@@ -784,7 +879,7 @@ review.get = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::review
-* @see app/Http/Controllers/Dashboard/FormController.php:81
+* @see app/Http/Controllers/Dashboard/FormController.php:93
 * @route '/dashboard/{candidate}/review'
 */
 review.head = (args, options) => ({
@@ -793,7 +888,7 @@ review.head = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::update
-* @see app/Http/Controllers/Dashboard/FormController.php:94
+* @see app/Http/Controllers/Dashboard/FormController.php:106
 * @route '/dashboard/{candidate}'
 */
 var update = (args, options) => ({
@@ -806,7 +901,7 @@ update.definition = {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::update
-* @see app/Http/Controllers/Dashboard/FormController.php:94
+* @see app/Http/Controllers/Dashboard/FormController.php:106
 * @route '/dashboard/{candidate}'
 */
 update.url = (args, options) => {
@@ -819,7 +914,7 @@ update.url = (args, options) => {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::update
-* @see app/Http/Controllers/Dashboard/FormController.php:94
+* @see app/Http/Controllers/Dashboard/FormController.php:106
 * @route '/dashboard/{candidate}'
 */
 update.put = (args, options) => ({
@@ -828,7 +923,7 @@ update.put = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::destroy
-* @see app/Http/Controllers/Dashboard/FormController.php:101
+* @see app/Http/Controllers/Dashboard/FormController.php:129
 * @route '/dashboard/{candidate}'
 */
 var destroy = (args, options) => ({
@@ -841,7 +936,7 @@ destroy.definition = {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::destroy
-* @see app/Http/Controllers/Dashboard/FormController.php:101
+* @see app/Http/Controllers/Dashboard/FormController.php:129
 * @route '/dashboard/{candidate}'
 */
 destroy.url = (args, options) => {
@@ -854,7 +949,7 @@ destroy.url = (args, options) => {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::destroy
-* @see app/Http/Controllers/Dashboard/FormController.php:101
+* @see app/Http/Controllers/Dashboard/FormController.php:129
 * @route '/dashboard/{candidate}'
 */
 destroy.delete = (args, options) => ({
@@ -864,7 +959,7 @@ destroy.delete = (args, options) => ({
 var formNamespace = {
 	guide: Object.assign(guide, guide),
 	form: Object.assign(form, form),
-	document: Object.assign(document, document),
+	document: Object.assign(document$1, document$2),
 	send: Object.assign(send, send),
 	review: Object.assign(review, review),
 	update: Object.assign(update, update),
@@ -877,7 +972,7 @@ var dashboard = {
 	form: Object.assign(formNamespace, formNamespace)
 };
 //#endregion
-//#region resources/js/Components/Navbar.vue?vue&type=script&setup=true&lang.ts
+//#region resources/js/components/Navbar.vue?vue&type=script&setup=true&lang.ts
 var Navbar_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
 	__name: "Navbar",
 	__ssrInlineRender: true,
@@ -962,16 +1057,16 @@ var Navbar_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineC
 	}
 });
 //#endregion
-//#region resources/js/Components/Navbar.vue
-var _sfc_setup$13 = Navbar_vue_vue_type_script_setup_true_lang_default.setup;
+//#region resources/js/components/Navbar.vue
+var _sfc_setup$14 = Navbar_vue_vue_type_script_setup_true_lang_default.setup;
 Navbar_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/Navbar.vue");
-	return _sfc_setup$13 ? _sfc_setup$13(props, ctx) : void 0;
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Navbar.vue");
+	return _sfc_setup$14 ? _sfc_setup$14(props, ctx) : void 0;
 };
 var Navbar_default = Navbar_vue_vue_type_script_setup_true_lang_default;
 //#endregion
-//#region resources/js/Layouts/Form.vue?vue&type=script&setup=true&lang.ts
+//#region resources/js/layouts/Form.vue?vue&type=script&setup=true&lang.ts
 var Form_vue_vue_type_script_setup_true_lang_default$1 = /* @__PURE__ */ defineComponent({
 	__name: "Form",
 	__ssrInlineRender: true,
@@ -994,7 +1089,7 @@ var Form_vue_vue_type_script_setup_true_lang_default$1 = /* @__PURE__ */ defineC
 							}),
 							_: 1
 						}, _parent, _scopeId));
-						_push(`<div class="row mt-4"${_scopeId}><div class="col-lg-3"${_scopeId}><div class="card bg-body-tertiary border-0"${_scopeId}><div class="card-body text-center"${_scopeId}><div class="text-center mb-4"${_scopeId}><h5 class="fw-bold mb-0"${_scopeId}>${ssrInterpolate(unref(page).props.auth.user.name)}</h5><p class="text-secondary small"${_scopeId}>Nomor Registrasi belum terbentuk.</p></div><div class="mb-4"${_scopeId}><div class="d-flex justify-content-between mb-2"${_scopeId}><span class="small fw-bold"${_scopeId}>Kelengkapan Data</span><span class="small fw-bold text-primary"${_scopeId}>40%</span></div><div class="progress"${_scopeId}><div class="progress-bar" style="${ssrRenderStyle({ "width": "40%" })}"${_scopeId}></div></div></div><div class="list-group list-group-flush shadow-none"${_scopeId}>`);
+						_push(`<div class="row mt-4"${_scopeId}><div class="col-lg-3"${_scopeId}><div class="card bg-body-tertiary border-0"${_scopeId}><div class="card-body text-center"${_scopeId}><div class="text-center mb-4"${_scopeId}><h5 class="fw-bold mb-0"${_scopeId}>${ssrInterpolate(unref(page).props.auth.user.name)}</h5><p class="text-secondary small"${_scopeId}> Nomor Registrasi belum terbentuk. </p></div><div class="mb-4"${_scopeId}><div class="d-flex justify-content-between mb-2"${_scopeId}><span class="small fw-bold"${_scopeId}>Kelengkapan Data</span><span class="small fw-bold text-primary"${_scopeId}>40%</span></div><div class="progress"${_scopeId}><div class="progress-bar" style="${ssrRenderStyle({ "width": "40%" })}"${_scopeId}></div></div></div><div class="list-group list-group-flush shadow-none"${_scopeId}>`);
 						_push(ssrRenderComponent(unref(Link), {
 							href: unref(dashboard).form.guide(__props.candidate.id),
 							class: ["list-group-item list-group-item-action border-0 rounded-3 mb-2 d-flex align-items-center text-decoration-none", { "active bg-primary-subtle text-primary disabled": _ctx.$page.url === unref(dashboard).form.guide(__props.candidate.id).url }]
@@ -1071,7 +1166,7 @@ var Form_vue_vue_type_script_setup_true_lang_default$1 = /* @__PURE__ */ defineC
 							default: withCtx(() => [createVNode(unref(ArrowLeft)), createTextVNode(" Kembali ke Dashboard ")]),
 							_: 1
 						}, 8, ["href"]), createVNode("div", { class: "row mt-4" }, [createVNode("div", { class: "col-lg-3" }, [createVNode("div", { class: "card bg-body-tertiary border-0" }, [createVNode("div", { class: "card-body text-center" }, [
-							createVNode("div", { class: "text-center mb-4" }, [createVNode("h5", { class: "fw-bold mb-0" }, toDisplayString(unref(page).props.auth.user.name), 1), createVNode("p", { class: "text-secondary small" }, "Nomor Registrasi belum terbentuk.")]),
+							createVNode("div", { class: "text-center mb-4" }, [createVNode("h5", { class: "fw-bold mb-0" }, toDisplayString(unref(page).props.auth.user.name), 1), createVNode("p", { class: "text-secondary small" }, " Nomor Registrasi belum terbentuk. ")]),
 							createVNode("div", { class: "mb-4" }, [createVNode("div", { class: "d-flex justify-content-between mb-2" }, [createVNode("span", { class: "small fw-bold" }, "Kelengkapan Data"), createVNode("span", { class: "small fw-bold text-primary" }, "40%")]), createVNode("div", { class: "progress" }, [createVNode("div", {
 								class: "progress-bar",
 								style: { "width": "40%" }
@@ -1171,16 +1266,49 @@ var Form_vue_vue_type_script_setup_true_lang_default$1 = /* @__PURE__ */ defineC
 	}
 });
 //#endregion
-//#region resources/js/Layouts/Form.vue
-var _sfc_setup$12 = Form_vue_vue_type_script_setup_true_lang_default$1.setup;
+//#region resources/js/layouts/Form.vue
+var _sfc_setup$13 = Form_vue_vue_type_script_setup_true_lang_default$1.setup;
 Form_vue_vue_type_script_setup_true_lang_default$1.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Layouts/Form.vue");
-	return _sfc_setup$12 ? _sfc_setup$12(props, ctx) : void 0;
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/layouts/Form.vue");
+	return _sfc_setup$13 ? _sfc_setup$13(props, ctx) : void 0;
 };
 var Form_default$1 = Form_vue_vue_type_script_setup_true_lang_default$1;
 //#endregion
-//#region resources/js/Pages/Dashboard/Document.vue?vue&type=script&setup=true&lang.ts
+//#region resources/js/routes/document/index.ts
+/**
+* @see \App\Http\Controllers\DocumentUploadController::__invoke
+* @see app/Http/Controllers/DocumentUploadController.php:16
+* @route '/document-upload'
+*/
+var upload = (options) => ({
+	url: upload.url(options),
+	method: "post"
+});
+upload.definition = {
+	methods: ["post"],
+	url: "/document-upload"
+};
+/**
+* @see \App\Http\Controllers\DocumentUploadController::__invoke
+* @see app/Http/Controllers/DocumentUploadController.php:16
+* @route '/document-upload'
+*/
+upload.url = (options) => {
+	return upload.definition.url + queryParams(options);
+};
+/**
+* @see \App\Http\Controllers\DocumentUploadController::__invoke
+* @see app/Http/Controllers/DocumentUploadController.php:16
+* @route '/document-upload'
+*/
+upload.post = (options) => ({
+	url: upload.url(options),
+	method: "post"
+});
+var document = { upload: Object.assign(upload, upload) };
+//#endregion
+//#region resources/js/pages/Dashboard/Document.vue?vue&type=script&setup=true&lang.ts
 var Document_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
 	layout: Form_default$1,
 	__name: "Document",
@@ -1191,11 +1319,65 @@ var Document_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defin
 	},
 	setup(__props) {
 		const mount = ref(false);
-		const { create } = useModal();
 		onMounted(() => {
 			mount.value = true;
 		});
+		const { create } = useModal();
+		const overlay = ref({
+			id: 0,
+			show: false
+		});
+		const form = useForm({
+			id: 0,
+			file: null
+		});
+		const handleUpload = ({ id, files }) => {
+			if (!files.length) return;
+			form.id = Number(id);
+			form.file = files[0];
+			overlay.value = {
+				id: Number(id),
+				show: true
+			};
+			form.post(document.upload().url, {
+				preserveScroll: true,
+				forceFormData: true,
+				onFinish: () => {
+					form.reset();
+					overlay.value = {
+						id: 0,
+						show: false
+					};
+				}
+			});
+		};
+		const trash = (uuid, id, title) => {
+			create({
+				size: "md",
+				body: "Apakah anda yakin ingin menghapus file ini?",
+				bodyClass: "small text-muted",
+				title,
+				okClass: "btn-danger",
+				okTitle: "Hapus",
+				centered: true,
+				cancelTitle: "Batal",
+				onOk: () => {
+					form.processing = true;
+					useForm().patch(dashboard.form.document.null({
+						candidate: uuid,
+						document: id
+					}).url, {
+						preserveScroll: true,
+						onFinish: () => {
+							form.reset();
+							form.processing = false;
+						}
+					});
+				}
+			}).show();
+		};
 		return (_ctx, _push, _parent, _attrs) => {
+			const _component_BOverlay = BOverlay;
 			_push(`<div${ssrRenderAttrs(_attrs)}>`);
 			_push(ssrRenderComponent(unref(Head), null, {
 				default: withCtx((_, _push, _parent, _scopeId) => {
@@ -1207,59 +1389,97 @@ var Document_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defin
 				}),
 				_: 1
 			}, _parent));
-			_push(`<div class="card bg-body-tertiary border-0"><div class="card-body"><div class="d-flex justify-content-between align-items-center mb-4"><div><h4 class="fw-bold mb-1">${ssrInterpolate(__props.meta.title)}</h4><p class="text-secondary small mb-0"> Unggah berkas dalam format PDF <strong>(Direkomendasikan)</strong> atau Gambar (Maks. 2MB) </p></div><div class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2 fw-bold">2/4 Dokumen Terunggah</div></div>`);
+			_push(`<div class="card bg-body-tertiary border-0"><div class="card-body"><div class="d-flex justify-content-between align-items-center mb-4"><div><h4 class="fw-bold mb-1">${ssrInterpolate(__props.meta.title)}</h4><p class="text-secondary small mb-0"> Unggah berkas dalam format PDF <strong>(Direkomendasikan)</strong> atau Gambar (Maks. 2MB) </p></div><div class="${ssrRenderClass([{
+				"bg-success-subtle text-success": __props.candidate.documentable.filter((document) => document.name !== null).length === __props.candidate.documentable.length,
+				"bg-danger-subtle text-danger": __props.candidate.documentable.filter((document) => document.name !== null).length !== __props.candidate.documentable.length
+			}, "badge rounded-pill px-3 py-2 fw-bold"])}">${ssrInterpolate(__props.candidate.documentable.filter((document) => document.name !== null).length)}/${ssrInterpolate(__props.candidate.documentable.length)} Dokumen Terunggah </div></div>`);
 			if (mount.value) {
-				_push(`<div class="row g-4"><div class="col-md-6"><div class="card border-0 rounded-4 h-100 shadow-sm transition-all" style="${ssrRenderStyle({ "border": "none" })}"><div class="p-4"><div class="d-flex justify-content-between align-items-start mb-3"><div><label class="form-label small fw-bold d-block mb-1">Kartu Keluarga</label><div class="d-flex align-items-center text-success small fw-bold">`);
-				_push(ssrRenderComponent(unref(CircleCheckBig), {
-					size: 16,
-					class: "me-2"
-				}, null, _parent));
-				_push(` Terverifikasi Sistem </div></div><div class="p-2 rounded-circle bg-success-subtle text-success">`);
-				_push(ssrRenderComponent(unref(Check), null, null, _parent));
-				_push(`</div></div><div class="mt-2" style="${ssrRenderStyle({
-					"opacity": "1",
-					"transform": "none"
-				})}"><div class="rounded-4 p-3 border shadow-sm"><div class="d-flex align-items-center mb-3"><div class="bg-danger-subtle p-2 rounded-3 me-3 text-danger">`);
-				_push(ssrRenderComponent(unref(FileText), null, null, _parent));
-				_push(`</div><div class="overflow-hidden"><h6 class="small fw-bold mb-0 text-truncate">7ddf32e17a6ac5ce04a8ecbf782ca509.pdf</h6><small class="text-secondary">1.2 MB</small></div></div><div class="d-flex gap-2"><button type="button" class="btn btn-sm btn-primary">`);
-				_push(ssrRenderComponent(unref(Search), { size: 16 }, null, _parent));
-				_push(`</button><button type="button" class="btn btn-sm btn-danger">`);
-				_push(ssrRenderComponent(unref(Trash), { size: 16 }, null, _parent));
-				_push(`</button></div></div></div></div></div></div><div class="col-md-6"><div class="card border-0 rounded-4 h-100 shadow-sm transition-all" style="${ssrRenderStyle({ "border": "none" })}"><div class="p-4"><div class="d-flex justify-content-between align-items-start mb-3"><div><label class="form-label small fw-bold d-block mb-1">Akta Kelahiran</label><div class="d-flex align-items-center text-success small fw-bold">`);
-				_push(ssrRenderComponent(unref(CircleCheckBig), {
-					size: 16,
-					class: "me-2"
-				}, null, _parent));
-				_push(` Terverifikasi Sistem </div></div><div class="p-2 rounded-circle bg-success-subtle text-success">`);
-				_push(ssrRenderComponent(unref(Check), null, null, _parent));
-				_push(`</div></div><div class="mt-2" style="${ssrRenderStyle({
-					"opacity": "1",
-					"transform": "none"
-				})}"><div class="rounded-4 p-3 border shadow-sm"><div class="d-flex align-items-center mb-3"><div class="bg-info-subtle p-2 rounded-3 me-3 text-info">`);
-				_push(ssrRenderComponent(unref(Image), null, null, _parent));
-				_push(`</div><div class="overflow-hidden"><h6 class="small fw-bold mb-0 text-truncate">7ddf32e17a6ac5ce04a8ecbf782ca509.pdf</h6><small class="text-secondary">850 KB</small></div></div><div class="d-flex gap-2"><button type="button" class="btn btn-sm btn-primary">`);
-				_push(ssrRenderComponent(unref(Search), { size: 16 }, null, _parent));
-				_push(`</button><button type="button" class="btn btn-sm btn-danger">`);
-				_push(ssrRenderComponent(unref(Trash), { size: 16 }, null, _parent));
-				_push(`</button></div></div></div></div></div></div><div class="col-md-6"><div class="card border-0 rounded-4 h-100 shadow-sm transition-all border-dashed" style="${ssrRenderStyle({ "border": "2px dashed rgb(222, 226, 230)" })}"><div class="p-4"><div class="d-flex justify-content-between align-items-start mb-3"><div><label class="form-label small fw-bold d-block mb-1">Ijazah SMP / SKL</label><div class="d-flex align-items-center text-secondary small">`);
-				_push(ssrRenderComponent(unref(CircleAlert), {
-					size: 16,
-					class: "me-2"
-				}, null, _parent));
-				_push(` Belum diunggah </div></div><div class="p-2 rounded-circle text-primary shadow-sm">`);
-				_push(ssrRenderComponent(unref(Upload), null, null, _parent));
-				_push(`</div></div><div class="mt-2"><div class="rounded-4 p-4 border shadow-sm text-center"><div class="mb-3"><div class="bg-primary-subtle d-inline-flex p-3 rounded-circle text-primary mb-2">`);
-				_push(ssrRenderComponent(unref(FileUp), null, null, _parent));
-				_push(`</div><p class="small text-secondary mb-0">Klik untuk pilih file atau seret ke sini</p></div><input class="d-none" id="file-ijazah" type="file"><label for="file-ijazah" class="btn btn-sm btn-primary rounded-pill px-4 py-2 fw-bold small cursor-pointer">Pilih Berkas</label></div></div></div></div></div><div class="col-md-6"><div class="card border-0 rounded-4 h-100 shadow-sm transition-all border-dashed" style="${ssrRenderStyle({ "border": "2px dashed rgb(222, 226, 230)" })}"><div class="p-4"><div class="d-flex justify-content-between align-items-start mb-3"><div><label class="form-label small fw-bold d-block mb-1">Pas Foto 3x4</label><div class="d-flex align-items-center text-secondary small">`);
-				_push(ssrRenderComponent(unref(CircleAlert), {
-					size: 16,
-					class: "me-2"
-				}, null, _parent));
-				_push(` Belum diunggah </div></div><div class="p-2 rounded-circle text-primary shadow-sm">`);
-				_push(ssrRenderComponent(unref(Upload), null, null, _parent));
-				_push(`</div></div><div class="mt-2"><div class="rounded-4 p-4 border shadow-sm text-center"><div class="mb-3"><div class="bg-primary-subtle d-inline-flex p-3 rounded-circle text-primary mb-2">`);
-				_push(ssrRenderComponent(unref(FileUp), null, null, _parent));
-				_push(`</div><p class="small text-secondary mb-0">Klik untuk pilih file atau seret ke sini</p></div><input class="d-none" id="file-foto" type="file"><label for="file-foto" class="btn btn-sm btn-primary rounded-pill px-4 py-2 fw-bold small cursor-pointer">Pilih Berkas</label></div></div></div></div></div></div>`);
+				_push(`<div class="row g-4"><!--[-->`);
+				ssrRenderList(__props.candidate.documentable, (document) => {
+					_push(`<div class="col-md-6">`);
+					_push(ssrRenderComponent(_component_BOverlay, {
+						rounded: "lg",
+						variant: "transparent",
+						show: overlay.value.id === document.id
+					}, {
+						default: withCtx((_, _push, _parent, _scopeId) => {
+							if (_push) {
+								_push(`<div class="card border-0 rounded-5 h-100 shadow-sm border-0"${_scopeId}>`);
+								if (document.name) {
+									_push(`<div class="p-4"${_scopeId}><div class="d-flex justify-content-between align-items-start mb-3"${_scopeId}><div${_scopeId}><label class="form-label small fw-bold d-block mb-1"${_scopeId}>${ssrInterpolate(document.document_type.name)}</label><div class="d-flex align-items-center text-success small fw-bold"${_scopeId}>`);
+									_push(ssrRenderComponent(unref(CircleCheckBig), {
+										size: 16,
+										class: "me-2"
+									}, null, _parent, _scopeId));
+									_push(` Terverifikasi Sistem </div></div><div class="p-2 rounded-circle bg-success-subtle text-success"${_scopeId}>`);
+									_push(ssrRenderComponent(unref(Check), null, null, _parent, _scopeId));
+									_push(`</div></div><div class="mt-2"${_scopeId}><div class="rounded-4 p-3 border"${_scopeId}><div class="d-flex align-items-center mb-3"${_scopeId}>`);
+									if (document.mime === "application/pdf") {
+										_push(`<div class="bg-danger-subtle p-2 rounded-3 me-3 text-danger"${_scopeId}>`);
+										_push(ssrRenderComponent(unref(FileText), null, null, _parent, _scopeId));
+										_push(`</div>`);
+									} else {
+										_push(`<div class="bg-success-subtle p-2 rounded-3 me-3 text-success"${_scopeId}>`);
+										_push(ssrRenderComponent(unref(Image), null, null, _parent, _scopeId));
+										_push(`</div>`);
+									}
+									_push(`<div class="overflow-hidden"${_scopeId}><h6 class="small fw-bold mb-0 text-truncate"${_scopeId}>${ssrInterpolate(document.mime === "application/pdf" ? "PDF" : "Gambar")}</h6><small class="text-secondary"${_scopeId}>${ssrInterpolate(typeof document.size === "number" ? (document.size / (1024 * 1024)).toFixed(2) : "Tidak diketahui")} MB </small></div></div><div class="d-flex gap-2"${_scopeId}><button type="button" class="btn btn-sm btn-primary"${_scopeId}>`);
+									_push(ssrRenderComponent(unref(Search), { size: 16 }, null, _parent, _scopeId));
+									_push(`</button><button type="button" class="btn btn-sm btn-danger"${ssrIncludeBooleanAttr(unref(form).processing) ? " disabled" : ""}${_scopeId}>`);
+									_push(ssrRenderComponent(unref(Trash), { size: 16 }, null, _parent, _scopeId));
+									_push(`</button></div></div></div></div>`);
+								} else {
+									_push(`<div class="p-4"${_scopeId}><div class="d-flex justify-content-between align-items-start mb-3"${_scopeId}><div${_scopeId}><label class="form-label small fw-bold d-block mb-1"${_scopeId}>${ssrInterpolate(document.document_type.name)}</label><div class="d-flex align-items-center text-secondary small"${_scopeId}>`);
+									_push(ssrRenderComponent(unref(CircleAlert), {
+										size: 16,
+										class: "me-2"
+									}, null, _parent, _scopeId));
+									_push(` Belum diunggah </div></div><div class="p-2 rounded-circle text-primary shadow-sm"${_scopeId}>`);
+									_push(ssrRenderComponent(unref(Upload), null, null, _parent, _scopeId));
+									_push(`</div></div>`);
+									_push(ssrRenderComponent(Dropzone_default, {
+										"item-id": document.id,
+										onDropped: handleUpload
+									}, null, _parent, _scopeId));
+									_push(`</div>`);
+								}
+								_push(`</div>`);
+							} else return [createVNode("div", { class: "card border-0 rounded-5 h-100 shadow-sm border-0" }, [document.name ? (openBlock(), createBlock("div", {
+								key: 0,
+								class: "p-4"
+							}, [createVNode("div", { class: "d-flex justify-content-between align-items-start mb-3" }, [createVNode("div", null, [createVNode("label", { class: "form-label small fw-bold d-block mb-1" }, toDisplayString(document.document_type.name), 1), createVNode("div", { class: "d-flex align-items-center text-success small fw-bold" }, [createVNode(unref(CircleCheckBig), {
+								size: 16,
+								class: "me-2"
+							}), createTextVNode(" Terverifikasi Sistem ")])]), createVNode("div", { class: "p-2 rounded-circle bg-success-subtle text-success" }, [createVNode(unref(Check))])]), createVNode("div", { class: "mt-2" }, [createVNode("div", { class: "rounded-4 p-3 border" }, [createVNode("div", { class: "d-flex align-items-center mb-3" }, [document.mime === "application/pdf" ? (openBlock(), createBlock("div", {
+								key: 0,
+								class: "bg-danger-subtle p-2 rounded-3 me-3 text-danger"
+							}, [createVNode(unref(FileText))])) : (openBlock(), createBlock("div", {
+								key: 1,
+								class: "bg-success-subtle p-2 rounded-3 me-3 text-success"
+							}, [createVNode(unref(Image))])), createVNode("div", { class: "overflow-hidden" }, [createVNode("h6", { class: "small fw-bold mb-0 text-truncate" }, toDisplayString(document.mime === "application/pdf" ? "PDF" : "Gambar"), 1), createVNode("small", { class: "text-secondary" }, toDisplayString(typeof document.size === "number" ? (document.size / (1024 * 1024)).toFixed(2) : "Tidak diketahui") + " MB ", 1)])]), createVNode("div", { class: "d-flex gap-2" }, [createVNode("button", {
+								type: "button",
+								class: "btn btn-sm btn-primary"
+							}, [createVNode(unref(Search), { size: 16 })]), createVNode("button", {
+								type: "button",
+								class: "btn btn-sm btn-danger",
+								onClick: ($event) => trash(__props.candidate.id, document.id, document.document_type.name),
+								disabled: unref(form).processing
+							}, [createVNode(unref(Trash), { size: 16 })], 8, ["onClick", "disabled"])])])])])) : (openBlock(), createBlock("div", {
+								key: 1,
+								class: "p-4"
+							}, [createVNode("div", { class: "d-flex justify-content-between align-items-start mb-3" }, [createVNode("div", null, [createVNode("label", { class: "form-label small fw-bold d-block mb-1" }, toDisplayString(document.document_type.name), 1), createVNode("div", { class: "d-flex align-items-center text-secondary small" }, [createVNode(unref(CircleAlert), {
+								size: 16,
+								class: "me-2"
+							}), createTextVNode(" Belum diunggah ")])]), createVNode("div", { class: "p-2 rounded-circle text-primary shadow-sm" }, [createVNode(unref(Upload))])]), createVNode(Dropzone_default, {
+								"item-id": document.id,
+								onDropped: handleUpload
+							}, null, 8, ["item-id"])]))])];
+						}),
+						_: 2
+					}, _parent));
+					_push(`</div>`);
+				});
+				_push(`<!--]--></div>`);
 			} else _push(`<!---->`);
 			_push(`<div class="mt-5 d-flex justify-content-between">`);
 			_push(ssrRenderComponent(unref(Link), {
@@ -1272,7 +1492,7 @@ var Document_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defin
 				}),
 				_: 1
 			}, _parent));
-			_push(`<button type="submit" class="btn btn-sm btn-primary px-5 rounded-pill">Lanjutkan</button></div></div></div>`);
+			_push(`<button type="submit" class="btn btn-sm btn-primary px-5 rounded-pill"> Lanjutkan </button></div></div></div>`);
 			if (mount.value) ssrRenderTeleport(_push, (_push) => {
 				_push(ssrRenderComponent(unref(Toaster), null, null, _parent));
 			}, "body", false, _parent);
@@ -1282,17 +1502,17 @@ var Document_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defin
 	}
 });
 //#endregion
-//#region resources/js/Pages/Dashboard/Document.vue
+//#region resources/js/pages/Dashboard/Document.vue
 var Document_exports = /* @__PURE__ */ __exportAll({ default: () => Document_default });
-var _sfc_setup$11 = Document_vue_vue_type_script_setup_true_lang_default.setup;
+var _sfc_setup$12 = Document_vue_vue_type_script_setup_true_lang_default.setup;
 Document_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Dashboard/Document.vue");
-	return _sfc_setup$11 ? _sfc_setup$11(props, ctx) : void 0;
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Dashboard/Document.vue");
+	return _sfc_setup$12 ? _sfc_setup$12(props, ctx) : void 0;
 };
 var Document_default = Document_vue_vue_type_script_setup_true_lang_default;
 //#endregion
-//#region resources/js/Components/Forms/Select.vue?vue&type=script&setup=true&lang.ts
+//#region resources/js/components/Forms/Select.vue?vue&type=script&setup=true&lang.ts
 var Select_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
 	__name: "Select",
 	__ssrInlineRender: true,
@@ -1322,15 +1542,15 @@ var Select_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineC
 				class: "position-relative",
 				ref_key: "target",
 				ref: target
-			}, _attrs))} data-v-631e6ff7><div class="form-control form-control-sm d-flex justify-content-between align-items-center cursor-pointer" style="${ssrRenderStyle({ "cursor": "pointer" })}" data-v-631e6ff7><span class="text-truncate me-2" data-v-631e6ff7>${ssrInterpolate(selected.value?.name || "Pilih Opsi")}</span><button type="button" class="btn-close" style="${ssrRenderStyle({ "font-size": "0.65rem" })}" data-v-631e6ff7></button></div>`);
+			}, _attrs))} data-v-cbbb0ceb><div class="form-control form-control-sm d-flex justify-content-between align-items-center cursor-pointer" style="${ssrRenderStyle({ "cursor": "pointer" })}" data-v-cbbb0ceb><span class="text-truncate me-2" data-v-cbbb0ceb>${ssrInterpolate(selected.value?.name || "Pilih Opsi")}</span><button type="button" class="btn-close" style="${ssrRenderStyle({ "font-size": "0.65rem" })}" data-v-cbbb0ceb></button></div>`);
 			if (show.value) {
 				_push(`<div class="position-absolute w-100 bg-body-tertiary border rounded-2 mt-1 z-3 shadow-sm" style="${ssrRenderStyle({
 					"max-height": "185px",
 					"overflow-y": "auto",
 					"overflow-x": "hidden"
-				})}" data-v-631e6ff7><div class="p-2" data-v-631e6ff7><!--[-->`);
+				})}" data-v-cbbb0ceb><div class="p-2" data-v-cbbb0ceb><!--[-->`);
 				ssrRenderList(__props.options, (option, index) => {
-					_push(`<div class="${ssrRenderClass([{ "mb-0": index === __props.options.length - 1 }, "form-check p-1 rounded-1 small"])}" data-v-631e6ff7><input class="form-check-input ms-0 me-2" type="radio"${ssrRenderAttr("name", "radio-group-" + __props.label)}${ssrRenderAttr("id", "radio-" + index)}${ssrRenderAttr("value", option.id)}${ssrIncludeBooleanAttr(__props.modelValue === option.id) ? " checked" : ""} data-v-631e6ff7><label class="form-check-label d-block w-100"${ssrRenderAttr("for", "radio-" + index)} data-v-631e6ff7>${ssrInterpolate(option.name)}</label></div>`);
+					_push(`<div class="${ssrRenderClass([{ "mb-0": index === __props.options.length - 1 }, "form-check p-1 rounded-1 small"])}" data-v-cbbb0ceb><input class="form-check-input ms-0 me-2" type="radio"${ssrRenderAttr("name", "radio-group-" + __props.label)}${ssrRenderAttr("id", "radio-" + index)}${ssrRenderAttr("value", option.id)}${ssrIncludeBooleanAttr(__props.modelValue === option.id) ? " checked" : ""} data-v-cbbb0ceb><label class="form-check-label d-block w-100"${ssrRenderAttr("for", "radio-" + index)} data-v-cbbb0ceb>${ssrInterpolate(option.name)}</label></div>`);
 				});
 				_push(`<!--]--></div></div>`);
 			} else _push(`<!---->`);
@@ -1339,16 +1559,16 @@ var Select_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineC
 	}
 });
 //#endregion
-//#region resources/js/Components/Forms/Select.vue
-var _sfc_setup$10 = Select_vue_vue_type_script_setup_true_lang_default.setup;
+//#region resources/js/components/Forms/Select.vue
+var _sfc_setup$11 = Select_vue_vue_type_script_setup_true_lang_default.setup;
 Select_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/Forms/Select.vue");
-	return _sfc_setup$10 ? _sfc_setup$10(props, ctx) : void 0;
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Forms/Select.vue");
+	return _sfc_setup$11 ? _sfc_setup$11(props, ctx) : void 0;
 };
-var Select_default = /* @__PURE__ */ _plugin_vue_export_helper_default(Select_vue_vue_type_script_setup_true_lang_default, [["__scopeId", "data-v-631e6ff7"]]);
+var Select_default = /* @__PURE__ */ _plugin_vue_export_helper_default(Select_vue_vue_type_script_setup_true_lang_default, [["__scopeId", "data-v-cbbb0ceb"]]);
 //#endregion
-//#region resources/js/Components/Forms/PersonalData.vue?vue&type=script&setup=true&lang.ts
+//#region resources/js/components/Forms/PersonalData.vue?vue&type=script&setup=true&lang.ts
 var PersonalData_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
 	__name: "PersonalData",
 	__ssrInlineRender: true,
@@ -1384,7 +1604,7 @@ var PersonalData_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ d
 			const _component_BFormRadioGroup = BFormRadioGroup;
 			const _component_BFormRadio = BFormRadio;
 			const _component_BFormTextarea = BFormTextarea;
-			_push(`<form${ssrRenderAttrs(_attrs)}><div class="mb-5"><h4 class="text-primary-emphasis border-start border-primary ps-2">Identitas Anak</h4><div class="mb-3"><label class="form-label" for="name">Nama Lengkap</label>`);
+			_push(`<form${ssrRenderAttrs(_attrs)}><div class="mb-5"><div class="mb-5"><h4 class="text-primary-emphasis border-start border-primary ps-2">Identitas Anak</h4><div class="mb-3 row"><label class="col-sm-3 col-form-label" for="name">Nama Lengkap</label><div class="col-sm-9">`);
 			_push(ssrRenderComponent(_component_BFormInput, mergeProps({
 				type: "text",
 				id: "name",
@@ -1392,7 +1612,7 @@ var PersonalData_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ d
 				modelValue: model.value.name,
 				"onUpdate:modelValue": ($event) => model.value.name = $event
 			}, ssrGetDirectiveProps(_ctx, vUppercase)), null, _parent));
-			_push(`</div><div class="mb-3"><label class="form-label" for="gender">Jenis Kelamin</label>`);
+			_push(`</div></div><div class="row mb-3"><label class="col-sm-3 col-form-label" for="gender">Jenis Kelamin</label><div class="col-sm-9">`);
 			_push(ssrRenderComponent(_component_BFormRadioGroup, {
 				id: "gender",
 				modelValue: model.value.gender,
@@ -1424,7 +1644,14 @@ var PersonalData_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ d
 				}),
 				_: 1
 			}, _parent));
-			_push(`</div><div class="mb-3"><div class="row"><div class="col-lg-6 mb-lg-0 mb-3"><label class="form-label" for="birth_place">Tempat Lahir</label>`);
+			_push(`</div></div><div class="row mb-3"><label class="col-sm-3 col-form-label" for="religion">Agama</label><div class="col-sm-9">`);
+			_push(ssrRenderComponent(Select_default, {
+				label: "Agama",
+				modelValue: model.value.religion_id,
+				"onUpdate:modelValue": ($event) => model.value.religion_id = $event,
+				options: __props.religions
+			}, null, _parent));
+			_push(`</div></div><div class="row mb-3"><label class="col-sm-3 col-form-label" for="birth_place">Tempat Lahir</label><div class="col-sm-9">`);
 			_push(ssrRenderComponent(_component_BFormInput, mergeProps({
 				type: "text",
 				id: "birth_place",
@@ -1432,7 +1659,7 @@ var PersonalData_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ d
 				modelValue: model.value.birth_place,
 				"onUpdate:modelValue": ($event) => model.value.birth_place = $event
 			}, ssrGetDirectiveProps(_ctx, vUppercase)), null, _parent));
-			_push(`</div><div class="col-lg-6"><label class="form-label" for="birth_date">Tanggal Lahir</label>`);
+			_push(`</div></div><div class="row mb-3"><label class="col-sm-3 col-form-label" for="birth_date">Tanggal Lahir</label><div class="col-sm-9">`);
 			_push(ssrRenderComponent(_component_BFormInput, {
 				type: "date",
 				id: "birth_date",
@@ -1440,7 +1667,7 @@ var PersonalData_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ d
 				modelValue: model.value.birth_date,
 				"onUpdate:modelValue": ($event) => model.value.birth_date = $event
 			}, null, _parent));
-			_push(`</div></div></div><div class="mb-3"><label class="form-label" for="nisn">NISN</label>`);
+			_push(`</div></div><div class="row mb-3"><label class="col-sm-3 col-form-label" for="nisn">NISN</label><div class="col-sm-9">`);
 			_push(ssrRenderComponent(_component_BFormInput, {
 				type: "tel",
 				id: "nisn",
@@ -1449,7 +1676,7 @@ var PersonalData_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ d
 				"onUpdate:modelValue": ($event) => model.value.nisn = $event,
 				onKeypress: ($event) => number($event)
 			}, null, _parent));
-			_push(`</div><div class="mb-3"><div class="row"><div class="col-lg-6"><label class="form-label" for="nik_number">No. NIK</label>`);
+			_push(`</div></div><div class="row mb-3"><label class="col-sm-3 col-form-label" for="nik_number">No. NIK</label><div class="col-sm-9">`);
 			_push(ssrRenderComponent(_component_BFormInput, {
 				type: "tel",
 				id: "nik_number",
@@ -1458,7 +1685,7 @@ var PersonalData_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ d
 				"onUpdate:modelValue": ($event) => model.value.nik_number = $event,
 				onKeypress: ($event) => number($event)
 			}, null, _parent));
-			_push(`</div><div class="col-lg-6 mb-lg-0 mb-3"><label class="form-label" for="kk_number">No. KK</label>`);
+			_push(`</div></div><div class="row mb-3"><label class="col-sm-3 col-form-label" for="kk_number">No. KK</label><div class="col-sm-9">`);
 			_push(ssrRenderComponent(_component_BFormInput, {
 				type: "text",
 				id: "kk_number",
@@ -1467,7 +1694,7 @@ var PersonalData_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ d
 				"onUpdate:modelValue": ($event) => model.value.kk_number = $event,
 				onKeypress: ($event) => number($event)
 			}, null, _parent));
-			_push(`</div></div></div><div class="mb-3"><label class="form-label" for="birth-certificate-number">No. Registrasi Akta Lahir</label>`);
+			_push(`</div></div><div class="row mb-3"><label class="col-sm-3 col-form-label" for="birth-certificate-number">No. Registrasi Akta Lahir</label><div class="col-sm-9">`);
 			_push(ssrRenderComponent(_component_BFormInput, mergeProps({
 				type: "text",
 				id: "birth-certificate-number",
@@ -1475,89 +1702,20 @@ var PersonalData_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ d
 				modelValue: model.value.birth_certificate_number,
 				"onUpdate:modelValue": ($event) => model.value.birth_certificate_number = $event
 			}, ssrGetDirectiveProps(_ctx, vUppercase)), null, _parent));
-			_push(`</div><div class="row mb-3"><div class="col-lg-6"><label class="form-label" for="religion">Agama</label>`);
-			_push(ssrRenderComponent(Select_default, {
-				label: "Agama",
-				modelValue: model.value.religion_id,
-				"onUpdate:modelValue": ($event) => model.value.religion_id = $event,
-				options: __props.religions
-			}, null, _parent));
-			_push(`</div></div><h4 class="text-primary-emphasis text-primary-emphasis border-start border-primary ps-2">Pendidikan Sebelumnya</h4><div class="mb-3"><label class="form-label" for="school-origin-name">Asal Sekolah</label>`);
+			_push(`</div></div></div><div class="mb-3"><h4 class="text-primary-emphasis text-primary-emphasis border-start border-primary ps-2">Pendidikan Sebelumnya</h4><div class="row mb-3"><label class="col-sm-3 col-form-label" for="school-origin-name">Asal Sekolah</label><div class="col-sm-9">`);
 			_push(ssrRenderComponent(_component_BFormInput, {
 				type: "text",
 				id: "school-origin-name",
 				size: "sm",
 				placeholder: "Contoh: SMP Negeri 1 Bandung"
 			}, null, _parent));
-			_push(`</div><div class="mb-3"><label class="form-label" for="school-origin-address">Alamat Sekolah</label>`);
+			_push(`</div></div><div class="row mb-3"><label class="col-sm-3 col-form-label" for="school-origin-address">Alamat Sekolah</label><div class="col-sm-9">`);
 			_push(ssrRenderComponent(_component_BFormTextarea, {
 				id: "school-origin-address",
 				size: "sm",
 				rows: "3"
 			}, null, _parent));
-			_push(`</div></div><div class="mb-5"><h4 class="text-primary-emphasis text-primary-emphasis border-start border-primary ps-2">Identitas Orang Tua</h4><div class="mb-3"><div class="row"><div class="col-lg-6"><h6 class="text-primary">Identitas Ayah</h6><div class="mb-3"><label class="form-label" for="father-name">Nama Ayah</label>`);
-			_push(ssrRenderComponent(_component_BFormInput, {
-				type: "text",
-				id: "father-name",
-				size: "sm",
-				modelValue: model.value.father_name,
-				"onUpdate:modelValue": ($event) => model.value.father_name = $event
-			}, null, _parent));
-			_push(`</div><div class="mb-3"><label class="form-label" for="father-nik">No. NIK</label>`);
-			_push(ssrRenderComponent(_component_BFormInput, {
-				type: "text",
-				id: "father-nik",
-				size: "sm"
-			}, null, _parent));
-			_push(`</div><div class="mb-3"><label class="form-label" for="father-job">Pekerjaan</label>`);
-			_push(ssrRenderComponent(_component_BFormInput, {
-				type: "text",
-				id: "father-job",
-				size: "sm"
-			}, null, _parent));
-			_push(`</div><div class="mb-3"><label class="form-label" for="father-address">Alamat Lengkap</label>`);
-			_push(ssrRenderComponent(_component_BFormTextarea, {
-				id: "father-address",
-				size: "sm",
-				rows: "3"
-			}, null, _parent));
-			_push(`</div><div class="mb-lg-0 mb-3"><label class="form-label" for="father-phone">No. Telepon</label>`);
-			_push(ssrRenderComponent(_component_BFormInput, {
-				type: "text",
-				id: "father-phone",
-				size: "sm"
-			}, null, _parent));
-			_push(`</div></div><div class="col-lg-6"><h6 class="text-primary">Identitas Ibu</h6><div class="mb-3"><label class="form-label" for="mother-name">Nama Ibu</label>`);
-			_push(ssrRenderComponent(_component_BFormInput, {
-				type: "text",
-				id: "mother-name",
-				size: "sm"
-			}, null, _parent));
-			_push(`</div><div class="mb-3"><label class="form-label" for="mother-nik">No. NIK</label>`);
-			_push(ssrRenderComponent(_component_BFormInput, {
-				type: "text",
-				id: "mother-nik",
-				size: "sm"
-			}, null, _parent));
-			_push(`</div><div class="mb-3"><label class="form-label" for="mother-job">Pekerjaan</label>`);
-			_push(ssrRenderComponent(_component_BFormInput, {
-				type: "text",
-				id: "mother-job",
-				size: "sm"
-			}, null, _parent));
-			_push(`</div><div class="mb-3"><label class="form-label" for="mother-address">Alamat Lengkap</label>`);
-			_push(ssrRenderComponent(_component_BFormTextarea, {
-				id: "mother-address",
-				size: "sm",
-				rows: "3"
-			}, null, _parent));
-			_push(`</div><div class="mb-lg-0 mb-3"><label class="form-label" for="mother-phone">No. Telepon</label>`);
-			_push(ssrRenderComponent(_component_BFormInput, {
-				type: "text",
-				id: "mother-phone",
-				size: "sm"
-			}, null, _parent));
-			_push(`</div></div></div></div></div><div class="mb-5"><h4 class="text-primary-emphasis border-start border-primary ps-2">Status Tempat Tinggal dan Alamat</h4><div class="row"><div class="col-lg-6"><div class="mb-3"><label class="form-label" for="address">Alamat Lengkap</label>`);
+			_push(`</div></div></div></div><div class="mb-5"><h4 class="text-primary-emphasis border-start border-primary ps-2">Status Tempat Tinggal dan Alamat</h4><div class="row mb-3"><label class="col-sm-3 col-form-label" for="address">Alamat Lengkap</label><div class="col-sm-9">`);
 			_push(ssrRenderComponent(_component_BFormTextarea, {
 				id: "address",
 				modelValue: model.value.address,
@@ -1565,7 +1723,7 @@ var PersonalData_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ d
 				size: "sm",
 				rows: "3"
 			}, null, _parent));
-			_push(`</div></div><div class="col-lg-6"><label class="form-label" for="live-with">Tinggal Bersama</label>`);
+			_push(`</div></div><div class="row mb-3"><label class="col-sm-3 col-form-label" for="live-with">Tinggal Bersama</label><div class="col-sm-9">`);
 			_push(ssrRenderComponent(_component_BFormRadioGroup, {
 				id: "live-with",
 				stacked: ""
@@ -1626,16 +1784,119 @@ var PersonalData_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ d
 	}
 });
 //#endregion
-//#region resources/js/Components/Forms/PersonalData.vue
-var _sfc_setup$9 = PersonalData_vue_vue_type_script_setup_true_lang_default.setup;
+//#region resources/js/components/Forms/PersonalData.vue
+var _sfc_setup$10 = PersonalData_vue_vue_type_script_setup_true_lang_default.setup;
 PersonalData_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/Forms/PersonalData.vue");
-	return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Forms/PersonalData.vue");
+	return _sfc_setup$10 ? _sfc_setup$10(props, ctx) : void 0;
 };
 var PersonalData_default = PersonalData_vue_vue_type_script_setup_true_lang_default;
 //#endregion
-//#region resources/js/Pages/Dashboard/Form.vue?vue&type=script&setup=true&lang.ts
+//#region resources/js/components/RegistrationForms/StudentParent.vue?vue&type=script&setup=true&lang.ts
+var StudentParent_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
+	__name: "StudentParent",
+	__ssrInlineRender: true,
+	props: {
+		"modelValue": { default: {
+			father: {
+				name: null,
+				nik_number: null,
+				address: null,
+				phone: null,
+				job: null,
+				type: "father"
+			},
+			mother: {
+				name: null,
+				nik_number: null,
+				address: null,
+				phone: null,
+				job: null,
+				type: "mother"
+			},
+			guardian: {
+				name: null,
+				nik_number: null,
+				address: null,
+				phone: null,
+				job: null,
+				type: "guardian"
+			}
+		} },
+		"modelModifiers": {}
+	},
+	emits: ["update:modelValue"],
+	setup(__props) {
+		const model = useModel(__props, "modelValue");
+		const types = [
+			{
+				label: "Ayah",
+				value: "father"
+			},
+			{
+				label: "Ibu",
+				value: "mother"
+			},
+			{
+				label: "Wali",
+				value: "guardian"
+			}
+		];
+		return (_ctx, _push, _parent, _attrs) => {
+			const _component_BFormInput = BFormInput;
+			const _component_BFormTextarea = BFormTextarea;
+			_push(`<div${ssrRenderAttrs(mergeProps({ class: "mb-5" }, _attrs))}><h4 class="text-primary-emphasis border-start border-primary ps-2">Identitas Orang Tua</h4><div class="mb-3"><!--[-->`);
+			ssrRenderList(types, (type, index) => {
+				_push(`<div class="col-lg-12 mb-5"><h6 class="text-primary">Identitas ${ssrInterpolate(type.label)}</h6><div class="mb-3 row"><label class="col-sm-3 col-form-label"${ssrRenderAttr("for", model.value[type.value] + "-name")}>Nama</label><div class="col-sm-9">`);
+				_push(ssrRenderComponent(_component_BFormInput, {
+					type: "text",
+					id: model.value[type.value].id + "-name",
+					size: "sm",
+					modelValue: model.value[type.value].name,
+					"onUpdate:modelValue": ($event) => model.value[type.value].name = $event
+				}, null, _parent));
+				_push(`</div></div><div class="mb-3 row"><label class="col-sm-3 col-form-label"${ssrRenderAttr("for", model.value[type.value] + "-nik-number")}>NIK</label><div class="col-sm-9">`);
+				_push(ssrRenderComponent(_component_BFormInput, {
+					type: "text",
+					id: model.value[type.value].id + "-nik-number",
+					size: "sm",
+					modelValue: model.value[type.value].nik_number,
+					"onUpdate:modelValue": ($event) => model.value[type.value].nik_number = $event
+				}, null, _parent));
+				_push(`</div></div><div class="mb-3 row"><label class="col-sm-3 col-form-label"${ssrRenderAttr("for", model.value[type.value] + "-phone")}>No. Telepon</label><div class="col-sm-9">`);
+				_push(ssrRenderComponent(_component_BFormInput, {
+					type: "text",
+					id: model.value[type.value].id + "-phone",
+					size: "sm",
+					modelValue: model.value[type.value].phone,
+					"onUpdate:modelValue": ($event) => model.value[type.value].phone = $event
+				}, null, _parent));
+				_push(`</div></div><div class="mb-3 row"><label class="col-sm-3 col-form-label"${ssrRenderAttr("for", model.value[type.value] + "-address")}>Alamat</label><div class="col-sm-9">`);
+				_push(ssrRenderComponent(_component_BFormTextarea, {
+					id: model.value[type.value].id + "-address",
+					size: "sm",
+					modelValue: model.value[type.value].address,
+					"onUpdate:modelValue": ($event) => model.value[type.value].address = $event,
+					rows: 4
+				}, null, _parent));
+				_push(`</div></div></div>`);
+			});
+			_push(`<!--]--></div></div>`);
+		};
+	}
+});
+//#endregion
+//#region resources/js/components/RegistrationForms/StudentParent.vue
+var _sfc_setup$9 = StudentParent_vue_vue_type_script_setup_true_lang_default.setup;
+StudentParent_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
+	const ssrContext = useSSRContext();
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/RegistrationForms/StudentParent.vue");
+	return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
+};
+var StudentParent_default = StudentParent_vue_vue_type_script_setup_true_lang_default;
+//#endregion
+//#region resources/js/pages/Dashboard/Form.vue?vue&type=script&setup=true&lang.ts
 var Form_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
 	layout: Form_default$1,
 	__name: "Form",
@@ -1668,6 +1929,11 @@ var Form_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 			religion_id: props.candidate.religion_id,
 			gender: props.candidate.gender,
 			birth_certificate_number: props.candidate.birth_certificate_number,
+			parents: {
+				father: props.candidate.parents["father"],
+				mother: props.candidate.parents["mother"],
+				guardian: props.candidate.parents["guardian"]
+			},
 			achievements: [{
 				name: "Juara 1 OSN Matematika",
 				level: "Provinsi"
@@ -1779,16 +2045,41 @@ var Form_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 											}),
 											_: 1
 										}, _parent, _scopeId));
+										_push(ssrRenderComponent(_component_BTab, { title: "Identitas Orang Tua" }, {
+											default: withCtx((_, _push, _parent, _scopeId) => {
+												if (_push) _push(ssrRenderComponent(_component_BCardText, { class: "py-3" }, {
+													default: withCtx((_, _push, _parent, _scopeId) => {
+														if (_push) _push(ssrRenderComponent(StudentParent_default, {
+															modelValue: unref(form).parents,
+															"onUpdate:modelValue": ($event) => unref(form).parents = $event
+														}, null, _parent, _scopeId));
+														else return [createVNode(StudentParent_default, {
+															modelValue: unref(form).parents,
+															"onUpdate:modelValue": ($event) => unref(form).parents = $event
+														}, null, 8, ["modelValue", "onUpdate:modelValue"])];
+													}),
+													_: 1
+												}, _parent, _scopeId));
+												else return [createVNode(_component_BCardText, { class: "py-3" }, {
+													default: withCtx(() => [createVNode(StudentParent_default, {
+														modelValue: unref(form).parents,
+														"onUpdate:modelValue": ($event) => unref(form).parents = $event
+													}, null, 8, ["modelValue", "onUpdate:modelValue"])]),
+													_: 1
+												})];
+											}),
+											_: 1
+										}, _parent, _scopeId));
 										_push(ssrRenderComponent(_component_BTab, { title: "KIP/Beasiswa" }, {
 											default: withCtx((_, _push, _parent, _scopeId) => {
-												if (_push) _push(ssrRenderComponent(_component_BCardText, null, {
+												if (_push) _push(ssrRenderComponent(_component_BCardText, { class: "py-3" }, {
 													default: withCtx((_, _push, _parent, _scopeId) => {
 														if (_push) _push(`<p${_scopeId}> Repudiandae nisi delectus assumenda quas labore ipsa saepe voluptatibus ipsam tempore, vel neque. Voluptatibus libero rem doloremque quaerat repellendus, excepturi harum. </p>`);
 														else return [createVNode("p", null, " Repudiandae nisi delectus assumenda quas labore ipsa saepe voluptatibus ipsam tempore, vel neque. Voluptatibus libero rem doloremque quaerat repellendus, excepturi harum. ")];
 													}),
 													_: 1
 												}, _parent, _scopeId));
-												else return [createVNode(_component_BCardText, null, {
+												else return [createVNode(_component_BCardText, { class: "py-3" }, {
 													default: withCtx(() => [createVNode("p", null, " Repudiandae nisi delectus assumenda quas labore ipsa saepe voluptatibus ipsam tempore, vel neque. Voluptatibus libero rem doloremque quaerat repellendus, excepturi harum. ")]),
 													_: 1
 												})];
@@ -1824,7 +2115,7 @@ var Form_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 																}, _parent, _scopeId));
 																_push(`</div></li>`);
 															});
-															_push(`<!--]--></ul><form class="row g-3"${_scopeId}><div class="col-md-5"${_scopeId}><label for="achievement-name" class="form-label small fw-bold"${_scopeId}>Nama Lomba/Prestasi</label><input id="achievement-name" class="form-control form-control-sm rounded-3" placeholder="Contoh: Juara 1 OSN Matematika" type="text"${ssrRenderAttr("value", temp.value.name)}${_scopeId}></div><div class="col-md-4"${_scopeId}><label for="achievement-level" class="form-label small fw-bold"${_scopeId}>Tingkat</label><select id="achievement-level" class="form-select form-select-sm rounded-3"${_scopeId}><option value="Kabupaten"${ssrIncludeBooleanAttr(Array.isArray(temp.value.level) ? ssrLooseContain(temp.value.level, "Kabupaten") : ssrLooseEqual(temp.value.level, "Kabupaten")) ? " selected" : ""}${_scopeId}>Kabupaten</option><option value="Provinsi"${ssrIncludeBooleanAttr(Array.isArray(temp.value.level) ? ssrLooseContain(temp.value.level, "Provinsi") : ssrLooseEqual(temp.value.level, "Provinsi")) ? " selected" : ""}${_scopeId}>Provinsi</option><option value="Nasional"${ssrIncludeBooleanAttr(Array.isArray(temp.value.level) ? ssrLooseContain(temp.value.level, "Nasional") : ssrLooseEqual(temp.value.level, "Nasional")) ? " selected" : ""}${_scopeId}>Nasional</option><option value="Internasional"${ssrIncludeBooleanAttr(Array.isArray(temp.value.level) ? ssrLooseContain(temp.value.level, "Internasional") : ssrLooseEqual(temp.value.level, "Internasional")) ? " selected" : ""}${_scopeId}>Internasional</option></select></div><div class="col-md-3 d-flex align-items-end"${_scopeId}><button type="submit" class="btn btn-sm btn-primary w-100 rounded-pill py-2 fw-bold"${_scopeId}>Tambah</button></div></form>`);
+															_push(`<!--]--></ul><form class="row g-3"${_scopeId}><div class="col-md-5"${_scopeId}><label for="achievement-name" class="form-label small fw-bold"${_scopeId}>Nama Lomba/Prestasi</label><input id="achievement-name" class="form-control form-control-sm rounded-3" placeholder="Contoh: Juara 1 OSN Matematika" type="text"${ssrRenderAttr("value", temp.value.name)}${_scopeId}></div><div class="col-md-4"${_scopeId}><label for="achievement-level" class="form-label small fw-bold"${_scopeId}>Tingkat</label><select id="achievement-level" class="form-select form-select-sm rounded-3"${_scopeId}><option value="Kabupaten"${ssrIncludeBooleanAttr(Array.isArray(temp.value.level) ? ssrLooseContain(temp.value.level, "Kabupaten") : ssrLooseEqual(temp.value.level, "Kabupaten")) ? " selected" : ""}${_scopeId}> Kabupaten </option><option value="Provinsi"${ssrIncludeBooleanAttr(Array.isArray(temp.value.level) ? ssrLooseContain(temp.value.level, "Provinsi") : ssrLooseEqual(temp.value.level, "Provinsi")) ? " selected" : ""}${_scopeId}> Provinsi </option><option value="Nasional"${ssrIncludeBooleanAttr(Array.isArray(temp.value.level) ? ssrLooseContain(temp.value.level, "Nasional") : ssrLooseEqual(temp.value.level, "Nasional")) ? " selected" : ""}${_scopeId}> Nasional </option><option value="Internasional"${ssrIncludeBooleanAttr(Array.isArray(temp.value.level) ? ssrLooseContain(temp.value.level, "Internasional") : ssrLooseEqual(temp.value.level, "Internasional")) ? " selected" : ""}${_scopeId}> Internasional </option></select></div><div class="col-md-3 d-flex align-items-end"${_scopeId}><button type="submit" class="btn btn-sm btn-primary w-100 rounded-pill py-2 fw-bold"${_scopeId}> Tambah </button></div></form>`);
 														} else return [createVNode("ul", { class: "list-group list-group-flush shadow-none mb-3" }, [(openBlock(true), createBlock(Fragment, null, renderList(unref(form).achievements, (achievement, index) => {
 															return openBlock(), createBlock("li", {
 																class: "list-group-item",
@@ -1862,15 +2153,15 @@ var Form_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 																class: "form-select form-select-sm rounded-3",
 																"onUpdate:modelValue": ($event) => temp.value.level = $event
 															}, [
-																createVNode("option", { value: "Kabupaten" }, "Kabupaten"),
-																createVNode("option", { value: "Provinsi" }, "Provinsi"),
-																createVNode("option", { value: "Nasional" }, "Nasional"),
-																createVNode("option", { value: "Internasional" }, "Internasional")
+																createVNode("option", { value: "Kabupaten" }, " Kabupaten "),
+																createVNode("option", { value: "Provinsi" }, " Provinsi "),
+																createVNode("option", { value: "Nasional" }, " Nasional "),
+																createVNode("option", { value: "Internasional" }, " Internasional ")
 															], 8, ["onUpdate:modelValue"]), [[vModelSelect, temp.value.level]])]),
 															createVNode("div", { class: "col-md-3 d-flex align-items-end" }, [createVNode("button", {
 																type: "submit",
 																class: "btn btn-sm btn-primary w-100 rounded-pill py-2 fw-bold"
-															}, "Tambah")])
+															}, " Tambah ")])
 														], 32)];
 													}),
 													_: 1
@@ -1913,15 +2204,15 @@ var Form_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 															class: "form-select form-select-sm rounded-3",
 															"onUpdate:modelValue": ($event) => temp.value.level = $event
 														}, [
-															createVNode("option", { value: "Kabupaten" }, "Kabupaten"),
-															createVNode("option", { value: "Provinsi" }, "Provinsi"),
-															createVNode("option", { value: "Nasional" }, "Nasional"),
-															createVNode("option", { value: "Internasional" }, "Internasional")
+															createVNode("option", { value: "Kabupaten" }, " Kabupaten "),
+															createVNode("option", { value: "Provinsi" }, " Provinsi "),
+															createVNode("option", { value: "Nasional" }, " Nasional "),
+															createVNode("option", { value: "Internasional" }, " Internasional ")
 														], 8, ["onUpdate:modelValue"]), [[vModelSelect, temp.value.level]])]),
 														createVNode("div", { class: "col-md-3 d-flex align-items-end" }, [createVNode("button", {
 															type: "submit",
 															class: "btn btn-sm btn-primary w-100 rounded-pill py-2 fw-bold"
-														}, "Tambah")])
+														}, " Tambah ")])
 													], 32)]),
 													_: 1
 												})];
@@ -1947,8 +2238,18 @@ var Form_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 											})]),
 											_: 1
 										}),
+										createVNode(_component_BTab, { title: "Identitas Orang Tua" }, {
+											default: withCtx(() => [createVNode(_component_BCardText, { class: "py-3" }, {
+												default: withCtx(() => [createVNode(StudentParent_default, {
+													modelValue: unref(form).parents,
+													"onUpdate:modelValue": ($event) => unref(form).parents = $event
+												}, null, 8, ["modelValue", "onUpdate:modelValue"])]),
+												_: 1
+											})]),
+											_: 1
+										}),
 										createVNode(_component_BTab, { title: "KIP/Beasiswa" }, {
-											default: withCtx(() => [createVNode(_component_BCardText, null, {
+											default: withCtx(() => [createVNode(_component_BCardText, { class: "py-3" }, {
 												default: withCtx(() => [createVNode("p", null, " Repudiandae nisi delectus assumenda quas labore ipsa saepe voluptatibus ipsam tempore, vel neque. Voluptatibus libero rem doloremque quaerat repellendus, excepturi harum. ")]),
 												_: 1
 											})]),
@@ -1993,15 +2294,15 @@ var Form_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 														class: "form-select form-select-sm rounded-3",
 														"onUpdate:modelValue": ($event) => temp.value.level = $event
 													}, [
-														createVNode("option", { value: "Kabupaten" }, "Kabupaten"),
-														createVNode("option", { value: "Provinsi" }, "Provinsi"),
-														createVNode("option", { value: "Nasional" }, "Nasional"),
-														createVNode("option", { value: "Internasional" }, "Internasional")
+														createVNode("option", { value: "Kabupaten" }, " Kabupaten "),
+														createVNode("option", { value: "Provinsi" }, " Provinsi "),
+														createVNode("option", { value: "Nasional" }, " Nasional "),
+														createVNode("option", { value: "Internasional" }, " Internasional ")
 													], 8, ["onUpdate:modelValue"]), [[vModelSelect, temp.value.level]])]),
 													createVNode("div", { class: "col-md-3 d-flex align-items-end" }, [createVNode("button", {
 														type: "submit",
 														class: "btn btn-sm btn-primary w-100 rounded-pill py-2 fw-bold"
-													}, "Tambah")])
+													}, " Tambah ")])
 												], 32)]),
 												_: 1
 											})]),
@@ -2051,8 +2352,18 @@ var Form_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 								})]),
 								_: 1
 							}),
+							createVNode(_component_BTab, { title: "Identitas Orang Tua" }, {
+								default: withCtx(() => [createVNode(_component_BCardText, { class: "py-3" }, {
+									default: withCtx(() => [createVNode(StudentParent_default, {
+										modelValue: unref(form).parents,
+										"onUpdate:modelValue": ($event) => unref(form).parents = $event
+									}, null, 8, ["modelValue", "onUpdate:modelValue"])]),
+									_: 1
+								})]),
+								_: 1
+							}),
 							createVNode(_component_BTab, { title: "KIP/Beasiswa" }, {
-								default: withCtx(() => [createVNode(_component_BCardText, null, {
+								default: withCtx(() => [createVNode(_component_BCardText, { class: "py-3" }, {
 									default: withCtx(() => [createVNode("p", null, " Repudiandae nisi delectus assumenda quas labore ipsa saepe voluptatibus ipsam tempore, vel neque. Voluptatibus libero rem doloremque quaerat repellendus, excepturi harum. ")]),
 									_: 1
 								})]),
@@ -2097,15 +2408,15 @@ var Form_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 											class: "form-select form-select-sm rounded-3",
 											"onUpdate:modelValue": ($event) => temp.value.level = $event
 										}, [
-											createVNode("option", { value: "Kabupaten" }, "Kabupaten"),
-											createVNode("option", { value: "Provinsi" }, "Provinsi"),
-											createVNode("option", { value: "Nasional" }, "Nasional"),
-											createVNode("option", { value: "Internasional" }, "Internasional")
+											createVNode("option", { value: "Kabupaten" }, " Kabupaten "),
+											createVNode("option", { value: "Provinsi" }, " Provinsi "),
+											createVNode("option", { value: "Nasional" }, " Nasional "),
+											createVNode("option", { value: "Internasional" }, " Internasional ")
 										], 8, ["onUpdate:modelValue"]), [[vModelSelect, temp.value.level]])]),
 										createVNode("div", { class: "col-md-3 d-flex align-items-end" }, [createVNode("button", {
 											type: "submit",
 											class: "btn btn-sm btn-primary w-100 rounded-pill py-2 fw-bold"
-										}, "Tambah")])
+										}, " Tambah ")])
 									], 32)]),
 									_: 1
 								})]),
@@ -2132,17 +2443,17 @@ var Form_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 	}
 });
 //#endregion
-//#region resources/js/Pages/Dashboard/Form.vue
+//#region resources/js/pages/Dashboard/Form.vue
 var Form_exports = /* @__PURE__ */ __exportAll({ default: () => Form_default });
 var _sfc_setup$8 = Form_vue_vue_type_script_setup_true_lang_default.setup;
 Form_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Dashboard/Form.vue");
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Dashboard/Form.vue");
 	return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
 };
 var Form_default = Form_vue_vue_type_script_setup_true_lang_default;
 //#endregion
-//#region resources/js/Pages/Dashboard/Guide.vue?vue&type=script&setup=true&lang.ts
+//#region resources/js/pages/Dashboard/Guide.vue?vue&type=script&setup=true&lang.ts
 var Guide_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
 	layout: Form_default$1,
 	__name: "Guide",
@@ -2180,22 +2491,22 @@ var Guide_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCo
 				}),
 				_: 1
 			}, _parent));
-			_push(` atau Hubungi Kami. </p><div class="mt-5 d-flex justify-content-between"><button type="button" class="btn btn-sm btn-outline-secondary px-4 rounded-pill" disabled>Kembali</button><button type="button" class="btn btn-sm btn-primary px-5 rounded-pill"> Lanjutkan </button></div></div></div></div>`);
+			_push(` atau Hubungi Kami. </p><div class="mt-5 d-flex justify-content-between"><button type="button" class="btn btn-sm btn-outline-secondary px-4 rounded-pill" disabled> Kembali </button><button type="button" class="btn btn-sm btn-primary px-5 rounded-pill"> Lanjutkan </button></div></div></div></div>`);
 		};
 	}
 });
 //#endregion
-//#region resources/js/Pages/Dashboard/Guide.vue
+//#region resources/js/pages/Dashboard/Guide.vue
 var Guide_exports = /* @__PURE__ */ __exportAll({ default: () => Guide_default });
 var _sfc_setup$7 = Guide_vue_vue_type_script_setup_true_lang_default.setup;
 Guide_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Dashboard/Guide.vue");
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Dashboard/Guide.vue");
 	return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
 };
 var Guide_default = Guide_vue_vue_type_script_setup_true_lang_default;
 //#endregion
-//#region resources/js/Pages/Dashboard/Home.vue?vue&type=script&setup=true&lang.ts
+//#region resources/js/pages/Dashboard/Home.vue?vue&type=script&setup=true&lang.ts
 var Home_vue_vue_type_script_setup_true_lang_default$1 = /* @__PURE__ */ defineComponent({
 	__name: "Home",
 	__ssrInlineRender: true,
@@ -2291,7 +2602,7 @@ var Home_vue_vue_type_script_setup_true_lang_default$1 = /* @__PURE__ */ defineC
 					if (_push) if (__props.candidates.data.length) {
 						_push(`<div class="row g-4"${_scopeId}><!--[-->`);
 						ssrRenderList(__props.candidates.data, (candidate) => {
-							_push(`<div class="col-md-6 col-lg-4"${_scopeId}><div class="card card-hover bg-body-tertiary border-0 shadow-sm rounded-4 overflow-hidden h-100"${_scopeId}><div class="card-body"${_scopeId}><div class="d-flex justify-content-between align-items-start mb-3"${_scopeId}><div class="bg-primary-subtle rounded-4 d-flex align-items-center justify-content-center" style="${ssrRenderStyle({
+							_push(`<div class="col-md-6 col-lg-4" style="${ssrRenderStyle({ "--animate-duration": "0.3s" })}"${_scopeId}><div class="card card-hover bg-body-tertiary border-0 shadow-sm rounded-4 overflow-hidden h-100"${_scopeId}><div class="card-body"${_scopeId}><div class="d-flex justify-content-between align-items-start mb-3"${_scopeId}><div class="bg-primary-subtle rounded-4 d-flex align-items-center justify-content-center" style="${ssrRenderStyle({
 								"width": "60px",
 								"height": "60px"
 							})}"${_scopeId}>`);
@@ -2325,53 +2636,57 @@ var Home_vue_vue_type_script_setup_true_lang_default$1 = /* @__PURE__ */ defineC
 					else return [__props.candidates.data.length ? (openBlock(), createBlock("div", {
 						key: 0,
 						class: "row g-4"
-					}, [(openBlock(true), createBlock(Fragment, null, renderList(__props.candidates.data, (candidate) => {
-						return openBlock(), createBlock("div", {
-							class: "col-md-6 col-lg-4",
-							key: candidate.id
-						}, [createVNode("div", { class: "card card-hover bg-body-tertiary border-0 shadow-sm rounded-4 overflow-hidden h-100" }, [createVNode("div", { class: "card-body" }, [
-							createVNode("div", { class: "d-flex justify-content-between align-items-start mb-3" }, [createVNode("div", {
-								class: "bg-primary-subtle rounded-4 d-flex align-items-center justify-content-center",
-								style: {
-									"width": "60px",
-									"height": "60px"
-								}
-							}, [candidate.type === "transfer" ? (openBlock(), createBlock(unref(ArrowLeftRight), {
-								key: 0,
-								class: "text-primary"
-							})) : createCommentVNode("", true), candidate.type === "new" ? (openBlock(), createBlock(unref(UserPlus), {
-								key: 1,
-								class: "text-primary"
-							})) : createCommentVNode("", true)]), createVNode("span", { class: "badge rounded-pill px-3 py-2 bg-secondary-subtle text-secondary" }, "DRAFT")]),
-							createVNode("h5", { class: ["fw-bold mb-1", { "fst-italic opacity-50": !candidate.name }] }, toDisplayString(candidate.name || "Nama Belum Diisi"), 3),
-							createVNode("p", { class: "small text-secondary mb-3" }, [createTextVNode(" Jenis Pendaftaran: "), !candidate.type ? (openBlock(), createBlock(Fragment, { key: 0 }, [createTextVNode("Belum Dipilih")], 64)) : (openBlock(), createBlock("span", {
-								key: 1,
-								class: "fw-bold"
-							}, toDisplayString(candidate.type === "new" ? "Siswa Baru" : "Siswa Pindahan"), 1))]),
-							createVNode("div", { class: "mb-4" }, [createVNode("div", { class: "d-flex justify-content-between mb-1" }, [createVNode("span", { class: "small text-secondary" }, "Progress"), createVNode("span", { class: "small fw-bold" }, toDisplayString(candidate.progress) + "%", 1)]), createVNode("div", {
-								class: "progress",
-								style: { "height": "6px" }
-							}, [createVNode("div", {
-								class: "progress-bar",
-								style: {
-									"background-color": `hsl(${candidate.progress * 1.2}, 60%, 50%)`,
-									width: candidate.progress + "%"
-								}
-							}, null, 4)])]),
-							createVNode("div", { class: "d-flex justify-content-between align-items-center mt-auto" }, [createVNode("div", { class: "d-flex gap-2" }, [createVNode(unref(Link), {
-								href: unref(dashboard).form.guide(candidate.id),
-								class: "btn btn-sm btn-primary px-3 rounded-pill"
-							}, {
-								default: withCtx(() => [createTextVNode(" Lengkapi ")]),
-								_: 1
-							}, 8, ["href"]), createVNode("button", {
-								class: "btn btn-sm btn-outline-danger rounded-circle p-2 d-flex align-items-center justify-content-center",
-								title: "Hapus Pendaftaran",
-								disabled: unref(form).processing,
-								onClick: ($event) => trash(candidate.id)
-							}, [createVNode(unref(Trash), { size: 18 })], 8, ["disabled", "onClick"])]), createVNode("small", { class: "text-secondary" }, "Update: 02 April 2026")])
-						])])]);
-					}), 128))])) : (openBlock(), createBlock("div", {
+					}, [createVNode(TransitionGroup, { name: "fadeLeft" }, {
+						default: withCtx(() => [(openBlock(true), createBlock(Fragment, null, renderList(__props.candidates.data, (candidate) => {
+							return openBlock(), createBlock("div", {
+								class: "col-md-6 col-lg-4",
+								key: candidate.id,
+								style: { "--animate-duration": "0.3s" }
+							}, [createVNode("div", { class: "card card-hover bg-body-tertiary border-0 shadow-sm rounded-4 overflow-hidden h-100" }, [createVNode("div", { class: "card-body" }, [
+								createVNode("div", { class: "d-flex justify-content-between align-items-start mb-3" }, [createVNode("div", {
+									class: "bg-primary-subtle rounded-4 d-flex align-items-center justify-content-center",
+									style: {
+										"width": "60px",
+										"height": "60px"
+									}
+								}, [candidate.type === "transfer" ? (openBlock(), createBlock(unref(ArrowLeftRight), {
+									key: 0,
+									class: "text-primary"
+								})) : createCommentVNode("", true), candidate.type === "new" ? (openBlock(), createBlock(unref(UserPlus), {
+									key: 1,
+									class: "text-primary"
+								})) : createCommentVNode("", true)]), createVNode("span", { class: "badge rounded-pill px-3 py-2 bg-secondary-subtle text-secondary" }, "DRAFT")]),
+								createVNode("h5", { class: ["fw-bold mb-1", { "fst-italic opacity-50": !candidate.name }] }, toDisplayString(candidate.name || "Nama Belum Diisi"), 3),
+								createVNode("p", { class: "small text-secondary mb-3" }, [createTextVNode(" Jenis Pendaftaran: "), !candidate.type ? (openBlock(), createBlock(Fragment, { key: 0 }, [createTextVNode("Belum Dipilih")], 64)) : (openBlock(), createBlock("span", {
+									key: 1,
+									class: "fw-bold"
+								}, toDisplayString(candidate.type === "new" ? "Siswa Baru" : "Siswa Pindahan"), 1))]),
+								createVNode("div", { class: "mb-4" }, [createVNode("div", { class: "d-flex justify-content-between mb-1" }, [createVNode("span", { class: "small text-secondary" }, "Progress"), createVNode("span", { class: "small fw-bold" }, toDisplayString(candidate.progress) + "%", 1)]), createVNode("div", {
+									class: "progress",
+									style: { "height": "6px" }
+								}, [createVNode("div", {
+									class: "progress-bar",
+									style: {
+										"background-color": `hsl(${candidate.progress * 1.2}, 60%, 50%)`,
+										width: candidate.progress + "%"
+									}
+								}, null, 4)])]),
+								createVNode("div", { class: "d-flex justify-content-between align-items-center mt-auto" }, [createVNode("div", { class: "d-flex gap-2" }, [createVNode(unref(Link), {
+									href: unref(dashboard).form.guide(candidate.id),
+									class: "btn btn-sm btn-primary px-3 rounded-pill"
+								}, {
+									default: withCtx(() => [createTextVNode(" Lengkapi ")]),
+									_: 1
+								}, 8, ["href"]), createVNode("button", {
+									class: "btn btn-sm btn-outline-danger rounded-circle p-2 d-flex align-items-center justify-content-center",
+									title: "Hapus Pendaftaran",
+									disabled: unref(form).processing,
+									onClick: ($event) => trash(candidate.id)
+								}, [createVNode(unref(Trash), { size: 18 })], 8, ["disabled", "onClick"])]), createVNode("small", { class: "text-secondary" }, "Update: 02 April 2026")])
+							])])]);
+						}), 128))]),
+						_: 1
+					})])) : (openBlock(), createBlock("div", {
 						key: 1,
 						class: "alert alert-warning"
 					}, "Belum ada pendaftaran."))];
@@ -2434,17 +2749,17 @@ var Home_vue_vue_type_script_setup_true_lang_default$1 = /* @__PURE__ */ defineC
 	}
 });
 //#endregion
-//#region resources/js/Pages/Dashboard/Home.vue
+//#region resources/js/pages/Dashboard/Home.vue
 var Home_exports$1 = /* @__PURE__ */ __exportAll({ default: () => Home_default$1 });
 var _sfc_setup$6 = Home_vue_vue_type_script_setup_true_lang_default$1.setup;
 Home_vue_vue_type_script_setup_true_lang_default$1.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Dashboard/Home.vue");
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Dashboard/Home.vue");
 	return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
 };
 var Home_default$1 = Home_vue_vue_type_script_setup_true_lang_default$1;
 //#endregion
-//#region resources/js/Pages/Dashboard/Review.vue?vue&type=script&setup=true&lang.ts
+//#region resources/js/pages/Dashboard/Review.vue?vue&type=script&setup=true&lang.ts
 var Review_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
 	layout: Form_default$1,
 	__name: "Review",
@@ -2472,7 +2787,7 @@ var Review_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineC
 				size: 32,
 				class: "text-primary"
 			}, null, _parent));
-			_push(`</div><div><h5 class="fw-bold mb-0 text-primary-emphasis">Berkas Sedang Ditinjau</h5><span class="small opacity-75 fw-light">Update terakhir: 02 April 2026</span></div></div></div><div class="card-body"><p class="small mb-4"> Tim administrasi kami sedang melakukan verifikasi terhadap data dan dokumen yang Anda unggah. Proses ini biasanya memakan waktu 1-3 hari kerja. </p></div></div></div><div class="col-lg-4"><div class="card border-0 shadow-sm rounded-4 mb-4"><div class="card-body p-4"><h6 class="fw-bold mb-3 d-flex align-items-center">`);
+			_push(`</div><div><h5 class="fw-bold mb-0 text-primary-emphasis"> Berkas Sedang Ditinjau </h5><span class="small opacity-75 fw-light">Update terakhir: 02 April 2026</span></div></div></div><div class="card-body"><p class="small mb-4"> Tim administrasi kami sedang melakukan verifikasi terhadap data dan dokumen yang Anda unggah. Proses ini biasanya memakan waktu 1-3 hari kerja. </p></div></div></div><div class="col-lg-4"><div class="card border-0 shadow-sm rounded-4 mb-4"><div class="card-body p-4"><h6 class="fw-bold mb-3 d-flex align-items-center">`);
 			_push(ssrRenderComponent(unref(CircleQuestionMark), {
 				size: 18,
 				class: "text-primary me-2"
@@ -2492,17 +2807,17 @@ var Review_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineC
 	}
 });
 //#endregion
-//#region resources/js/Pages/Dashboard/Review.vue
+//#region resources/js/pages/Dashboard/Review.vue
 var Review_exports = /* @__PURE__ */ __exportAll({ default: () => Review_default });
 var _sfc_setup$5 = Review_vue_vue_type_script_setup_true_lang_default.setup;
 Review_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Dashboard/Review.vue");
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Dashboard/Review.vue");
 	return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
 var Review_default = Review_vue_vue_type_script_setup_true_lang_default;
 //#endregion
-//#region resources/js/Pages/Dashboard/Send.vue?vue&type=script&setup=true&lang.ts
+//#region resources/js/pages/Dashboard/Send.vue?vue&type=script&setup=true&lang.ts
 var Send_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
 	layout: Form_default$1,
 	__name: "Send",
@@ -2529,42 +2844,42 @@ var Send_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 				size: 64,
 				class: "text-primary"
 			}, null, _parent));
-			_push(`</div><h4 class="fw-bold mb-3">Konfirmasi &amp; Kirim Berkas</h4><p class="text-secondary mb-4 mx-auto" style="${ssrRenderStyle({ "max-width": "500px" })}"> Pastikan semua data yang Anda masukkan sudah benar. Setelah dikirim, data akan dikunci untuk proses peninjauan oleh panitia PPDB. </p><div class="card border-0 rounded-4 mb-4 text-start bg-body-tertiary shadow-sm"><div class="card-body"><h6 class="fw-bold mb-3">Ringkasan Pendaftaran:</h6><div class="row g-2 small"><div class="col-6 text-secondary">Nama Calon Siswa:</div><div class="col-6 fw-bold">Budi Santoso</div><div class="col-6 text-secondary">Tipe Pendaftaran:</div><div class="col-6 fw-bold">Siswa Baru</div><div class="col-6 text-secondary">Status Kelengkapan:</div><div class="col-6 fw-bold text-success">Siap Dikirim (70%)</div></div></div></div><div class="form-check d-inline-block text-start mb-4"><input class="form-check-input" id="confirmData" type="checkbox"><label class="form-check-label small" for="confirmData"> Saya menyatakan bahwa data yang saya masukkan adalah benar dan dapat dipertanggungjawabkan. </label></div><div class="d-flex justify-content-center gap-3"><button class="btn btn-outline-secondary px-4 rounded-pill">Kembali</button><button class="btn btn-primary px-5 rounded-pill">Kirim Sekarang</button></div></div></div></div></div>`);
+			_push(`</div><h4 class="fw-bold mb-3">Konfirmasi &amp; Kirim Berkas</h4><p class="text-secondary mb-4 mx-auto" style="${ssrRenderStyle({ "max-width": "500px" })}"> Pastikan semua data yang Anda masukkan sudah benar. Setelah dikirim, data akan dikunci untuk proses peninjauan oleh panitia PPDB. </p><div class="card border-0 rounded-4 mb-4 text-start bg-body-tertiary shadow-sm"><div class="card-body"><h6 class="fw-bold mb-3">Ringkasan Pendaftaran:</h6><div class="row g-2 small"><div class="col-6 text-secondary"> Nama Calon Siswa: </div><div class="col-6 fw-bold">Budi Santoso</div><div class="col-6 text-secondary"> Tipe Pendaftaran: </div><div class="col-6 fw-bold">Siswa Baru</div><div class="col-6 text-secondary"> Status Kelengkapan: </div><div class="col-6 fw-bold text-success"> Siap Dikirim (70%) </div></div></div></div><div class="form-check d-inline-block text-start mb-4"><input class="form-check-input" id="confirmData" type="checkbox"><label class="form-check-label small" for="confirmData"> Saya menyatakan bahwa data yang saya masukkan adalah benar dan dapat dipertanggungjawabkan. </label></div><div class="d-flex justify-content-center gap-3"><button class="btn btn-outline-secondary px-4 rounded-pill"> Kembali </button><button class="btn btn-primary px-5 rounded-pill"> Kirim Sekarang </button></div></div></div></div></div>`);
 		};
 	}
 });
 //#endregion
-//#region resources/js/Pages/Dashboard/Send.vue
+//#region resources/js/pages/Dashboard/Send.vue
 var Send_exports = /* @__PURE__ */ __exportAll({ default: () => Send_default });
 var _sfc_setup$4 = Send_vue_vue_type_script_setup_true_lang_default.setup;
 Send_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Dashboard/Send.vue");
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Dashboard/Send.vue");
 	return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
 var Send_default = Send_vue_vue_type_script_setup_true_lang_default;
 //#endregion
-//#region resources/js/Pages/Faq.vue?vue&type=script&setup=true&lang.ts
+//#region resources/js/pages/Faq.vue?vue&type=script&setup=true&lang.ts
 var Faq_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
 	__name: "Faq",
 	__ssrInlineRender: true,
-	props: { meta: {} },
+	props: { SEOData: {} },
 	setup(__props) {
 		return (_ctx, _push, _parent, _attrs) => {
-			_push(`<div${ssrRenderAttrs(_attrs)}>`);
+			_push(`<!--[-->`);
 			_push(ssrRenderComponent(unref(Head), null, {
 				default: withCtx((_, _push, _parent, _scopeId) => {
-					if (_push) _push(`<title${_scopeId}>${ssrInterpolate(__props.meta.title)}</title><meta name="description"${ssrRenderAttr("content", __props.meta.description)}${_scopeId}>`);
-					else return [createVNode("title", null, toDisplayString(__props.meta.title), 1), createVNode("meta", {
+					if (_push) _push(`<title${_scopeId}>${ssrInterpolate(__props.SEOData.title)}</title><meta name="description"${ssrRenderAttr("content", __props.SEOData.description)}${_scopeId}>`);
+					else return [createVNode("title", null, toDisplayString(__props.SEOData.title), 1), createVNode("meta", {
 						name: "description",
-						content: __props.meta.description
+						content: __props.SEOData.description
 					}, null, 8, ["content"])];
 				}),
 				_: 1
 			}, _parent));
-			_push(`<div class="min-vh-100 py-5"><div class="container py-5"><div class="text-center mb-5"><span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill mb-3 fw-bold">Pusat Bantuan</span><h1 class="display-5 fw-bold mb-3">Pertanyaan yang Sering Diajukan</h1><p class="text-secondary lead mx-auto" style="${ssrRenderStyle({ "max-width": "600px" })}"> Temukan jawaban cepat untuk pertanyaan umum mengenai proses pendaftaran di ${ssrInterpolate(_ctx.$page.props.name)}. </p></div><div class="row justify-content-center mb-5"><div class="col-lg-6"><div class="position-relative">`);
+			_push(`<div class="min-vh-100 py-5"><div class="container py-5"><div class="text-center mb-5"><span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill mb-3 fw-bold">Pusat Bantuan</span><h1 class="display-5 fw-bold mb-3"> Pertanyaan yang Sering Diajukan </h1><p class="text-secondary lead mx-auto" style="${ssrRenderStyle({ "max-width": "600px" })}"> Temukan jawaban cepat untuk pertanyaan umum mengenai proses pendaftaran di ${ssrInterpolate(_ctx.$page.props.name)}. </p></div><div class="row justify-content-center mb-5"><div class="col-lg-6"><div class="position-relative">`);
 			_push(ssrRenderComponent(unref(Search), { class: "position-absolute top-50 start-0 translate-middle-y ms-3 text-muted" }, null, _parent));
-			_push(`<input class="form-control form-control-lg ps-5 rounded-pill shadow-sm border-0" placeholder="Cari pertanyaan..." type="text"></div></div></div><div class="d-flex flex-wrap justify-content-center gap-2 mb-5"><button class="btn px-4 py-2 rounded-pill fw-bold transition-all btn-primary shadow">Semua</button><button class="btn px-4 py-2 rounded-pill fw-bold transition-all btn-white text-secondary border-0 shadow-sm">Umum</button><button class="btn px-4 py-2 rounded-pill fw-bold transition-all btn-white text-secondary border-0 shadow-sm">Pendaftaran</button><button class="btn px-4 py-2 rounded-pill fw-bold transition-all btn-white text-secondary border-0 shadow-sm">Pembayaran</button><button class="btn px-4 py-2 rounded-pill fw-bold transition-all btn-white text-secondary border-0 shadow-sm">Teknis</button></div><div class="row justify-content-center"><div class="col-lg-8"><div class="accordion border-0" id="faq"><div class="accordion-item border-0 rounded-4 mb-3 shadow-sm overflow-hidden"><h2 class="accordion-header"><button class="accordion-button fw-bold py-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="false"> Berapa lama proses review berkas? </button></h2><div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faq"><div class="accordion-body text-secondary small"> Proses verifikasi berkas biasanya memakan waktu 1-3 hari kerja setelah Anda menekan tombol &quot;Kirim Berkas&quot; di dashboard. </div></div></div><div class="accordion-item border-0 rounded-4 mb-3 shadow-sm overflow-hidden"><h2 class="accordion-header"><button class="accordion-button fw-bold py-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false"> Apa yang harus dilakukan jika status &quot;Perlu Perbaikan&quot;? </button></h2><div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faq"><div class="accordion-body text-secondary small"> Silahkan masuk ke dashboard Anda, lihat catatan dari panitia pada bagian berkas, unggah kembali dokumen yang diminta, lalu klik &quot;Kirim Ulang&quot;. </div></div></div></div></div></div><div class="mt-5 text-center"><div class="card shadow-sm rounded-4 border-0 bg-body-tertiary"><div class="card-body py-5"><h4 class="fw-bold mb-3">Masih punya pertanyaan?</h4><p class="text-secondary mb-4">Tim dukungan kami siap membantu Anda setiap hari kerja pukul 08:00 - 16:00 WIB.</p><div class="d-flex flex-wrap justify-content-center gap-3"><a href="https://wa.me/628123456789" class="btn btn-success px-4 py-2 rounded-pill d-flex align-items-center">`);
+			_push(`<input class="form-control form-control-lg ps-5 rounded-pill shadow-sm border-0" placeholder="Cari pertanyaan..." type="text"></div></div></div><div class="d-flex flex-wrap justify-content-center gap-2 mb-5"><button class="btn px-4 py-2 rounded-pill fw-bold transition-all btn-primary shadow"> Semua</button><button class="btn px-4 py-2 rounded-pill fw-bold transition-all btn-white text-secondary border-0 shadow-sm"> Umum</button><button class="btn px-4 py-2 rounded-pill fw-bold transition-all btn-white text-secondary border-0 shadow-sm"> Pendaftaran</button><button class="btn px-4 py-2 rounded-pill fw-bold transition-all btn-white text-secondary border-0 shadow-sm"> Pembayaran</button><button class="btn px-4 py-2 rounded-pill fw-bold transition-all btn-white text-secondary border-0 shadow-sm"> Teknis </button></div><div class="row justify-content-center"><div class="col-lg-8"><div class="accordion border-0" id="faq"><div class="accordion-item border-0 rounded-4 mb-3 shadow-sm overflow-hidden"><h2 class="accordion-header"><button class="accordion-button fw-bold py-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="false"> Berapa lama proses review berkas? </button></h2><div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faq"><div class="accordion-body text-secondary small"> Proses verifikasi berkas biasanya memakan waktu 1-3 hari kerja setelah Anda menekan tombol &quot;Kirim Berkas&quot; di dashboard. </div></div></div><div class="accordion-item border-0 rounded-4 mb-3 shadow-sm overflow-hidden"><h2 class="accordion-header"><button class="accordion-button fw-bold py-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false"> Apa yang harus dilakukan jika status &quot;Perlu Perbaikan&quot;? </button></h2><div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faq"><div class="accordion-body text-secondary small"> Silahkan masuk ke dashboard Anda, lihat catatan dari panitia pada bagian berkas, unggah kembali dokumen yang diminta, lalu klik &quot;Kirim Ulang&quot;. </div></div></div></div></div></div><div class="mt-5 text-center"><div class="card shadow-sm rounded-4 border-0 bg-body-tertiary"><div class="card-body py-5"><h4 class="fw-bold mb-3">Masih punya pertanyaan?</h4><p class="text-secondary mb-4"> Tim dukungan kami siap membantu Anda setiap hari kerja pukul 08:00 - 16:00 WIB. </p><div class="d-flex flex-wrap justify-content-center gap-3"><a href="https://wa.me/628123456789" class="btn btn-success px-4 py-2 rounded-pill d-flex align-items-center">`);
 			_push(ssrRenderComponent(unref(Phone), {
 				size: 20,
 				class: "me-2"
@@ -2574,22 +2889,22 @@ var Faq_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComp
 				size: 20,
 				class: "me-2"
 			}, null, _parent));
-			_push(` Kirim Email </a></div></div></div></div></div></div></div>`);
+			_push(` Kirim Email </a></div></div></div></div></div></div><!--]-->`);
 		};
 	}
 });
 //#endregion
-//#region resources/js/Pages/Faq.vue
+//#region resources/js/pages/Faq.vue
 var Faq_exports = /* @__PURE__ */ __exportAll({ default: () => Faq_default });
 var _sfc_setup$3 = Faq_vue_vue_type_script_setup_true_lang_default.setup;
 Faq_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Faq.vue");
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Faq.vue");
 	return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
 var Faq_default = Faq_vue_vue_type_script_setup_true_lang_default;
 //#endregion
-//#region resources/js/Components/Hero.vue?vue&type=script&setup=true&lang.ts
+//#region resources/js/components/Hero.vue?vue&type=script&setup=true&lang.ts
 var Hero_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
 	__name: "Hero",
 	__ssrInlineRender: true,
@@ -2638,35 +2953,24 @@ var Hero_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 	}
 });
 //#endregion
-//#region resources/js/Components/Hero.vue
+//#region resources/js/components/Hero.vue
 var _sfc_setup$2 = Hero_vue_vue_type_script_setup_true_lang_default.setup;
 Hero_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/Hero.vue");
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Hero.vue");
 	return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
 var Hero_default = Hero_vue_vue_type_script_setup_true_lang_default;
 //#endregion
-//#region resources/js/Pages/Home.vue?vue&type=script&setup=true&lang.ts
+//#region resources/js/pages/Home.vue?vue&type=script&setup=true&lang.ts
 var Home_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
 	__name: "Home",
 	__ssrInlineRender: true,
-	props: { meta: {} },
 	setup(__props) {
 		return (_ctx, _push, _parent, _attrs) => {
 			_push(`<div${ssrRenderAttrs(_attrs)}>`);
-			_push(ssrRenderComponent(unref(Head), null, {
-				default: withCtx((_, _push, _parent, _scopeId) => {
-					if (_push) _push(`<title${_scopeId}>${ssrInterpolate(__props.meta.title)}</title><meta name="description"${ssrRenderAttr("content", __props.meta.description)}${_scopeId}>`);
-					else return [createVNode("title", null, toDisplayString(__props.meta.title), 1), createVNode("meta", {
-						name: "description",
-						content: __props.meta.description
-					}, null, 8, ["content"])];
-				}),
-				_: 1
-			}, _parent));
 			_push(ssrRenderComponent(Hero_default, null, null, _parent));
-			_push(`<div class="bg-body-tertiary"><section class="py-5"><div class="container"><div class="row justify-content-center text-center mb-5"><div class="col-lg-8"><h2 class="fw-bold mb-2">Informasi Kuota Pendaftaran</h2><p class="text-muted">Pantau ketersediaan slot pendaftaran secara real-time untuk setiap jenjang kelas.</p></div></div><div class="row g-4"><div class="col-lg-4"><div class="card bg-primary-subtle card-hover border-0 shadow-lg rounded-5 h-100 overflow-hidden position-relative"><div class="card-body"><div class="position-relative z-1"><div class="d-flex justify-content-between align-items-start mb-4"><div class="bg-primary rounded-4 d-flex align-items-center justify-content-center" style="${ssrRenderStyle({
+			_push(`<div class="bg-body-tertiary"><section class="py-5"><div class="container"><div class="row justify-content-center text-center mb-5"><div class="col-lg-8"><h2 class="fw-bold mb-2"> Informasi Kuota Pendaftaran </h2><p class="text-muted"> Pantau ketersediaan slot pendaftaran secara real-time untuk setiap jenjang kelas. </p></div></div><div class="row g-4"><div class="col-lg-4"><div class="card bg-primary-subtle card-hover border-0 shadow-lg rounded-5 h-100 overflow-hidden position-relative"><div class="card-body"><div class="position-relative z-1"><div class="d-flex justify-content-between align-items-start mb-4"><div class="bg-primary rounded-4 d-flex align-items-center justify-content-center" style="${ssrRenderStyle({
 				"width": "60px",
 				"height": "60px"
 			})}">`);
@@ -2674,7 +2978,7 @@ var Home_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 				size: 32,
 				class: "text-white"
 			}, null, _parent));
-			_push(`</div><span class="badge bg-white text-primary rounded-pill px-3 py-2 fw-bold">Kelas 10</span></div><h4 class="fw-bold mb-2">Siswa Baru</h4><p class="small text-muted mb-4">Pendaftaran reguler untuk lulusan SMP/Sederajat.</p><div class="mb-4"><div class="d-flex justify-content-between mb-2"><span class="small fw-bold">Pendaftar: 284</span><span class="small fw-bold">Kuota: 350</span></div><div class="progress" role="progressbar"><div class="progress-bar" style="${ssrRenderStyle({ "width": "25%" })}"></div></div><div class="mt-2 text-end text-primary"><small class="fw-bold">Sisa 66 Kursi</small></div></div></div></div></div></div><div class="col-lg-4"><div class="card bg-body-tertiary card-hover border-0 shadow-lg rounded-5 h-100 overflow-hidden position-relative"><div class="card-body"><div class="position-relative z-1"><div class="d-flex justify-content-between align-items-start mb-4"><div class="bg-info rounded-4 d-flex align-items-center justify-content-center" style="${ssrRenderStyle({
+			_push(`</div><span class="badge bg-white text-primary rounded-pill px-3 py-2 fw-bold">Kelas 10</span></div><h4 class="fw-bold mb-2">Siswa Baru</h4><p class="small text-muted mb-4"> Pendaftaran reguler untuk lulusan SMP/Sederajat. </p><div class="mb-4"><div class="d-flex justify-content-between mb-2"><span class="small fw-bold">Pendaftar: 284</span><span class="small fw-bold">Kuota: 350</span></div><div class="progress" role="progressbar"><div class="progress-bar" style="${ssrRenderStyle({ "width": "25%" })}"></div></div><div class="mt-2 text-end text-primary"><small class="fw-bold">Sisa 66 Kursi</small></div></div></div></div></div></div><div class="col-lg-4"><div class="card bg-body-tertiary card-hover border-0 shadow-lg rounded-5 h-100 overflow-hidden position-relative"><div class="card-body"><div class="position-relative z-1"><div class="d-flex justify-content-between align-items-start mb-4"><div class="bg-info rounded-4 d-flex align-items-center justify-content-center" style="${ssrRenderStyle({
 				"width": "60px",
 				"height": "60px"
 			})}">`);
@@ -2682,7 +2986,7 @@ var Home_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 				size: 32,
 				class: "text-white"
 			}, null, _parent));
-			_push(`</div><span class="badge bg-info-subtle text-info rounded-pill px-3 py-2 fw-bold">Kelas 11</span></div><h4 class="fw-bold mb-2">Siswa Pindahan</h4><p class="small text-muted mb-4">Slot tersedia karena mutasi keluar siswa lama.</p><div class="mb-4"><div class="d-flex justify-content-between mb-2"><span class="small fw-bold">Pendaftar: 142</span><span class="small fw-bold">Kuota: 150</span></div><div class="progress" role="progressbar"><div class="progress-bar bg-info" style="${ssrRenderStyle({ "width": "94.67%" })}"></div></div><div class="mt-2 text-end text-info"><small class="fw-bold">Sisa 6 Kursi</small></div></div></div></div></div></div><div class="col-lg-4"><div class="card bg-body-tertiary card-hover border-0 shadow-lg rounded-5 h-100 overflow-hidden position-relative"><div class="card-body"><div class="position-relative z-1"><div class="d-flex justify-content-between align-items-start mb-4"><div class="bg-warning rounded-4 d-flex align-items-center justify-content-center" style="${ssrRenderStyle({
+			_push(`</div><span class="badge bg-info-subtle text-info rounded-pill px-3 py-2 fw-bold">Kelas 11</span></div><h4 class="fw-bold mb-2"> Siswa Pindahan </h4><p class="small text-muted mb-4"> Slot tersedia karena mutasi keluar siswa lama. </p><div class="mb-4"><div class="d-flex justify-content-between mb-2"><span class="small fw-bold">Pendaftar: 142</span><span class="small fw-bold">Kuota: 150</span></div><div class="progress" role="progressbar"><div class="progress-bar bg-info" style="${ssrRenderStyle({ "width": "94.67%" })}"></div></div><div class="mt-2 text-end text-info"><small class="fw-bold">Sisa 6 Kursi</small></div></div></div></div></div></div><div class="col-lg-4"><div class="card bg-body-tertiary card-hover border-0 shadow-lg rounded-5 h-100 overflow-hidden position-relative"><div class="card-body"><div class="position-relative z-1"><div class="d-flex justify-content-between align-items-start mb-4"><div class="bg-warning rounded-4 d-flex align-items-center justify-content-center" style="${ssrRenderStyle({
 				"width": "60px",
 				"height": "60px"
 			})}">`);
@@ -2690,42 +2994,42 @@ var Home_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 				size: 32,
 				class: "text-white"
 			}, null, _parent));
-			_push(`</div><span class="badge bg-warning-subtle text-warning rounded-pill px-3 py-2 fw-bold">Kelas 12</span></div><h4 class="fw-bold mb-2">Siswa Pindahan</h4><p class="small text-muted mb-4">Slot terbatas untuk jenjang akhir tahun ajaran.</p><div class="mb-4"><div class="d-flex justify-content-between mb-2"><span class="small fw-bold">Pendaftar: 142</span><span class="small fw-bold">Kuota: 150</span></div><div class="progress" role="progressbar"><div class="progress-bar bg-warning" style="${ssrRenderStyle({ "width": "25%" })}"></div></div><div class="mt-2 text-end text-warning"><small class="fw-bold">Sisa 8 Kursi</small></div></div></div></div></div></div></div></div></section></div><section class="py-5"><div class="container py-5"><div class="text-center mb-5"><h2 class="fw-bold">Mengapa Memilih Kami?</h2><p class="text-secondary">Keunggulan yang kami tawarkan untuk perkembangan putra-putri Anda.</p></div><div class="row g-4"><div class="col-md-6 col-lg-3"><div class="card card-hover border-0 shadow-sm bg-light-subtle rounded-4 p-4 h-100 text-center"><div class="d-inline-block p-3 rounded-circle mb-3 mx-auto">`);
+			_push(`</div><span class="badge bg-warning-subtle text-warning rounded-pill px-3 py-2 fw-bold">Kelas 12</span></div><h4 class="fw-bold mb-2"> Siswa Pindahan </h4><p class="small text-muted mb-4"> Slot terbatas untuk jenjang akhir tahun ajaran. </p><div class="mb-4"><div class="d-flex justify-content-between mb-2"><span class="small fw-bold">Pendaftar: 142</span><span class="small fw-bold">Kuota: 150</span></div><div class="progress" role="progressbar"><div class="progress-bar bg-warning" style="${ssrRenderStyle({ "width": "25%" })}"></div></div><div class="mt-2 text-end text-warning"><small class="fw-bold">Sisa 8 Kursi</small></div></div></div></div></div></div></div></div></section></div><section class="py-5"><div class="container py-5"><div class="col-lg-3"></div><div class="text-center mb-5"><h2 class="fw-bold">Mengapa Memilih Kami?</h2><p class="text-secondary"> Keunggulan yang kami tawarkan untuk perkembangan putra-putri Anda. </p></div><div class="row g-4"><div class="col-md-6 col-lg-3"><div class="card card-hover border-0 shadow-sm bg-light-subtle rounded-4 p-4 h-100 text-center"><div class="d-inline-block p-3 rounded-circle mb-3 mx-auto">`);
 			_push(ssrRenderComponent(unref(Search), {
 				size: 64,
 				class: "text-primary"
 			}, null, _parent));
-			_push(`</div><h5 class="fw-bold">Kurikulum Internasional</h5><p class="text-secondary small mb-0">Kurikulum yang diakui secara global untuk persiapan universitas terbaik.</p></div></div><div class="col-md-6 col-lg-3"><div class="card card-hover border-0 shadow-sm bg-light-subtle rounded-4 p-4 h-100 text-center"><div class="d-inline-block p-3 rounded-circle mb-3 mx-auto">`);
+			_push(`</div><h5 class="fw-bold">Kurikulum Internasional</h5><p class="text-secondary small mb-0"> Kurikulum yang diakui secara global untuk persiapan universitas terbaik. </p></div></div><div class="col-md-6 col-lg-3"><div class="card card-hover border-0 shadow-sm bg-light-subtle rounded-4 p-4 h-100 text-center"><div class="d-inline-block p-3 rounded-circle mb-3 mx-auto">`);
 			_push(ssrRenderComponent(unref(GalleryHorizontalEnd), {
 				size: 64,
 				class: "text-success"
 			}, null, _parent));
-			_push(`</div><h5 class="fw-bold">Fasilitas Modern</h5><p class="text-secondary small mb-0">Laboratorium lengkap, perpustakaan digital, dan sarana olahraga standar atlet.</p></div></div><div class="col-md-6 col-lg-3"><div class="card card-hover border-0 shadow-sm bg-light-subtle rounded-4 p-4 h-100 text-center"><div class="d-inline-block p-3 rounded-circle mb-3 mx-auto">`);
+			_push(`</div><h5 class="fw-bold">Fasilitas Modern</h5><p class="text-secondary small mb-0"> Laboratorium lengkap, perpustakaan digital, dan sarana olahraga standar atlet. </p></div></div><div class="col-md-6 col-lg-3"><div class="card card-hover border-0 shadow-sm bg-light-subtle rounded-4 p-4 h-100 text-center"><div class="d-inline-block p-3 rounded-circle mb-3 mx-auto">`);
 			_push(ssrRenderComponent(unref(School), {
 				size: 64,
 				class: "text-info"
 			}, null, _parent));
-			_push(`</div><h5 class="fw-bold">Pengajar Berpengalaman</h5><p class="text-secondary small mb-0">Guru-guru lulusan universitas ternama dengan metode mengajar inovatif.</p></div></div><div class="col-md-6 col-lg-3"><div class="card card-hover border-0 shadow-sm bg-light-subtle rounded-4 p-4 h-100 text-center"><div class="d-inline-block p-3 rounded-circle mb-3 mx-auto">`);
+			_push(`</div><h5 class="fw-bold">Pengajar Berpengalaman</h5><p class="text-secondary small mb-0"> Guru-guru lulusan universitas ternama dengan metode mengajar inovatif. </p></div></div><div class="col-md-6 col-lg-3"><div class="card card-hover border-0 shadow-sm bg-light-subtle rounded-4 p-4 h-100 text-center"><div class="d-inline-block p-3 rounded-circle mb-3 mx-auto">`);
 			_push(ssrRenderComponent(unref(Users), {
 				size: 64,
 				class: "text-warning"
 			}, null, _parent));
-			_push(`</div><h5 class="fw-bold">Ekstrakurikuler Beragam</h5><p class="text-secondary small mb-0">Lebih dari 30 pilihan klub untuk mengasah minat dan bakat siswa.</p></div></div></div></div></section></div>`);
+			_push(`</div><h5 class="fw-bold">Ekstrakurikuler Beragam</h5><p class="text-secondary small mb-0"> Lebih dari 30 pilihan klub untuk mengasah minat dan bakat siswa. </p></div></div></div></div></section></div>`);
 		};
 	}
 });
 //#endregion
-//#region resources/js/Pages/Home.vue
+//#region resources/js/pages/Home.vue
 var Home_exports = /* @__PURE__ */ __exportAll({ default: () => Home_default });
 var _sfc_setup$1 = Home_vue_vue_type_script_setup_true_lang_default.setup;
 Home_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Home.vue");
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Home.vue");
 	return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
 var Home_default = Home_vue_vue_type_script_setup_true_lang_default;
 //#endregion
-//#region resources/js/Layouts/App.vue?vue&type=script&setup=true&lang.ts
+//#region resources/js/layouts/App.vue?vue&type=script&setup=true&lang.ts
 var App_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
 	__name: "App",
 	__ssrInlineRender: true,
@@ -2753,36 +3057,36 @@ var App_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComp
 	}
 });
 //#endregion
-//#region resources/js/Layouts/App.vue
+//#region resources/js/layouts/App.vue
 var _sfc_setup = App_vue_vue_type_script_setup_true_lang_default.setup;
 App_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Layouts/App.vue");
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/layouts/App.vue");
 	return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
 var App_default = App_vue_vue_type_script_setup_true_lang_default;
 //#endregion
 //#region resources/js/ssr.ts
-var appName = "SMA Unggul 1 Bandung";
+var appName = "SMA PGRI 1 Bandung";
 var renderPage = (page) => createInertiaApp({
 	title: (title) => title ? `${title} - ${appName}` : appName,
 	page,
 	render: renderToString,
 	resolve: (name) => {
 		const page = (/* @__PURE__ */ Object.assign({
-			"./Pages/Auth/Login.vue": Login_exports,
-			"./Pages/Auth/Register.vue": Register_exports,
-			"./Pages/Check.vue": Check_exports,
-			"./Pages/Dashboard/Document.vue": Document_exports,
-			"./Pages/Dashboard/Form.vue": Form_exports,
-			"./Pages/Dashboard/Guide.vue": Guide_exports,
-			"./Pages/Dashboard/Home.vue": Home_exports$1,
-			"./Pages/Dashboard/Review.vue": Review_exports,
-			"./Pages/Dashboard/Send.vue": Send_exports,
-			"./Pages/Faq.vue": Faq_exports,
-			"./Pages/Home.vue": Home_exports
-		}))[`./Pages/${name}.vue`];
-		if (!page) throw new Error(`Page ./Pages/${name}.vue not found.`);
+			"./pages/Auth/Login.vue": Login_exports,
+			"./pages/Auth/Register.vue": Register_exports,
+			"./pages/Check.vue": Check_exports,
+			"./pages/Dashboard/Document.vue": Document_exports,
+			"./pages/Dashboard/Form.vue": Form_exports,
+			"./pages/Dashboard/Guide.vue": Guide_exports,
+			"./pages/Dashboard/Home.vue": Home_exports$1,
+			"./pages/Dashboard/Review.vue": Review_exports,
+			"./pages/Dashboard/Send.vue": Send_exports,
+			"./pages/Faq.vue": Faq_exports,
+			"./pages/Home.vue": Home_exports
+		}))[`./pages/${name}.vue`];
+		if (!page) throw new Error(`Page ./pages/${name}.vue not found.`);
 		page.default.layout = page.default.layout || App_default;
 		return page;
 	},

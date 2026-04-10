@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class FaqController extends Controller
 {
@@ -13,10 +14,10 @@ class FaqController extends Controller
     public function __invoke(Request $request)
     {
         return Inertia::render('Faq', [
-            'meta' => [
-                'title' => 'FAQ',
-                'description' => 'Frequently Asked Questions',
-            ],
+            'seo' => new SEOData(
+                title: 'FAQ',
+                description: 'Pertanyaan yang sering ditanyakan',
+            )
         ]);
     }
 }
