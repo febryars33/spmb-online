@@ -37,7 +37,6 @@
         "@lucide/vue": "^1.8.0",
         "@popperjs/core": "^2.11.8",
         "@tato30/vue-pdf": "^2.0.2",
-        "@vitejs/plugin-vue": "^6.0.5",
         "@vueuse/core": "^14.2.1",
         "axios": "^1.15.0",
         "bootstrap": "^5.3.8",
