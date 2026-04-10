@@ -33,7 +33,6 @@
         "@asika32764/vue-animate": "^3.0.2",
         "@inertiajs/vite": "^3.0.3",
         "@inertiajs/vue3": "^3.0.3",
-        "@laravel/vite-plugin-wayfinder": "^0.1.7",
         "@lucide/vue": "^1.8.0",
         "@popperjs/core": "^2.11.8",
         "@tato30/vue-pdf": "^2.0.2",
