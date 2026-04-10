@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Candidate;
 use App\Models\Religion;
-use App\Models\StudentParent;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -46,15 +44,15 @@ class FormController extends Controller
 
         $candidate->setRelation('parents', $candidate->parents->mapWithKeys(function ($item) {
             return [$item->type => [
-                'id'      => $item->id,
-                'name'    => $item->name,
+                'id' => $item->id,
+                'name' => $item->name,
                 'address' => $item->address,
             ]];
         }));
 
         return Inertia::render('Dashboard/Form', [
-            'religions'  =>  Religion::all(),
-            'candidate' =>  $candidate,
+            'religions' => Religion::all(),
+            'candidate' => $candidate,
             'meta' => [
                 'title' => 'Formulir Pendaftaran',
                 'description' => 'Halaman formulir pendaftaran yang menampilkan informasi dan data tentang kandidat.',
@@ -67,13 +65,14 @@ class FormController extends Controller
         Gate::authorize('view', $candidate);
 
         $candidate->load(['documentable.document_type']);
+        $candidate->loadCount('documentable');
 
         return Inertia::render('Dashboard/Document', [
-            'candidate' =>  $candidate,
-            'meta'  =>  [
-                'title' =>  'Dokumen Persyaratan',
-                'description'   =>  'asd'
-            ]
+            'candidate' => $candidate,
+            'meta' => [
+                'title' => 'Dokumen Persyaratan',
+                'description' => 'asd',
+            ],
         ]);
     }
 
@@ -82,11 +81,11 @@ class FormController extends Controller
         Gate::authorize('view', $candidate);
 
         return Inertia::render('Dashboard/Send', [
-            'candidate' =>  $candidate,
-            'meta'  =>  [
-                'title' =>  'Konfirmasi & Kirim Berkas',
-                'description'   =>  'asd'
-            ]
+            'candidate' => $candidate,
+            'meta' => [
+                'title' => 'Konfirmasi & Kirim Berkas',
+                'description' => 'asd',
+            ],
         ]);
     }
 
@@ -95,11 +94,11 @@ class FormController extends Controller
         Gate::authorize('view', $candidate);
 
         return Inertia::render('Dashboard/Review', [
-            'candidate' =>  $candidate,
-            'meta'  =>  [
-                'title' =>  'Status Review Pendaftaran',
-                'description'   =>  'asd'
-            ]
+            'candidate' => $candidate,
+            'meta' => [
+                'title' => 'Status Review Pendaftaran',
+                'description' => 'asd',
+            ],
         ]);
     }
 
@@ -107,7 +106,7 @@ class FormController extends Controller
     {
 
         DB::transaction(function () use ($request, $candidate) {
-            /** @var array  $parents */
+            /** @var array $parents */
             $parents = $request->array('parents');
 
             $candidate->update($request->only([

@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
     'regency_id',
     'district_id',
     'sub_district_id',
+    'enrollment_id',
     'birth_date',
     'birth_place',
     'address',
@@ -36,6 +37,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
     'birth_certificate_number',
 ])]
 #[Appends([
+    'completeness',
     'progress',
 ])]
 #[UsePolicy(CandidatePolicy::class)]
@@ -54,7 +56,7 @@ class Candidate extends Model
     public function progress(): Attribute
     {
         return Attribute::make(
-            get: fn () => rand(0, 100),
+            get: fn () => $this->completeness
         );
     }
 
@@ -77,7 +79,7 @@ class Candidate extends Model
     /**
      * Get the documentable that owns the Candidate
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function documentable(): MorphMany
     {
@@ -86,11 +88,42 @@ class Candidate extends Model
 
     /**
      * Get all of the parents for the Candidate
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function parents(): HasMany
     {
         return $this->hasMany(StudentParent::class);
+    }
+
+    /**
+     * Get the enrollment that owns the Candidate
+     */
+    public function enrollment(): BelongsTo
+    {
+        return $this->belongsTo(Enrollment::class);
+    }
+
+    /**
+     * Percentage of required documents that have been uploaded.
+     * Utilizes already-loaded relation to avoid N+1.
+     */
+    public function completeness(): Attribute
+    {
+        return Attribute::make(
+            get: function (): int {
+                $documents = $this->relationLoaded('documentable')
+                    ? $this->documentable
+                    : $this->documentable()->get(['id', 'name']);
+
+                $total = $documents->count();
+
+                if ($total === 0) {
+                    return 0;
+                }
+
+                $filled = $documents->whereNotNull('name')->count();
+
+                return (int) round(($filled / $total) * 100);
+            }
+        );
     }
 }

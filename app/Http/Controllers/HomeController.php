@@ -16,7 +16,7 @@ class HomeController extends Controller
             'seo' => new SEOData(
                 title: 'Selamat datang di SPMB',
                 description: 'SPMB SMA PGRI 1 Bandung',
-            )
+            ),
         ]);
     }
 }

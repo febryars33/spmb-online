@@ -16,7 +16,7 @@ class DocumentUploadController extends Controller
     public function __invoke(Request $request)
     {
         $request->validate([
-            'id'    =>    [
+            'id' => [
                 'required',
                 'exists:documents,id',
             ],
@@ -66,7 +66,7 @@ class DocumentUploadController extends Controller
             'extension' => null,
             'size' => null,
             'mime' => null,
-            'path' => null
+            'path' => null,
         ]);
 
         return back();

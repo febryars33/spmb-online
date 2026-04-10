@@ -4,6 +4,7 @@
             <title>{{ meta.title }}</title>
             <meta name="description" :content="meta.description" />
         </Head>
+
         <div class="card bg-body-tertiary border-0">
             <div class="card-body">
                 <div
@@ -13,177 +14,147 @@
                         <h4 class="fw-bold mb-1">{{ meta.title }}</h4>
                         <p class="text-secondary small mb-0">
                             Unggah berkas dalam format PDF
-                            <strong>(Direkomendasikan)</strong> atau Gambar
-                            (Maks. 2MB)
+                            <strong>(Direkomendasikan)</strong>
+                            atau Gambar (Maks. 2MB)
                         </p>
                     </div>
-                    <div
+                    <span
                         class="badge rounded-pill px-3 py-2 fw-bold"
-                        :class="{
-                            'bg-success-subtle text-success':
-                                candidate.documentable.filter(
-                                    (document) => document.name !== null,
-                                ).length === candidate.documentable.length,
-                            'bg-danger-subtle text-danger':
-                                candidate.documentable.filter(
-                                    (document) => document.name !== null,
-                                ).length !== candidate.documentable.length,
-                        }"
+                        :class="
+                            uploadedCount === totalCount
+                                ? 'bg-success-subtle text-success'
+                                : 'bg-danger-subtle text-danger'
+                        "
                     >
-                        {{
-                            candidate.documentable.filter(
-                                (document) => document.name !== null,
-                            ).length
-                        }}/{{ candidate.documentable.length }}
-                        Dokumen Terunggah
-                    </div>
+                        {{ uploadedCount }}/{{ totalCount }} Dokumen Terunggah
+                    </span>
                 </div>
 
                 <div v-if="mount" class="row g-4">
                     <div
-                        v-for="document in candidate.documentable"
+                        v-for="doc in candidate.documentable"
+                        :key="doc.id"
                         class="col-md-6"
-                        :key="document.id"
                     >
                         <BOverlay
                             rounded="lg"
                             variant="transparent"
-                            :show="overlay.id === document.id"
+                            :show="activeOverlayId === doc.id"
                         >
                             <div
-                                class="card border-0 rounded-5 h-100 shadow-sm border-0"
+                                class="card border-0 rounded-5 h-100 shadow-sm"
                             >
-                                <div v-if="document.name" class="p-4">
+                                <div class="p-4">
                                     <div
                                         class="d-flex justify-content-between align-items-start mb-3"
                                     >
                                         <div>
-                                            <label
-                                                class="form-label small fw-bold d-block mb-1"
-                                                >{{
-                                                    document.document_type.name
-                                                }}</label
-                                            >
+                                            <p class="small fw-bold mb-1">
+                                                {{ doc.document_type.name }}
+                                            </p>
                                             <div
-                                                class="d-flex align-items-center text-success small fw-bold"
+                                                class="d-flex align-items-center small fw-bold"
+                                                :class="
+                                                    doc.name
+                                                        ? 'text-success'
+                                                        : 'text-secondary'
+                                                "
                                             >
-                                                <CircleCheckBig
+                                                <component
+                                                    :is="
+                                                        doc.name
+                                                            ? CircleCheckBig
+                                                            : CircleAlert
+                                                    "
                                                     :size="16"
                                                     class="me-2"
                                                 />
-                                                Terverifikasi Sistem
+                                                {{
+                                                    doc.name
+                                                        ? 'Terverifikasi Sistem'
+                                                        : 'Belum diunggah'
+                                                }}
                                             </div>
                                         </div>
                                         <div
-                                            class="p-2 rounded-circle bg-success-subtle text-success"
+                                            class="p-2 rounded-circle"
+                                            :class="
+                                                doc.name
+                                                    ? 'bg-success-subtle text-success'
+                                                    : 'text-primary shadow-sm'
+                                            "
                                         >
-                                            <Check />
+                                            <component
+                                                :is="doc.name ? Check : Upload"
+                                            />
                                         </div>
                                     </div>
-                                    <div class="mt-2">
+
+                                    <template v-if="doc.name">
                                         <div class="rounded-4 p-3 border">
                                             <div
                                                 class="d-flex align-items-center mb-3"
                                             >
                                                 <div
-                                                    v-if="
-                                                        document.mime ===
+                                                    class="p-2 rounded-3 me-3"
+                                                    :class="
+                                                        doc.mime ===
                                                         'application/pdf'
+                                                            ? 'bg-danger-subtle text-danger'
+                                                            : 'bg-success-subtle text-success'
                                                     "
-                                                    class="bg-danger-subtle p-2 rounded-3 me-3 text-danger"
                                                 >
-                                                    <FileText />
-                                                </div>
-                                                <div
-                                                    v-else
-                                                    class="bg-success-subtle p-2 rounded-3 me-3 text-success"
-                                                >
-                                                    <Image />
+                                                    <component
+                                                        :is="
+                                                            doc.mime ===
+                                                            'application/pdf'
+                                                                ? FileText
+                                                                : ImageIcon
+                                                        "
+                                                    />
                                                 </div>
                                                 <div class="overflow-hidden">
-                                                    <h6
-                                                        class="small fw-bold mb-0 text-truncate"
+                                                    <p
+                                                        class="small fw-bold mb-0"
                                                     >
                                                         {{
-                                                            document.mime ===
+                                                            doc.mime ===
                                                             'application/pdf'
                                                                 ? 'PDF'
                                                                 : 'Gambar'
                                                         }}
-                                                    </h6>
+                                                    </p>
                                                     <small
                                                         class="text-secondary"
                                                     >
                                                         {{
-                                                            typeof document.size ===
-                                                            'number'
-                                                                ? (
-                                                                      document.size /
-                                                                      (1024 *
-                                                                          1024)
-                                                                  ).toFixed(2)
-                                                                : 'Tidak diketahui'
+                                                            formatSize(doc.size)
                                                         }}
                                                         MB
                                                     </small>
                                                 </div>
                                             </div>
-                                            <div class="d-flex gap-2">
-                                                <button
-                                                    type="button"
-                                                    class="btn btn-sm btn-primary"
-                                                >
-                                                    <Search :size="16" />
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    class="btn btn-sm btn-danger"
-                                                    @click="
-                                                        trash(
-                                                            candidate.id,
-                                                            document.id,
-                                                            document
-                                                                .document_type
-                                                                .name,
-                                                        )
-                                                    "
-                                                    :disabled="form.processing"
-                                                >
-                                                    <Trash :size="16" />
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div v-else class="p-4">
-                                    <div
-                                        class="d-flex justify-content-between align-items-start mb-3"
-                                    >
-                                        <div>
-                                            <label
-                                                class="form-label small fw-bold d-block mb-1"
-                                                >{{
-                                                    document.document_type.name
-                                                }}</label
+
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-danger mt-2"
+                                                :disabled="form.processing"
+                                                @click="
+                                                    confirmDelete(
+                                                        candidate.id,
+                                                        doc.id,
+                                                        doc.document_type.name,
+                                                    )
+                                                "
                                             >
-                                            <div
-                                                class="d-flex align-items-center text-secondary small"
-                                            >
-                                                <CircleAlert
-                                                    :size="16"
-                                                    class="me-2"
-                                                />
-                                                Belum diunggah
-                                            </div>
+                                                <Trash :size="16" />
+                                            </button>
                                         </div>
-                                        <div
-                                            class="p-2 rounded-circle text-primary shadow-sm"
-                                        >
-                                            <Upload />
-                                        </div>
-                                    </div>
+                                    </template>
+
                                     <Dropzone
-                                        :item-id="document.id"
+                                        v-else
+                                        :item-id="doc.id"
                                         @dropped="handleUpload"
                                     />
                                 </div>
@@ -196,8 +167,9 @@
                     <Link
                         :href="dashboard.form.form(candidate.id)"
                         class="btn btn-sm btn-outline-secondary px-4 rounded-pill"
-                        >Kembali</Link
                     >
+                        Kembali
+                    </Link>
                     <button
                         type="submit"
                         class="btn btn-sm btn-primary px-5 rounded-pill"
@@ -207,6 +179,7 @@
                 </div>
             </div>
         </div>
+
         <Teleport v-if="mount" to="body">
             <Toaster />
         </Teleport>
@@ -220,91 +193,85 @@ import {
     CircleAlert,
     CircleCheckBig,
     FileText,
-    Image,
-    Search,
+    Image as ImageIcon,
     Trash,
     Upload,
 } from '@lucide/vue';
 import { useModal } from 'bootstrap-vue-next';
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { Toaster } from 'vue-sonner';
 import Dropzone from '@/components/Forms/Dropzone.vue';
+import PDFViewer from '@/components/RegistrationForms/PDFViewer.vue';
 import Form from '@/layouts/Form.vue';
 import dashboard from '@/routes/dashboard';
 import document from '@/routes/document';
 import type { Meta } from '@/types/meta';
 import type { Candidate } from '@/types/models/candidate';
 
-defineOptions({
-    layout: Form,
-});
+defineOptions({ layout: Form });
 
-defineProps<{
+const props = defineProps<{
     meta: Meta;
     candidate: Candidate;
 }>();
 
 const mount = ref(false);
+const activeOverlayId = ref<number | null>(null);
+
+const form = useForm<{ id: number; file: File | null }>({
+    id: 0,
+    file: null,
+});
+
+const uploadedCount = computed(
+    () => props.candidate.documentable.filter((d) => d.name !== null).length,
+);
+
+const totalCount = computed(() => props.candidate.documentable.length);
+
+const formatSize = (size: unknown): string =>
+    typeof size === 'number'
+        ? (size / (1024 * 1024)).toFixed(2)
+        : 'Tidak diketahui';
 
 onMounted(() => {
     mount.value = true;
 });
 
-const { create } = useModal();
-
-const overlay = ref({
-    id: 0,
-    show: false,
-});
-
-const form = useForm({
-    id: 0,
-    file: null,
-});
-
 const handleUpload = ({ id, files }: { id: string; files: FileList }) => {
-    if (!files.length) {
-        return;
-    }
+    if (!files.length) return;
 
     form.id = Number(id);
     form.file = files[0];
-
-    overlay.value = {
-        id: Number(id),
-        show: true,
-    };
+    activeOverlayId.value = Number(id);
 
     form.post(document.upload().url, {
         preserveScroll: true,
         forceFormData: true,
         onFinish: () => {
             form.reset();
-            overlay.value = {
-                id: 0,
-                show: false,
-            };
+            activeOverlayId.value = null;
         },
     });
 };
 
-const trash = (uuid: string, id: number, title: string) => {
+const { create } = useModal();
+
+const confirmDelete = (uuid: string, id: number, title: string) => {
     create({
         size: 'md',
+        title,
         body: 'Apakah anda yakin ingin menghapus file ini?',
         bodyClass: 'small text-muted',
-        title: title,
         okClass: 'btn-danger',
         okTitle: 'Hapus',
-        centered: true,
         cancelTitle: 'Batal',
+        centered: true,
         onOk: () => {
             form.processing = true;
             useForm().patch(
-                dashboard.form.document.null({
-                    candidate: uuid,
-                    document: id,
-                }).url,
+                dashboard.form.document.null({ candidate: uuid, document: id })
+                    .url,
                 {
                     preserveScroll: true,
                     onFinish: () => {

@@ -4,8 +4,10 @@
             <title>{{ meta.title }}</title>
             <meta name="description" :content="meta.description" />
         </Head>
+
         <BOverlay :show="!mount" rounded="sm">
-            <Toaster />
+            <Toaster position="top-right" />
+
             <div class="card bg-body-tertiary border-0">
                 <div class="card-body">
                     <div
@@ -15,13 +17,7 @@
                         <span
                             class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill"
                         >
-                            <template v-if="candidate.type === 'new'"
-                                >Siswa Baru</template
-                            >
-                            <template v-else-if="candidate.type === 'transfer'"
-                                >Siswa Pindahan</template
-                            >
-                            <template v-else>Tidak Diketahui</template>
+                            {{ candidateTypeLabel }}
                         </span>
                     </div>
 
@@ -35,109 +31,139 @@
                                     />
                                 </BCardText>
                             </BTab>
+
                             <BTab title="Identitas Orang Tua">
                                 <BCardText class="py-3">
                                     <StudentParent v-model="form.parents" />
                                 </BCardText>
                             </BTab>
-                            <BTab title="KIP/Beasiswa">
+
+                            <BTab title="KIP / Beasiswa">
                                 <BCardText class="py-3">
-                                    <p>
-                                        Repudiandae nisi delectus assumenda quas
-                                        labore ipsa saepe voluptatibus ipsam
-                                        tempore, vel neque. Voluptatibus libero
-                                        rem doloremque quaerat repellendus,
-                                        excepturi harum.
-                                    </p>
+                                    <div
+                                        class="text-center py-5 text-secondary"
+                                    >
+                                        <Construction
+                                            :size="40"
+                                            class="mb-3 opacity-50"
+                                        />
+                                        <p class="fw-bold mb-1">
+                                            Sedang Dalam Pengembangan
+                                        </p>
+                                        <p class="small mb-0">
+                                            Fitur ini akan segera tersedia.
+                                        </p>
+                                    </div>
                                 </BCardText>
                             </BTab>
+
                             <BTab title="Prestasi">
                                 <BCardText class="py-3">
-                                    <ul
-                                        class="list-group list-group-flush shadow-none mb-3"
+                                    <div
+                                        v-if="form.achievements.length"
+                                        class="list-group list-group-flush mb-4 rounded-3 border"
                                     >
-                                        <li
+                                        <div
                                             v-for="(
                                                 achievement, index
                                             ) in form.achievements"
-                                            class="list-group-item"
                                             :key="index"
+                                            class="list-group-item d-flex align-items-center justify-content-between gap-3 py-3"
                                         >
-                                            <div
-                                                class="d-flex align-items-center justify-content-between"
-                                            >
-                                                <div class="me-auto">
-                                                    <h5 class="m-0">
-                                                        {{ achievement.name }}
-                                                    </h5>
-                                                    <BBadge variant="info">{{
+                                            <div>
+                                                <p class="fw-bold small mb-1">
+                                                    {{ achievement.name }}
+                                                </p>
+                                                <BBadge
+                                                    variant="info"
+                                                    class="fw-normal"
+                                                    >{{
                                                         achievement.level
-                                                    }}</BBadge>
-                                                </div>
-                                                <BButton
-                                                    size="sm"
-                                                    variant="danger"
-                                                    @click="remove(index)"
+                                                    }}</BBadge
                                                 >
-                                                    <Trash :size="16" />
-                                                </BButton>
                                             </div>
-                                        </li>
-                                    </ul>
-                                    <form
-                                        class="row g-3"
-                                        @submit.prevent="create"
-                                    >
-                                        <div class="col-md-5">
-                                            <label
-                                                for="achievement-name"
-                                                class="form-label small fw-bold"
-                                                >Nama Lomba/Prestasi</label
-                                            >
-                                            <input
-                                                id="achievement-name"
-                                                class="form-control form-control-sm rounded-3"
-                                                placeholder="Contoh: Juara 1 OSN Matematika"
-                                                type="text"
-                                                v-model="temp.name"
-                                            />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label
-                                                for="achievement-level"
-                                                class="form-label small fw-bold"
-                                                >Tingkat</label
-                                            >
-                                            <select
-                                                id="achievement-level"
-                                                class="form-select form-select-sm rounded-3"
-                                                v-model="temp.level"
-                                            >
-                                                <option value="Kabupaten">
-                                                    Kabupaten
-                                                </option>
-                                                <option value="Provinsi">
-                                                    Provinsi
-                                                </option>
-                                                <option value="Nasional">
-                                                    Nasional
-                                                </option>
-                                                <option value="Internasional">
-                                                    Internasional
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div
-                                            class="col-md-3 d-flex align-items-end"
-                                        >
                                             <button
-                                                type="submit"
-                                                class="btn btn-sm btn-primary w-100 rounded-pill py-2 fw-bold"
+                                                type="button"
+                                                class="btn btn-sm btn-outline-danger rounded-pill px-3 flex-shrink-0"
+                                                @click="
+                                                    removeAchievement(index)
+                                                "
                                             >
-                                                Tambah
+                                                <Trash :size="14" />
                                             </button>
                                         </div>
-                                    </form>
+                                    </div>
+
+                                    <p
+                                        v-else
+                                        class="text-secondary small text-center py-3"
+                                    >
+                                        Belum ada prestasi yang ditambahkan.
+                                    </p>
+
+                                    <div
+                                        class="card border-0 bg-body-secondary rounded-4 p-3"
+                                    >
+                                        <p
+                                            class="small fw-bold mb-3 text-secondary"
+                                        >
+                                            Tambah Prestasi
+                                        </p>
+                                        <div class="row g-3 align-items-end">
+                                            <div class="col-md-5">
+                                                <label
+                                                    for="achievement-name"
+                                                    class="form-label small fw-bold"
+                                                >
+                                                    Nama Lomba / Prestasi
+                                                </label>
+                                                <input
+                                                    id="achievement-name"
+                                                    v-model="temp.name"
+                                                    type="text"
+                                                    class="form-control form-control-sm rounded-3"
+                                                    placeholder="Contoh: Juara 1 OSN Matematika"
+                                                />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label
+                                                    for="achievement-level"
+                                                    class="form-label small fw-bold"
+                                                >
+                                                    Tingkat
+                                                </label>
+                                                <select
+                                                    id="achievement-level"
+                                                    v-model="temp.level"
+                                                    class="form-select form-select-sm rounded-3"
+                                                >
+                                                    <option value="">
+                                                        -- Pilih Tingkat --
+                                                    </option>
+                                                    <option
+                                                        v-for="level in achievementLevels"
+                                                        :key="level"
+                                                        :value="level"
+                                                    >
+                                                        {{ level }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-sm btn-primary w-100 rounded-pill fw-bold"
+                                                    :disabled="
+                                                        !temp.name ||
+                                                        !temp.level
+                                                    "
+                                                    @click="addAchievement"
+                                                >
+                                                    + Tambah
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </BCardText>
                             </BTab>
                         </BTabs>
@@ -146,14 +172,15 @@
                             <Link
                                 :href="dashboard.form.guide(candidate.id)"
                                 class="btn btn-sm btn-outline-secondary px-4 rounded-pill"
-                                >Kembali</Link
                             >
+                                Kembali
+                            </Link>
                             <button
                                 type="submit"
                                 class="btn btn-sm btn-primary px-5 rounded-pill"
                                 :disabled="form.processing"
                             >
-                                Simpan & Lanjutkan
+                                Simpan &amp; Lanjutkan
                             </button>
                         </div>
                     </form>
@@ -165,8 +192,8 @@
 
 <script lang="ts" setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
-import { Trash } from '@lucide/vue';
-import { onMounted, ref } from 'vue';
+import { Construction, Trash } from '@lucide/vue';
+import { computed, onMounted, ref } from 'vue';
 import { toast, Toaster } from 'vue-sonner';
 import PersonalData from '@/components/Forms/PersonalData.vue';
 import StudentParent from '@/components/RegistrationForms/StudentParent.vue';
@@ -177,9 +204,8 @@ import type { Meta } from '@/types/meta';
 import type { Candidate } from '@/types/models/candidate';
 import type { Religion } from '@/types/models/religion';
 
-defineOptions({
-    layout: Form,
-});
+defineOptions({ layout: Form });
+
 const props = defineProps<{
     candidate: Candidate;
     religions: Religion[];
@@ -192,10 +218,23 @@ onMounted(() => {
     mount.value = true;
 });
 
-const temp = ref({
-    name: '',
-    level: '',
-});
+const CANDIDATE_TYPE_LABELS: Record<string, string> = {
+    new: 'Siswa Baru',
+    transfer: 'Siswa Pindahan',
+};
+
+const achievementLevels = [
+    'Kabupaten',
+    'Provinsi',
+    'Nasional',
+    'Internasional',
+] as const;
+
+const candidateTypeLabel = computed(
+    () => CANDIDATE_TYPE_LABELS[props.candidate.type] ?? 'Tidak Diketahui',
+);
+
+const temp = ref({ name: '', level: '' });
 
 const form = useForm({
     kk_number: props.candidate.kk_number,
@@ -216,26 +255,18 @@ const form = useForm({
         guardian: props.candidate.parents['guardian'],
     },
     achievements: [
-        {
-            name: 'Juara 1 OSN Matematika',
-            level: 'Provinsi',
-        },
-        {
-            name: 'Juara 1 OSN Bahasa Inggris',
-            level: 'Provinsi',
-        },
+        { name: 'Juara 1 OSN Matematika', level: 'Provinsi' },
+        { name: 'Juara 1 OSN Bahasa Inggris', level: 'Provinsi' },
     ],
 });
 
-const create = () => {
-    form.achievements.push(temp.value);
-    temp.value = {
-        name: '',
-        level: '',
-    };
+const addAchievement = () => {
+    if (!temp.value.name || !temp.value.level) return;
+    form.achievements.push({ ...temp.value });
+    temp.value = { name: '', level: '' };
 };
 
-const remove = (index: number) => {
+const removeAchievement = (index: number) => {
     form.achievements.splice(index, 1);
 };
 
@@ -248,11 +279,8 @@ const onSubmit = () => {
                     background: 'var(--bs-success)',
                     color: '#fff',
                     border: 'none',
-                    fontFamily: 'Poppins',
                 },
-                position: 'top-right',
             });
-            // form.cancel()
         },
     });
 };

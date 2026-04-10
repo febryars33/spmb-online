@@ -17,7 +17,7 @@ class FaqController extends Controller
             'seo' => new SEOData(
                 title: 'FAQ',
                 description: 'Pertanyaan yang sering ditanyakan',
-            )
+            ),
         ]);
     }
 }

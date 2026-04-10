@@ -162,45 +162,63 @@
                 title="Pilih Tipe Pendaftaran"
                 @ok="ok"
                 @hide="hide"
-                size="lg"
+                scrollable
                 :ok-disabled="form.type === null"
             >
-                <div class="row g-4 justify-content-center">
-                    <div class="col-md-5">
+                <div class="row g-4">
+                    <div class="col-md-12">
                         <div
-                            class="card h-100 border-2 cursor-pointer rounded-4 p-4 text-center border-primary"
+                            class="card h-100 border-2 cursor-pointer rounded-4 p-4 shadow-sm"
                             :class="{
-                                'bg-primary-subtle': form.type === 'new',
+                                'bg-primary-subtle border-primary':
+                                    form.type === 'new',
+                                'border-primary-subtle': form.type !== 'new',
                             }"
                             @click="choose('new')"
                         >
-                            <UserPlus
-                                :size="48"
-                                class="text-primary mx-auto mb-2"
-                            />
-                            <h5 class="fw-bold">Siswa Baru</h5>
-                            <p class="small text-muted mb-0">
-                                Lulusan SMP/MTS yang akan masuk ke kelas X.
-                            </p>
+                            <div class="d-flex">
+                                <UserPlus
+                                    :size="48"
+                                    class="text-primary me-3"
+                                />
+                                <div class="me-auto">
+                                    <h5 class="fw-bold text-primary-emphasis">
+                                        Siswa Baru
+                                    </h5>
+                                    <p class="small text-muted m-0">
+                                        Lulusan SMP/MTS yang akan masuk ke kelas
+                                        X.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-12">
                         <div
-                            class="card h-100 border-2 cursor-pointer rounded-4 p-4 text-center border-primary"
+                            class="card h-100 border-2 cursor-pointer rounded-4 p-4 shadow-sm"
                             :class="{
-                                'bg-primary-subtle': form.type === 'transfer',
+                                'bg-primary-subtle border-primary':
+                                    form.type === 'transfer',
+                                'border-primary-subtle':
+                                    form.type !== 'transfer',
                             }"
                             @click="choose('transfer')"
                         >
-                            <ArrowLeftRight
-                                :size="48"
-                                class="text-primary mx-auto mb-2"
-                            />
-                            <h5 class="fw-bold">Siswa Pindahan</h5>
-                            <p class="small text-muted mb-0">
-                                Siswa dari SMA lain yang ingin pindah ke sekolah
-                                kami.
-                            </p>
+                            <div class="d-flex">
+                                <ArrowLeftRight
+                                    :size="48"
+                                    class="text-primary me-3"
+                                />
+                                <div class="me-auto">
+                                    <h5 class="fw-bold text-primary-emphasis">
+                                        Siswa Pindahan
+                                    </h5>
+                                    <p class="small text-muted m-0">
+                                        Siswa dari SMA lain yang ingin pindah ke
+                                        sekolah kami.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -215,13 +233,12 @@ import { ArrowLeftRight, Trash, UserPlus } from '@lucide/vue';
 import { useModal } from 'bootstrap-vue-next';
 import { onMounted, ref } from 'vue';
 import { toast, Toaster } from 'vue-sonner';
+import DayJS from '@/components/ui/DayJS.vue';
 import dashboard from '@/routes/dashboard';
 import home from '@/routes/dashboard/home';
 import type { Meta } from '@/types/meta';
 import type { Candidate } from '@/types/models/candidate';
 import type { Pagination } from '@/types/pagination';
-import dayjs from 'dayjs';
-import DayJS from '@/components/ui/DayJS.vue';
 
 defineProps<{
     meta: Meta;
@@ -249,6 +266,20 @@ const ok = () => {
         preserveScroll: true,
         onSuccess: () => {
             form.reset();
+        },
+        onError: (errors) => {
+            toast.error(errors.message, {
+                style: {
+                    background: 'var(--bs-danger)',
+                    color: '#fff',
+                    border: 'none',
+                    fontFamily: 'Poppins',
+                },
+                position: 'top-right',
+            });
+        },
+        onFinish: () => {
+            modal.value = false;
         },
     });
 };

@@ -8,6 +8,7 @@ declare module "@inertiajs/core" {
       appName: string;
     };
     flashDataType: {
+      message: string | import("vue").Component | (() => string | import("vue").Component);
       toast?: { type: "success" | "error"; message: string };
     };
     errorValueType: string[];

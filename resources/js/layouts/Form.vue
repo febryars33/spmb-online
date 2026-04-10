@@ -5,222 +5,94 @@
                 <Navbar />
             </header>
 
-            <!-- min-vh-100 d-flex flex-column -->
             <main class="flex-grow-1">
                 <div class="container py-5">
-                    <Link :href="dashboard.home.index()">
-                        <ArrowLeft /> Kembali ke Dashboard
+                    <Link
+                        :href="dashboard.home.index()"
+                        class="d-inline-flex align-items-center gap-2 text-secondary text-decoration-none small fw-bold mb-4"
+                    >
+                        <ArrowLeft :size="16" />
+                        Kembali ke Dashboard
                     </Link>
-                    <div class="row mt-4">
+
+                    <div class="row g-4 mt-0">
                         <div class="col-lg-3">
-                            <div class="card bg-body-tertiary border-0">
-                                <div class="card-body text-center">
-                                    <div class="text-center mb-4">
-                                        <h5 class="fw-bold mb-0">
-                                            {{ page.props.auth.user.name }}
-                                        </h5>
-                                        <p class="text-secondary small">
-                                            Nomor Registrasi belum terbentuk.
-                                        </p>
+                            <div
+                                class="card border-0 bg-body-tertiary rounded-4"
+                            >
+                                <div class="card-body p-4">
+                                    <div
+                                        class="d-flex align-items-center gap-3 mb-4"
+                                    >
+                                        <div
+                                            class="rounded-circle bg-primary-subtle text-primary d-flex align-items-center justify-content-center fw-bold flex-shrink-0"
+                                            style="
+                                                width: 44px;
+                                                height: 44px;
+                                                font-size: 16px;
+                                            "
+                                        >
+                                            {{ initials }}
+                                        </div>
+                                        <div class="overflow-hidden">
+                                            <p
+                                                class="fw-bold small mb-0 text-truncate"
+                                            >
+                                                {{ page.props.auth.user.name }}
+                                            </p>
+                                            <p
+                                                class="text-secondary mb-0"
+                                                style="font-size: 11px"
+                                            >
+                                                No. Reg belum terbentuk
+                                            </p>
+                                        </div>
                                     </div>
+
                                     <div class="mb-4">
                                         <div
-                                            class="d-flex justify-content-between mb-2"
+                                            class="d-flex justify-content-between mb-1"
                                         >
-                                            <span class="small fw-bold"
+                                            <span class="small text-secondary"
                                                 >Kelengkapan Data</span
-                                            ><span
+                                            >
+                                            <span
                                                 class="small fw-bold text-primary"
-                                                >40%</span
+                                                >{{ candidate.progress }}%</span
                                             >
                                         </div>
-                                        <div class="progress">
+                                        <div
+                                            class="progress rounded-pill"
+                                            style="height: 6px"
+                                        >
                                             <div
-                                                class="progress-bar"
-                                                style="width: 40%"
+                                                class="progress-bar rounded-pill"
+                                                :style="{
+                                                    width: `${candidate.progress}%`,
+                                                }"
                                             />
                                         </div>
                                     </div>
 
-                                    <div
-                                        class="list-group list-group-flush shadow-none"
-                                    >
-                                        <Link
-                                            :href="
-                                                dashboard.form.guide(
-                                                    candidate.id,
-                                                )
-                                            "
-                                            class="list-group-item list-group-item-action border-0 rounded-3 mb-2 d-flex align-items-center text-decoration-none"
-                                            :class="{
-                                                'active bg-primary-subtle text-primary disabled':
-                                                    $page.url ===
-                                                    dashboard.form.guide(
-                                                        candidate.id,
-                                                    ).url,
-                                            }"
-                                        >
-                                            <span class="me-3"> <Form /> </span>
-                                            <span class="small fw-bold"
-                                                >Petunjuk Pengisian</span
-                                            >
-                                        </Link>
-                                        <Link
-                                            :href="
-                                                dashboard.form.form(
-                                                    candidate.id,
-                                                )
-                                            "
-                                            class="list-group-item list-group-item-action border-0 rounded-3 mb-2 d-flex align-items-center text-decoration-none"
-                                            :class="{
-                                                'active bg-primary-subtle text-primary disabled':
-                                                    $page.url ===
-                                                    dashboard.form.form(
-                                                        candidate.id,
-                                                    ).url,
-                                            }"
-                                        >
-                                            <span class="me-3"><User /></span>
-                                            <span class="small fw-bold"
-                                                >Formulir Pendaftaran</span
-                                            >
-                                        </Link>
-                                        <Link
-                                            :href="
-                                                dashboard.form.document(
-                                                    candidate.id,
-                                                )
-                                            "
-                                            class="list-group-item list-group-item-action border-0 rounded-3 mb-2 d-flex align-items-center text-decoration-none"
-                                            :class="{
-                                                'active bg-primary-subtle text-primary disabled':
-                                                    $page.url ===
-                                                    dashboard.form.document(
-                                                        candidate.id,
-                                                    ).url,
-                                            }"
-                                        >
-                                            <span class="me-3"
-                                                ><FileSearchCorner
-                                            /></span>
-                                            <span class="small fw-bold"
-                                                >Berkas Persyaratan</span
-                                            >
-                                        </Link>
-                                        <Link
-                                            :href="
-                                                dashboard.form.send(
-                                                    candidate.id,
-                                                )
-                                            "
-                                            class="list-group-item list-group-item-action border-0 rounded-3 mb-2 d-flex align-items-center text-decoration-none"
-                                            :class="{
-                                                'active bg-primary-subtle text-primary disabled':
-                                                    $page.url ===
-                                                    dashboard.form.send(
-                                                        candidate.id,
-                                                    ).url,
-                                            }"
-                                        >
-                                            <span class="me-3"
-                                                ><ScanText
-                                            /></span>
-                                            <span class="small fw-bold"
-                                                >Kirim Berkas</span
-                                            >
-                                        </Link>
-                                        <Link
-                                            :href="
-                                                dashboard.form.review(
-                                                    candidate.id,
-                                                )
-                                            "
-                                            class="list-group-item list-group-item-action border-0 rounded-3 mb-2 d-flex align-items-center text-decoration-none"
-                                            :class="{
-                                                'active bg-primary-subtle text-primary disabled':
-                                                    $page.url ===
-                                                    dashboard.form.review(
-                                                        candidate.id,
-                                                    ).url,
-                                            }"
-                                        >
-                                            <span class="me-3"
-                                                ><CircleCheckBig
-                                            /></span>
-                                            <span class="small fw-bold"
-                                                >Status Review</span
-                                            >
-                                        </Link>
-                                        <button
-                                            class="list-group-item list-group-item-action border-0 rounded-3 mb-2 d-flex align-items-center text-secondary"
-                                        >
-                                            <span class="me-3"
-                                                ><svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    width="18"
-                                                    height="18"
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    stroke-width="2"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    class="lucide lucide-credit-card"
-                                                    aria-hidden="true"
-                                                >
-                                                    <rect
-                                                        width="20"
-                                                        height="14"
-                                                        x="2"
-                                                        y="5"
-                                                        rx="2"
-                                                    ></rect>
-                                                    <line
-                                                        x1="2"
-                                                        x2="22"
-                                                        y1="10"
-                                                        y2="10"
-                                                    ></line></svg></span
-                                            ><span class="small fw-bold"
-                                                >Pembayaran</span
-                                            ></button
-                                        ><button
-                                            class="list-group-item list-group-item-action border-0 rounded-3 mb-2 d-flex align-items-center text-secondary"
-                                        >
-                                            <span class="me-3"
-                                                ><svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    width="18"
-                                                    height="18"
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    stroke-width="2"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    class="lucide lucide-calendar"
-                                                    aria-hidden="true"
-                                                >
-                                                    <path d="M8 2v4"></path>
-                                                    <path d="M16 2v4"></path>
-                                                    <rect
-                                                        width="18"
-                                                        height="18"
-                                                        x="3"
-                                                        y="4"
-                                                        rx="2"
-                                                    ></rect>
-                                                    <path
-                                                        d="M3 10h18"
-                                                    ></path></svg></span
-                                            ><span class="small fw-bold"
-                                                >Jadwal Tes</span
-                                            >
-                                        </button>
-                                    </div>
+                                    <hr
+                                        class="text-secondary opacity-25 mb-3 mt-0"
+                                    />
+
+                                    <nav class="d-flex flex-column gap-1">
+                                        <SidebarItem
+                                            v-for="item in navItems"
+                                            :key="item.label"
+                                            :href="item.href"
+                                            :icon="item.icon"
+                                            :label="item.label"
+                                            :active="$page.url === item.href"
+                                            :disabled="item.disabled"
+                                        />
+                                    </nav>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-lg-9">
                             <slot />
                         </div>
@@ -237,20 +109,79 @@
 import { Link, usePage } from '@inertiajs/vue3';
 import {
     ArrowLeft,
+    CalendarDays,
     CircleCheckBig,
+    CreditCard,
     FileSearchCorner,
-    Form,
+    FormInput,
     ScanText,
     User,
 } from '@lucide/vue';
+import { computed } from 'vue';
 import Footer from '@/components/Footer.vue';
 import Navbar from '@/components/Navbar.vue';
+import SidebarItem from '@/components/SidebarItem.vue';
 import dashboard from '@/routes/dashboard';
 import type { Candidate } from '@/types/models/candidate';
 
 const page = usePage();
 
-defineProps<{
+const props = defineProps<{
     candidate: Candidate;
 }>();
+
+const initials = computed(() =>
+    (page.props.auth.user.name as string)
+        .split(' ')
+        .slice(0, 2)
+        .map((w) => w[0].toUpperCase())
+        .join(''),
+);
+
+const navItems = computed(() => [
+    {
+        label: 'Petunjuk Pengisian',
+        icon: FormInput,
+        href: dashboard.form.guide(props.candidate.id).url,
+        disabled: false,
+    },
+    {
+        label: 'Formulir Pendaftaran',
+        icon: User,
+        href: dashboard.form.form(props.candidate.id).url,
+        disabled: false,
+    },
+    {
+        label: 'Berkas Persyaratan',
+        icon: FileSearchCorner,
+        href: dashboard.form.document(props.candidate.id).url,
+        disabled: false,
+    },
+    {
+        label: 'Kirim Berkas',
+        icon: ScanText,
+        href: dashboard.form.send(props.candidate.id).url,
+        disabled: false,
+    },
+    {
+        label: 'Status Review',
+        icon: CircleCheckBig,
+        href: dashboard.form.review(props.candidate.id).url,
+        disabled: false,
+    },
+    {
+        label: 'Pembayaran',
+        icon: CreditCard,
+        href: null,
+        url: null,
+        disabled: true,
+    },
+    {
+        label: 'Jadwal Tes',
+        icon: CalendarDays,
+        href: null,
+        url: null,
+        disabled: true,
+    },
+]);
 </script>

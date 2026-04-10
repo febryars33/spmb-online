@@ -11,7 +11,21 @@ class CandidateObserver
      */
     public function created(Candidate $candidate): void
     {
-        //
+        $documentTypes = $candidate->enrollment->requirements;
+
+        if ($documentTypes->isEmpty()) {
+            return;
+        }
+
+        $documents = $documentTypes->map(function ($documentTypes) use ($candidate): array {
+            return [
+                'documentable_id' => $candidate->id,
+                'documentable_type' => Candidate::class,
+                'document_type_id' => $documentTypes->id
+            ];
+        });
+
+        $candidate->documentable()->createMany($documents);
     }
 
     /**

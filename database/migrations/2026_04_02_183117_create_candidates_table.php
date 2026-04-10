@@ -2,6 +2,7 @@
 
 use App\Enums\RegistrationType;
 use App\Models\District;
+use App\Models\Enrollment;
 use App\Models\Province;
 use App\Models\Regency;
 use App\Models\Religion;
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->foreignIdFor(Regency::class)->nullable();
             $table->foreignIdFor(District::class)->nullable();
             $table->foreignIdFor(SubDistrict::class)->nullable();
+            $table->foreignIdFor(Enrollment::class)->nullable(); // if nullable it means transfer student
             $table->string('kk_number', 16)->nullable();
             $table->string('nik_number', 16)->nullable();
             $table->string('name')->nullable();
@@ -54,7 +56,7 @@ return new class extends Migration
                 'address',
                 'father_name',
                 'mother_name',
-                'birth_certificate_number'
+                'birth_certificate_number',
             ]);
             $table->timestamps();
         });

@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Dashboard\HomeController::index
-* @see app/Http/Controllers/Dashboard/HomeController.php:18
+* @see app/Http/Controllers/Dashboard/HomeController.php:25
 * @route '/dashboard'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\HomeController::index
-* @see app/Http/Controllers/Dashboard/HomeController.php:18
+* @see app/Http/Controllers/Dashboard/HomeController.php:25
 * @route '/dashboard'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Dashboard\HomeController::index
-* @see app/Http/Controllers/Dashboard/HomeController.php:18
+* @see app/Http/Controllers/Dashboard/HomeController.php:25
 * @route '/dashboard'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Dashboard\HomeController::index
-* @see app/Http/Controllers/Dashboard/HomeController.php:18
+* @see app/Http/Controllers/Dashboard/HomeController.php:25
 * @route '/dashboard'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Dashboard\HomeController::store
-* @see app/Http/Controllers/Dashboard/HomeController.php:34
+* @see app/Http/Controllers/Dashboard/HomeController.php:41
 * @route '/dashboard'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -60,7 +60,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\HomeController::store
-* @see app/Http/Controllers/Dashboard/HomeController.php:34
+* @see app/Http/Controllers/Dashboard/HomeController.php:41
 * @route '/dashboard'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Dashboard\HomeController::store
-* @see app/Http/Controllers/Dashboard/HomeController.php:34
+* @see app/Http/Controllers/Dashboard/HomeController.php:41
 * @route '/dashboard'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

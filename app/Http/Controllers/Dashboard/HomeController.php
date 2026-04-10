@@ -5,10 +5,17 @@ namespace App\Http\Controllers\Dashboard;
 use App\Enums\RegistrationType;
 use App\Http\Controllers\Controller;
 use App\Models\Candidate;
+use App\Models\Enrollment;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
+use Throwable;
 
 class HomeController extends Controller
 {
@@ -40,17 +47,78 @@ class HomeController extends Controller
             ],
         ]);
 
-        $candidate = $this->candidate()->create([
-            'type' => $request->type,
-        ]);
+        try {
+            $enrollment = Enrollment::where(function ($query) {
+                $query->where('start_date', '<=', now())
+                    ->where('end_date', '>=', now());
+            })->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            throw ValidationException::withMessages([
+                'message' => 'Maaf, pendaftaran siswa baru saat ini belum dibuka.',
+            ]);
+        }
 
-        // TODO: In the future, this will be changed to layering, namely using Service + Repository.
-        $candidate->documentable()->createMany([
-            ['document_type_id' => 1],
-            ['document_type_id' => 2],
-            ['document_type_id' => 3],
-            ['document_type_id' => 4],
-        ]);
+        DB::beginTransaction();
+        try {
+            $candidate = $this->candidate()->create([
+                'enrollment_id' => $enrollment->id,
+                'type' => $request->type,
+            ]);
+
+            DB::commit();
+        } catch (QueryException $e) {
+            DB::rollBack();
+
+            if (app()->environment('local')) {
+                return back()
+                    ->withErrors([
+                        'file'      =>  $e->getFile(),
+                        'line'      =>  $e->getLine(),
+                        'message' => $e->getMessage(),
+                    ]);
+            }
+
+            Log::emergency($e->getMessage(), [
+                'type' => $request->type,
+                'user_id' => Auth::id(),
+                'enrollment_id' => $enrollment->id,
+                'candidate_id' => $candidate->id,
+                'request' => $request->all(),
+            ]);
+
+            return back()
+                ->withErrors([
+                    'file'      =>  $e->getFile(),
+                    'line'      =>  $e->getLine(),
+                    'message' => __('Internal Server Error'),
+                ]);
+        } catch (Throwable $th) {
+            DB::rollBack();
+
+            if (app()->environment('local')) {
+                return back()
+                    ->withErrors([
+                        'file'      =>  $th->getFile(),
+                        'line'      =>  $th->getLine(),
+                        'message' => $th->getMessage(),
+                    ]);
+            }
+
+            Log::emergency($th->getMessage(), [
+                'type' => $request->type,
+                'user_id' => Auth::id(),
+                'enrollment_id' => $enrollment->id,
+                'candidate_id' => $candidate->id,
+                'request' => $request->all(),
+            ]);
+
+            return back()
+                ->withErrors([
+                    'file'      =>  $th->getFile(),
+                    'line'      =>  $th->getLine(),
+                    'message' => __('Internal Server Error'),
+                ]);
+        }
 
         $candidate->parents()->createMany([
             ['type' => 'father'],
