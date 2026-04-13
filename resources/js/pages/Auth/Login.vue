@@ -99,7 +99,9 @@
                                             <div
                                                 class="input-group has-validation"
                                             >
-                                                <span class="input-group-text">
+                                                <span
+                                                    class="input-group-text border-0 shadow-sm"
+                                                >
                                                     <Mail :size="16" />
                                                 </span>
                                                 <input
@@ -135,7 +137,9 @@
                                             <div
                                                 class="input-group has-validation"
                                             >
-                                                <span class="input-group-text">
+                                                <span
+                                                    class="input-group-text border-0 shadow-sm"
+                                                >
                                                     <Lock :size="16" />
                                                 </span>
                                                 <input
@@ -155,7 +159,7 @@
                                                 />
                                                 <button
                                                     type="button"
-                                                    class="input-group-text"
+                                                    class="input-group-text border-0 shadow-sm"
                                                     @click="showPassword"
                                                 >
                                                     <Eye

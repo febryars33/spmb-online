@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
+use Throwable;
 
 class FormController extends Controller
 {
@@ -64,14 +65,13 @@ class FormController extends Controller
     {
         Gate::authorize('view', $candidate);
 
-        $candidate->load(['documentable.document_type']);
-        $candidate->loadCount('documentable');
+        $candidate->load(['documentable']);
 
         return Inertia::render('Dashboard/Document', [
             'candidate' => $candidate,
             'meta' => [
                 'title' => 'Dokumen Persyaratan',
-                'description' => 'asd',
+                'description' => 'Halaman dokumen persyaratan yang menampilkan informasi dan data tentang kandidat.',
             ],
         ]);
     }
@@ -80,11 +80,15 @@ class FormController extends Controller
     {
         Gate::authorize('view', $candidate);
 
+        if ($candidate->is_locked) {
+            return to_route('dashboard.form.review', $candidate);
+        }
+
         return Inertia::render('Dashboard/Send', [
             'candidate' => $candidate,
             'meta' => [
-                'title' => 'Konfirmasi & Kirim Berkas',
-                'description' => 'asd',
+                'title' => 'Konfirmasi dan Kirim Berkas',
+                'description' => 'Kirim berkas persyaratan dan konfirmasi formulir pendaftaran.',
             ],
         ]);
     }
@@ -93,10 +97,12 @@ class FormController extends Controller
     {
         Gate::authorize('view', $candidate);
 
+        $candidate->load(['reviews']);
+
         return Inertia::render('Dashboard/Review', [
             'candidate' => $candidate,
             'meta' => [
-                'title' => 'Status Review Pendaftaran',
+                'title' => 'Status Pengajuan Pendaftaran',
                 'description' => 'asd',
             ],
         ]);
@@ -104,8 +110,13 @@ class FormController extends Controller
 
     public function update(Request $request, Candidate $candidate)
     {
+        try {
+            if ($candidate->is_locked) {
+                return back()->withErrors([
+                    'message' => 'Pendaftaran anda sedang dikunci. Silahkan tunggu beberapa saat lagi.',
+                ]);
+            }
 
-        DB::transaction(function () use ($request, $candidate) {
             /** @var array $parents */
             $parents = $request->array('parents');
 
@@ -122,21 +133,58 @@ class FormController extends Controller
             }
 
             return back();
-        });
+        } catch (Throwable $th) {
+            return back()->withErrors([
+                'message' => $th->getMessage(),
+            ]);
+        }
     }
 
     public function destroy(Candidate $candidate)
     {
-        $candidate->delete();
+        try {
+            DB::transaction(function () use ($candidate) {
+                if ($candidate->is_locked) {
+                    return back()->withErrors([
+                        'message' => 'Pendaftaran anda sedang dikunci. Silahkan tunggu beberapa saat lagi.',
+                    ]);
+                }
 
-        $candidate->parents()->delete();
+                $candidate->documentable()->delete();
 
-        $candidate->documentable()->delete();
+                $candidate->parents()->delete();
 
-        Inertia::flash([
-            'message' => 'Pendaftaran berhasil dihapus.',
+                $candidate->delete();
+            });
+
+            Inertia::flash([
+                'message' => 'Pendaftaran berhasil dihapus.',
+            ]);
+
+            return back();
+        } catch (Throwable $th) {
+            return back()->withErrors([
+                'message' => $th->getMessage(),
+            ]);
+        }
+    }
+
+    public function submit(Request $request, Candidate $candidate)
+    {
+        Gate::authorize('view', $candidate);
+
+        $request->validate([
+            'agree' => [
+                'required',
+                'boolean',
+                'accepted'
+            ],
         ]);
 
-        return back();
+        $candidate->update([
+            'is_locked' => true,
+        ]);
+
+        return to_route('dashboard.form.review', $candidate);
     }
 }

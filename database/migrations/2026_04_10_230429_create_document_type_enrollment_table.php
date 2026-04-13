@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(Enrollment::class);
             $table->foreignIdFor(DocumentType::class);
             $table->longText('note')->nullable();
+            $table->boolean('is_required')->default(true);
             $table->timestamps();
         });
     }

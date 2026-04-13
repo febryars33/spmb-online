@@ -5,7 +5,7 @@ import { createBootstrap } from 'bootstrap-vue-next';
 import type { DefineComponent } from 'vue';
 import { createSSRApp, h } from 'vue';
 import Layout from './layouts/App.vue';
-import Theme from './plugins/theme';
+// import Theme from './plugins/theme';
 import '@asika32764/vue-animate/dist/vue-animate.css';
 
 // import { install as dompurify } from '@/plugins/dompurify'
@@ -13,7 +13,7 @@ import '@asika32764/vue-animate/dist/vue-animate.css';
 
 const appName = import.meta.env.VITE_APP_NAME;
 
-Theme.init();
+// Theme.init();
 
 createInertiaApp({
     progress: false,

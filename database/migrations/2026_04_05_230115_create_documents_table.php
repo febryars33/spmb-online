@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('mime')->nullable();
             $table->integer('size')->nullable();
             $table->json('allowed_extensions')->nullable();
+            $table->boolean('is_required')->default(false);
             $table->softDeletes();
             $table->timestamps();
 

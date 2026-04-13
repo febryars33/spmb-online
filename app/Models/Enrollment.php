@@ -22,7 +22,7 @@ class Enrollment extends Model
     /**
      * Get the options for generating the slug.
      */
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('title')
@@ -34,6 +34,7 @@ class Enrollment extends Model
      */
     public function requirements(): BelongsToMany
     {
-        return $this->belongsToMany(DocumentType::class);
+        return $this->belongsToMany(DocumentType::class)
+            ->withPivot(['is_required']);
     }
 }

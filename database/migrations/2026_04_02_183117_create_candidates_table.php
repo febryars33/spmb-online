@@ -29,6 +29,9 @@ return new class extends Migration
             $table->foreignIdFor(District::class)->nullable();
             $table->foreignIdFor(SubDistrict::class)->nullable();
             $table->foreignIdFor(Enrollment::class)->nullable(); // if nullable it means transfer student
+            $table->string('registration_number')
+                ->unique()
+                ->nullable();
             $table->string('kk_number', 16)->nullable();
             $table->string('nik_number', 16)->nullable();
             $table->string('name')->nullable();
@@ -38,14 +41,15 @@ return new class extends Migration
             $table->date('birth_date')->nullable();
             $table->string('birth_place')->nullable();
             $table->longText('address')->nullable();
-            $table->string('father_name')->nullable();
-            $table->string('mother_name')->nullable();
             $table->foreignIdFor(Religion::class)
                 ->nullable()
                 ->constrained('religions')
                 ->onDelete('restrict');
+            $table->string('religion_other')->nullable();
             $table->enum('type', RegistrationType::cases())
                 ->nullable();
+            $table->boolean('is_locked')->default(false);
+            $table->json('snapshot')->nullable();
 
             $table->fullText([
                 'nisn',
@@ -54,8 +58,6 @@ return new class extends Migration
                 'nik_number',
                 'birth_place',
                 'address',
-                'father_name',
-                'mother_name',
                 'birth_certificate_number',
             ]);
             $table->timestamps();

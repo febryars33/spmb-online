@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\RegistrationType;
 use App\Observers\CandidateObserver;
 use App\Policies\CandidatePolicy;
 use Illuminate\Database\Eloquent\Attributes\Appends;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
@@ -30,15 +32,17 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
     'birth_date',
     'birth_place',
     'address',
-    'father_name',
-    'mother_name',
     'religion_id',
+    'religion_other',
     'gender',
     'birth_certificate_number',
+    'is_locked',
+    'snapshot',
 ])]
 #[Appends([
-    'completeness',
     'progress',
+    'counted_fields',
+    'counted_documents',
 ])]
 #[UsePolicy(CandidatePolicy::class)]
 #[ObservedBy(CandidateObserver::class)]
@@ -53,10 +57,72 @@ class Candidate extends Model
         'religion',
     ];
 
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'type'      =>  RegistrationType::class,
+            'is_locked' =>  'boolean',
+            'snapshot'  =>  'json',
+        ];
+    }
+
     public function progress(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->completeness
+            get: fn () => round(($this->counted_fields + $this->counted_documents) / 2)
+        );
+    }
+
+    public function countedDocuments(): Attribute
+    {
+        return Attribute::make(
+            get: function (): int {
+                $documents = $this->relationLoaded('documentable')
+                    ? $this->documentable
+                    : $this->documentable()->get(['id', 'name']);
+
+                $total = $documents->where('is_required', true)->count();
+
+                if ($total === 0) {
+                    return 0;
+                }
+
+                $filled = $documents->whereNotNull('path')
+                    ->whereNotNull('name')
+                    ->where('is_required', true)
+                    ->count();
+
+                return (int) round(($filled / $total) * 100);
+            }
+        );
+    }
+
+    public function countedFields(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                $fields = collect($this->attributes)
+                    ->forget(['id', 'user_id', 'province_id', 'regency_id', 'district_id', 'sub_district_id', 'enrollment_id', 'type', 'religion_other', 'is_locked', 'snapshot', 'created_at', 'updated_at']);
+
+                if ($fields->isEmpty()) {
+                    return 0;
+                }
+
+                $filled = 0;
+
+                foreach ($fields as $value) {
+                    if (!is_null($value)) {
+                        $filled++;
+                    }
+                }
+
+                return (int) round(($filled / $fields->count()) * 100);
+            }
         );
     }
 
@@ -103,27 +169,15 @@ class Candidate extends Model
     }
 
     /**
-     * Percentage of required documents that have been uploaded.
-     * Utilizes already-loaded relation to avoid N+1.
+     * The reviews that belong to the Candidate
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function completeness(): Attribute
+    public function reviews(): BelongsToMany
     {
-        return Attribute::make(
-            get: function (): int {
-                $documents = $this->relationLoaded('documentable')
-                    ? $this->documentable
-                    : $this->documentable()->get(['id', 'name']);
-
-                $total = $documents->count();
-
-                if ($total === 0) {
-                    return 0;
-                }
-
-                $filled = $documents->whereNotNull('name')->count();
-
-                return (int) round(($filled / $total) * 100);
-            }
-        );
+        return $this->belongsToMany(ReviewType::class)
+            ->using(CandidateReviewType::class)
+            ->withPivot(['id', 'note'])
+            ->withTimestamps();
     }
 }

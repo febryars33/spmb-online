@@ -47,6 +47,13 @@ class HomeController extends Controller
             ],
         ]);
 
+        // sementara pendaftaran siswa pindahan dinonaktifkan karena masih dalam tahap pengembangan.
+        if ($request->type === RegistrationType::TRANSFER->value) {
+            throw ValidationException::withMessages([
+                'message' => 'Maaf, pendaftaran siswa pindahan saat ini belum dibuka.',
+            ]);
+        }
+
         try {
             $enrollment = Enrollment::where(function ($query) {
                 $query->where('start_date', '<=', now())
@@ -72,8 +79,8 @@ class HomeController extends Controller
             if (app()->environment('local')) {
                 return back()
                     ->withErrors([
-                        'file'      =>  $e->getFile(),
-                        'line'      =>  $e->getLine(),
+                        'file' => $e->getFile(),
+                        'line' => $e->getLine(),
                         'message' => $e->getMessage(),
                     ]);
             }
@@ -88,8 +95,8 @@ class HomeController extends Controller
 
             return back()
                 ->withErrors([
-                    'file'      =>  $e->getFile(),
-                    'line'      =>  $e->getLine(),
+                    'file' => $e->getFile(),
+                    'line' => $e->getLine(),
                     'message' => __('Internal Server Error'),
                 ]);
         } catch (Throwable $th) {
@@ -98,8 +105,8 @@ class HomeController extends Controller
             if (app()->environment('local')) {
                 return back()
                     ->withErrors([
-                        'file'      =>  $th->getFile(),
-                        'line'      =>  $th->getLine(),
+                        'file' => $th->getFile(),
+                        'line' => $th->getLine(),
                         'message' => $th->getMessage(),
                     ]);
             }
@@ -114,8 +121,8 @@ class HomeController extends Controller
 
             return back()
                 ->withErrors([
-                    'file'      =>  $th->getFile(),
-                    'line'      =>  $th->getLine(),
+                    'file' => $th->getFile(),
+                    'line' => $th->getLine(),
                     'message' => __('Internal Server Error'),
                 ]);
         }

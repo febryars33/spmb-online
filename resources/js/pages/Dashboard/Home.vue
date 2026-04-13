@@ -34,9 +34,23 @@
                             style="--animate-duration: 0.3s"
                         >
                             <div
-                                class="card card-hover bg-body-tertiary border-0 shadow-sm rounded-4 overflow-hidden h-100"
+                                class="card card-hover border-0 shadow-sm rounded-4 overflow-hidden h-100 overflow-hidden"
+                                :class="{
+                                    'bg-body-tertiary': candidate.is_locked,
+                                }"
                             >
-                                <div class="card-body">
+                                <!-- Tambahkan z-index: 0 agar ikon di belakang -->
+                                <div
+                                    v-if="candidate.is_locked"
+                                    class="position-absolute top-0 end-0 p-3 opacity-25"
+                                    style="
+                                        transform: translate(20%, -20%);
+                                        z-index: 0;
+                                    "
+                                >
+                                    <Clock :size="200" class="text-warning" />
+                                </div>
+                                <div class="card-body position-relative">
                                     <div
                                         class="d-flex justify-content-between align-items-start mb-3"
                                     >
@@ -57,9 +71,17 @@
                                             />
                                         </div>
                                         <span
-                                            class="badge rounded-pill px-3 py-2 bg-secondary-subtle text-secondary"
-                                            >DRAFT</span
+                                            v-if="candidate.is_locked"
+                                            class="badge rounded-pill px-3 py-2 bg-warning-subtle text-warning"
                                         >
+                                            PENINJAUAN
+                                        </span>
+                                        <span
+                                            v-else
+                                            class="badge rounded-pill px-3 py-2 bg-secondary-subtle text-secondary"
+                                        >
+                                            DRAFT
+                                        </span>
                                     </div>
                                     <h5
                                         class="fw-bold mb-1"
@@ -92,7 +114,9 @@
                                             <span class="small text-secondary"
                                                 >Progress</span
                                             ><span class="small fw-bold"
-                                                >{{ candidate.progress }}%</span
+                                                >{{
+                                                    candidate.snapshot.progress
+                                                }}%</span
                                             >
                                         </div>
                                         <div
@@ -102,10 +126,10 @@
                                             <div
                                                 class="progress-bar"
                                                 :style="{
-                                                    'background-color': `hsl(${candidate.progress * 1.2}, 60%, 50%)`,
+                                                    'background-color': `hsl(${candidate.snapshot.progress * 1.2}, 60%, 50%)`,
                                                     width:
-                                                        candidate.progress +
-                                                        '%',
+                                                        candidate.snapshot
+                                                            .progress + '%',
                                                 }"
                                             ></div>
                                         </div>
@@ -229,7 +253,7 @@
 
 <script lang="ts" setup>
 import { Head, InfiniteScroll, Link, useForm } from '@inertiajs/vue3';
-import { ArrowLeftRight, Trash, UserPlus } from '@lucide/vue';
+import { ArrowLeftRight, Clock, Package, Trash, UserPlus } from '@lucide/vue';
 import { useModal } from 'bootstrap-vue-next';
 import { onMounted, ref } from 'vue';
 import { toast, Toaster } from 'vue-sonner';
@@ -273,7 +297,7 @@ const ok = () => {
                     background: 'var(--bs-danger)',
                     color: '#fff',
                     border: 'none',
-                    fontFamily: 'Poppins',
+                    fontFamily: 'Rubik',
                 },
                 position: 'top-right',
             });
@@ -311,18 +335,18 @@ const trash = (uuid: string) => {
                             background: 'var(--bs-success)',
                             color: '#fff',
                             border: 'none',
-                            fontFamily: 'Poppins',
+                            fontFamily: 'Rubik',
                         },
                         position: 'top-right',
                     });
                 },
-                onError: () => {
-                    toast.error('Gagal menghapus pendaftaran', {
+                onError: (errors) => {
+                    toast.error(errors.message, {
                         style: {
                             background: 'var(--bs-danger)',
                             color: '#fff',
                             border: 'none',
-                            fontFamily: 'Poppins',
+                            fontFamily: 'Rubik',
                         },
                         position: 'top-right',
                     });

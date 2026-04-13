@@ -3,318 +3,413 @@
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "\u0000rolldown/runtime.js": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/img/facebook-48.png": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/img/instagram-48.png": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
+  ],
+  "resources/img/internet-of-things.png": [
+    "/build/assets/facebook-48-CIEVyuPs.png",
+    "/build/assets/instagram-48-0hFP1FUJ.png",
+    "/build/assets/tiktok-48-D0cvbkfR.png",
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/img/tiktok-48.png": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/img/youtube-48.png": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/components/Footer.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
+  ],
+  "resources/js/components/Footer.vue?vue&type=script&setup=true&lang.ts": [
+    "/build/assets/facebook-48-CIEVyuPs.png",
+    "/build/assets/instagram-48-0hFP1FUJ.png",
+    "/build/assets/tiktok-48-D0cvbkfR.png",
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/components/Forms/Dropzone.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/components/Forms/Dropzone.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/components/Forms/PersonalData.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/components/Forms/PersonalData.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/components/Forms/Select.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/components/Forms/Select.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
-  "resources/js/components/Forms/Select.vue?vue&type=style&index=0&scoped=cbbb0ceb&lang.css": [
+  "resources/js/components/Forms/Select.vue?vue&type=style&index=0&scoped=bf0189c0&lang.css": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/components/Hero.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/components/Hero.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/components/Navbar.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/components/Navbar.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/components/RegistrationForms/StudentParent.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/components/RegistrationForms/StudentParent.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
+  ],
+  "resources/js/components/SidebarItem.vue": [
+    "/build/assets/facebook-48-CIEVyuPs.png",
+    "/build/assets/instagram-48-0hFP1FUJ.png",
+    "/build/assets/tiktok-48-D0cvbkfR.png",
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
+  ],
+  "resources/js/components/SidebarItem.vue?vue&type=script&setup=true&lang.ts": [
+    "/build/assets/facebook-48-CIEVyuPs.png",
+    "/build/assets/instagram-48-0hFP1FUJ.png",
+    "/build/assets/tiktok-48-D0cvbkfR.png",
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
+  ],
+  "resources/js/components/SidebarItem.vue?vue&type=style&index=0&scoped=19029845&lang.css": [
+    "/build/assets/facebook-48-CIEVyuPs.png",
+    "/build/assets/instagram-48-0hFP1FUJ.png",
+    "/build/assets/tiktok-48-D0cvbkfR.png",
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
+  ],
+  "resources/js/components/ui/DayJS.vue": [
+    "/build/assets/facebook-48-CIEVyuPs.png",
+    "/build/assets/instagram-48-0hFP1FUJ.png",
+    "/build/assets/tiktok-48-D0cvbkfR.png",
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
+  ],
+  "resources/js/components/ui/DayJS.vue?vue&type=script&setup=true&lang.ts": [
+    "/build/assets/facebook-48-CIEVyuPs.png",
+    "/build/assets/instagram-48-0hFP1FUJ.png",
+    "/build/assets/tiktok-48-D0cvbkfR.png",
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/layouts/App.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/layouts/App.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/layouts/Form.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/layouts/Form.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Auth/Login.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Auth/Login.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Auth/Register.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Check.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Check.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Dashboard/Document.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Dashboard/Document.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Dashboard/Form.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Dashboard/Form.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Dashboard/Guide.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Dashboard/Guide.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Dashboard/Home.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Dashboard/Home.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Dashboard/Review.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Dashboard/Review.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Dashboard/Send.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Dashboard/Send.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Faq.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Faq.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Home.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/pages/Home.vue?vue&type=script&setup=true&lang.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/routes/dashboard/form/document/index.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/routes/dashboard/form/index.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/routes/dashboard/home/index.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/routes/dashboard/index.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
-  ],
-  "resources/js/routes/document/index.ts": [
-    "/build/assets/facebook-48-CIEVyuPs.png",
-    "/build/assets/instagram-48-0hFP1FUJ.png",
-    "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/routes/index.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/ssr.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/wayfinder/index.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
-    "/build/assets/youtube-48-Dp9a8xPi.png"
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
   ]
 }

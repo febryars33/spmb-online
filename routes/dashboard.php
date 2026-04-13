@@ -15,8 +15,10 @@ Route::prefix('/dashboard')
         Route::get('/{candidate}/form', [FormController::class, 'form'])->name('form.form');
         Route::get('/{candidate}/document', [FormController::class, 'document'])->name('form.document');
         Route::get('/{candidate}/send', [FormController::class, 'send'])->name('form.send');
+        Route::post('/{candidate}/submit', [FormController::class, 'submit'])->name('form.submit');
         Route::get('/{candidate}/review', [FormController::class, 'review'])->name('form.review');
         Route::put('/{candidate}', [FormController::class, 'update'])->name('form.update');
         Route::delete('/{candidate}', [FormController::class, 'destroy'])->name('form.destroy');
         Route::patch('/{candidate}/document/{document}', [DocumentUploadController::class, 'setToNull'])->name('form.document.null');
+        Route::post('/{candidate}/document/{document}', DocumentUploadController::class)->name('form.document.upload');
     })->middleware(['auth', 'disable-ssr']);

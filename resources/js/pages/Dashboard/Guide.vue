@@ -28,13 +28,6 @@
                 <div class="mt-5 d-flex justify-content-between">
                     <button
                         type="button"
-                        class="btn btn-sm btn-outline-secondary px-4 rounded-pill"
-                        disabled
-                    >
-                        Kembali
-                    </button>
-                    <button
-                        type="button"
                         class="btn btn-sm btn-primary px-5 rounded-pill"
                         @click="
                             () =>

@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Candidate;
+use Illuminate\Support\Facades\Log;
 
 class CandidateObserver
 {
@@ -21,11 +22,20 @@ class CandidateObserver
             return [
                 'documentable_id' => $candidate->id,
                 'documentable_type' => Candidate::class,
-                'document_type_id' => $documentTypes->id
+                'document_type_id' => $documentTypes->id,
+                'is_required' => $documentTypes->pivot->is_required,
             ];
         });
 
         $candidate->documentable()->createMany($documents);
+
+        $progress = (int) round($candidate->progress);
+
+        $candidate->updateQuietly([
+            'snapshot'  =>  [
+                'progress'  =>  $progress
+            ]
+        ]);
     }
 
     /**
@@ -33,7 +43,15 @@ class CandidateObserver
      */
     public function updated(Candidate $candidate): void
     {
-        //
+        Log::info('Observer Candidate terpanggil untuk ID: ' . $candidate->id);
+
+        $candidate->load('documentable');
+
+        $candidate->snapshot = [
+            'progress'  =>  $candidate->progress
+        ];
+
+        $candidate->saveQuietly();
     }
 
     /**

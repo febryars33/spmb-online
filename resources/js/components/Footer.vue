@@ -1,25 +1,26 @@
 <template>
-    <div class="container py-5">
+    <div class="container py-4">
         <div class="row">
             <div class="col-lg-3">
                 <h3>Tentang Kami</h3>
                 <ul class="list-unstyled small">
                     <li class="mb-2">
-                        <a
+                        <Link
                             class="text-decoration-none text-secondary"
-                            href="/"
-                            data-discover="true"
-                            >Beranda</a
-                        >
+                            :href="home()"
+                            >Beranda
+                        </Link>
                     </li>
+
                     <li class="mb-2">
-                        <a
+                        <Link
                             class="text-decoration-none text-secondary"
-                            href="/cek-status"
-                            data-discover="true"
-                            >Cek Status</a
+                            :href="check()"
                         >
+                            Cek Pendaftaran
+                        </Link>
                     </li>
+
                     <li class="mb-2">
                         <a
                             class="text-decoration-none text-secondary"
@@ -28,6 +29,7 @@
                             >Login</a
                         >
                     </li>
+
                     <li class="mb-2">
                         <a
                             class="text-decoration-none text-secondary"
@@ -124,18 +126,29 @@
                         />
                     </li>
                 </ul>
-                <p>Laborum minima ipsam facere? Ad nulla culpa explicabo</p>
+                <p class="text-secondary small">
+                    Jl. Sukagalih No.80, Sukagalih, Kec. Sukajadi, Kota Bandung,
+                    Jawa Barat 40162
+                </p>
             </div>
         </div>
 
-        <div class="col-lg-9">
-            <span class="small text-secondary">
-                Officia dolor esse quo harum nemo unde magni sed repudiandae,
-                consequatur placeat corporis, culpa, quidem veritatis a. Error
-                praesentium sit necessitatibus repellendus.
-            </span>
+        <div class="col-lg-12 mt-5">
+            <div class="d-flex justify-content-between">
+                <span class="small text-muted">
+                    &copy; 2026 <Link :href="home()">SMA PGRI 1 Bandung</Link>.
+                    Hak cipta dilindungi.
+                </span>
+                <span class="small text-muted">
+                    Powered by
+                    <span class="fw-bold">PT. Edubee Technology ID</span>
+                </span>
+            </div>
         </div>
     </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { Link } from '@inertiajs/vue3';
+import { check, home } from '@/routes';
+</script>

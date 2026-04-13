@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
     'document_type_id',
     'documentable_type',
     'documentable_id',
+    'is_required',
 ])]
 #[Appends([
     'url',
@@ -26,6 +27,18 @@ class Document extends Model
     protected $with = [
         'document_type',
     ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'is_required'   =>  'boolean',
+        ];
+    }
 
     /**
      * Get the document_type that owns the Document

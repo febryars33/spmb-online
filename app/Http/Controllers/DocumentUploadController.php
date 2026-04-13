@@ -7,29 +7,24 @@ use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
 
 class DocumentUploadController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, Candidate $candidate, Document $document)
     {
+        // dd($request->all(), $candidate, $document);
         $request->validate([
-            'id' => [
-                'required',
-                'exists:documents,id',
-            ],
             'file' => [
                 'required',
                 'file',
             ],
         ]);
 
-        $id = (int) $request->id;
         $file = $request->file('file');
-
-        $document = Document::find($id);
 
         $name = $file->hashName();
         $extension = $file->extension();
@@ -38,14 +33,18 @@ class DocumentUploadController extends Controller
 
         $path = $file->storeAs("documents/$document->documentable_id", $name, 'public');
 
-        // dd($path);
-
         $document->update([
             'path' => $path,
             'name' => $name,
             'extension' => $extension,
             'size' => $size,
             'mime' => $mime,
+        ]);
+
+        $candidate->touch();
+
+        Inertia::flash([
+            'message' => 'Dokumen berhasil diunggah.',
         ]);
 
         return back();
@@ -68,6 +67,8 @@ class DocumentUploadController extends Controller
             'mime' => null,
             'path' => null,
         ]);
+
+        $candidate->touch();
 
         return back();
     }

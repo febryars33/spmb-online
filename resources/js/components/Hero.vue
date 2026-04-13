@@ -84,8 +84,7 @@
                         <img
                             class="img-fluid rounded-5 shadow-2xl"
                             alt="School"
-                            referrerpolicy="no-referrer"
-                            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
+                            src="https://eduport.webestica.com/assets/images/element/07.png"
                         />
                         <div
                             class="position-absolute top-100 start-0 translate-middle-y bg-light-subtle p-4 rounded-4 shadow-lg d-none d-md-block"
@@ -95,30 +94,13 @@
                                 <div
                                     class="bg-success-subtle p-2 rounded-circle"
                                 >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="lucide lucide-circle-check-big text-success"
-                                        aria-hidden="true"
-                                    >
-                                        <path
-                                            d="M21.801 10A10 10 0 1 1 17 3.335"
-                                        ></path>
-                                        <path d="m9 11 3 3L22 4"></path>
-                                    </svg>
+                                    <CircleCheckBig class="text-success" />
                                 </div>
                                 <div>
                                     <h6 class="fw-bold mb-0">Akreditasi A</h6>
-                                    <small class="text-secondary"
-                                        >Sertifikasi Nasional</small
-                                    >
+                                    <small class="text-secondary">
+                                        Memenuhi standar nasional
+                                    </small>
                                 </div>
                             </div>
                         </div>
@@ -131,6 +113,7 @@
 
 <script lang="ts" setup>
 import { Link, usePage } from '@inertiajs/vue3';
+import { CircleCheckBig } from '@lucide/vue';
 import { check, login } from '@/routes';
 import home from '@/routes/dashboard/home';
 

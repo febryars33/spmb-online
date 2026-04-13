@@ -1,4 +1,5 @@
 import type { Document } from './document';
+import type { ReviewType } from './review_type';
 import type { StudentParent } from './student_parent';
 
 export type Candidate = {
@@ -19,12 +20,17 @@ export type Candidate = {
     gender: string | null;
     progress: number;
     birth_certificate_number: string | null;
+    is_locked: boolean;
+    reviews: ReviewType[];
     parents: {
         father: StudentParent;
         mother: StudentParent;
         guardian: StudentParent;
     };
     documentable: Document[];
+    snapshot: {
+        progress: number;
+    };
     created_at: string;
     updated_at: string;
 };

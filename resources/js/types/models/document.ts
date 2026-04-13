@@ -8,6 +8,7 @@ export type Document = {
     mime: string | null;
     size: string | null;
     url: string | null;
+    is_required: boolean;
     documentable_type: string;
     documentable_id: number;
     document_type: DocumentType;

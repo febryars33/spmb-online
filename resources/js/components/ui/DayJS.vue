@@ -4,6 +4,9 @@
             relativeRender().charAt(0).toUpperCase() + relativeRender().slice(1)
         }}
     </template>
+    <template v-else>
+        {{ dayjs(props.date).format(props.format) }}
+    </template>
 </template>
 
 <script lang="ts" setup>

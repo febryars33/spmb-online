@@ -1,6 +1,8 @@
 @import '../css/fonts.css';
 @import './bootstrap/bootstrap.scss';
-@import './bootstrap/style.scss';
+@import './timeline.scss';
+// @import './bootstrap/style.scss';
+@import './poles/custom-components';
 @import '../../node_modules/vue-sonner/lib/index.css';
 
 .icon-circle {
@@ -14,4 +16,18 @@
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.dropdown-item {
+    border-radius: $border-radius !important;
+}
+
+.form-control {
+    border: none;
+    background-color: $gray-200;
+    transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.form-control:focus {
+    background-color: $gray-300;
 }

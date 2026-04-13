@@ -169,18 +169,12 @@
                         </BTabs>
 
                         <div class="mt-5 d-flex justify-content-between">
-                            <Link
-                                :href="dashboard.form.guide(candidate.id)"
-                                class="btn btn-sm btn-outline-secondary px-4 rounded-pill"
-                            >
-                                Kembali
-                            </Link>
                             <button
                                 type="submit"
                                 class="btn btn-sm btn-primary px-5 rounded-pill"
                                 :disabled="form.processing"
                             >
-                                Simpan &amp; Lanjutkan
+                                Simpan
                             </button>
                         </div>
                     </form>
@@ -191,14 +185,13 @@
 </template>
 
 <script lang="ts" setup>
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 import { Construction, Trash } from '@lucide/vue';
 import { computed, onMounted, ref } from 'vue';
 import { toast, Toaster } from 'vue-sonner';
 import PersonalData from '@/components/Forms/PersonalData.vue';
 import StudentParent from '@/components/RegistrationForms/StudentParent.vue';
 import Form from '@/layouts/Form.vue';
-import dashboard from '@/routes/dashboard';
 import { update } from '@/routes/dashboard/form';
 import type { Meta } from '@/types/meta';
 import type { Candidate } from '@/types/models/candidate';
@@ -261,7 +254,10 @@ const form = useForm({
 });
 
 const addAchievement = () => {
-    if (!temp.value.name || !temp.value.level) return;
+    if (!temp.value.name || !temp.value.level) {
+        return;
+    }
+
     form.achievements.push({ ...temp.value });
     temp.value = { name: '', level: '' };
 };
@@ -279,6 +275,17 @@ const onSubmit = () => {
                     background: 'var(--bs-success)',
                     color: '#fff',
                     border: 'none',
+                    fontFamily: 'Rubik',
+                },
+            });
+        },
+        onError: (errors) => {
+            toast.error(errors.message, {
+                style: {
+                    background: 'var(--bs-danger)',
+                    color: '#fff',
+                    border: 'none',
+                    fontFamily: 'Rubik',
                 },
             });
         },

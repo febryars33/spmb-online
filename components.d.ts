@@ -13,7 +13,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     BApp: typeof import('bootstrap-vue-next/components/BApp')['BApp']
     BBadge: typeof import('bootstrap-vue-next/components/BBadge')['BBadge']
-    BButton: typeof import('bootstrap-vue-next/components/BButton')['BButton']
+    BCard: typeof import('bootstrap-vue-next/components/BCard')['BCard']
     BCardText: typeof import('bootstrap-vue-next/components/BCard')['BCardText']
     BFormInput: typeof import('bootstrap-vue-next/components/BFormInput')['BFormInput']
     BFormRadio: typeof import('bootstrap-vue-next/components/BFormRadio')['BFormRadio']

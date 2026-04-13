@@ -1,0 +1,376 @@
+// =============================================================================
+// _custom-semantic.scss
+// Semantic UI–inspired components built on top of Bootstrap 5.3.
+//
+// Covers:
+//   1.  Semantic color map (single source of truth)
+//   2.  Label component + color variants (@each, DRY)
+//   3.  Segment (framed container) + color variants
+//   4.  Semantic Divider
+//   5.  Statistic widget
+//   6.  Dark-mode overrides  [data-bs-theme="dark"]
+// =============================================================================
+
+// 1. Canonical Semantic color map
+// All color generation is driven by this single map — add/remove here only.
+// -----------------------------------------------------------------------------
+
+$sem-colors: (
+  "red":    #db2828,
+  "orange": #f2711c,
+  "yellow": #fbbd08,
+  "olive":  #b5cc18,
+  "green":  #21ba45,
+  "teal":   #00b5ad,
+  "blue":   #2185d0,
+  "violet": #6435c9,
+  "purple": #a333c8,
+  "pink":   #e03997,
+  "brown":  #a5673f,
+  "grey":   #767676,
+  "black":  #1b1c1d,
+) !default;
+
+// Helper: pick white or black for legible text on any background
+// (Bootstrap's color-contrast() function must be available)
+@function sem-text-color($bg) {
+  @return color-contrast($bg);
+}
+
+// 2. Label component
+// Mirrors Semantic UI's <div class="ui label"> with every named color.
+// Usage: <span class="sem-label sem-label-teal">Teal</span>
+// -----------------------------------------------------------------------------
+
+.sem-label {
+  display: inline-flex;
+  align-items: center;
+  gap: .35em;
+
+  padding: .35em .75em;
+  font-size: .75rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  vertical-align: baseline;
+
+  border: 1px solid transparent;
+  border-radius: .28rem;
+
+  // Base / default (neutral)
+  background-color: #e8e8e8;
+  color: rgba(0, 0, 0, .87);
+  border-color: rgba(34, 36, 38, .15);
+
+  transition: background-color .1s ease, border-color .1s ease;
+
+  // Attached tag nub (::before pseudo-element)
+  &.sem-label--tag {
+    padding-left: 1.1em;
+    border-radius: 0 .28rem .28rem 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) translateX(-50%) rotate(45deg);
+      width: .75em;
+      height: .75em;
+      background: inherit;
+      border: inherit;
+    }
+  }
+
+  // Ribbon variant
+  &.sem-label--ribbon {
+    position: absolute;
+    left: -1rem;
+    padding-right: 1.75em;
+    border-radius: 0 .28rem .28rem 0;
+  }
+}
+
+// Generate .sem-label-{color} classes from $sem-colors
+@each $name, $color in $sem-colors {
+  .sem-label-#{$name} {
+    background-color: $color;
+    color: sem-text-color($color);
+    border-color: shade-color($color, 15%);
+
+    &:hover {
+      background-color: shade-color($color, 8%);
+    }
+  }
+
+  // Outline / basic variant
+  .sem-label-#{$name}--basic {
+    background-color: transparent;
+    color: $color;
+    border-color: $color;
+  }
+}
+
+// 3. Segment component
+// Mirrors Semantic UI's <div class="ui segment">.
+// Usage: <div class="sem-segment sem-segment-teal">…</div>
+// -----------------------------------------------------------------------------
+
+.sem-segment {
+  position: relative;
+  background: #fff;
+  padding: 1rem 1.25rem;
+
+  border: 1px solid rgba(34, 36, 38, .15);
+  border-radius: .28rem;
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
+
+  // Raised
+  &.sem-segment--raised {
+    box-shadow:
+      0 2px 4px 0 rgba(34, 36, 38, .12),
+      0 2px 10px 0 rgba(34, 36, 38, .08);
+  }
+
+  // Stacked  (visual pile of pages)
+  &.sem-segment--stacked {
+    padding-bottom: 2.25rem;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -.35rem;
+      left: .5%;
+      right: .5%;
+      height: .35rem;
+      background: #fff;
+      border: 1px solid rgba(34, 36, 38, .15);
+      border-radius: 0 0 .28rem .28rem;
+    }
+
+    &::after {
+      bottom: -.7rem;
+      left: 1%;
+      right: 1%;
+      background: #f9fafb;
+    }
+  }
+
+  // Piled (rotated offset)
+  &.sem-segment--piled {
+    box-shadow:
+      0 1px 2px 0 rgba(34, 36, 38, .15),
+      0 0 0 1px rgba(34, 36, 38, .15);
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background: #fff;
+      border: 1px solid rgba(34, 36, 38, .15);
+      border-radius: .28rem;
+      box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
+    }
+
+    &::before { transform: rotate(-1.2deg); z-index: -1; }
+    &::after  { transform: rotate( 1.2deg); z-index: -2; }
+  }
+
+  // Vertical padding only (compact)
+  &.sem-segment--compact {
+    display: inline-block;
+    padding: .6rem .9rem;
+  }
+}
+
+// Generate colored left-border Semantic segments from $sem-colors
+@each $name, $color in $sem-colors {
+  .sem-segment-#{$name} {
+    border-top: 2px solid $color;   // Semantic's top-color accent
+  }
+
+  // Inverted: full background
+  .sem-segment-#{$name}--inverted {
+    background-color: $color;
+    color: sem-text-color($color);
+    border-color: shade-color($color, 15%);
+  }
+}
+
+// 4. Semantic Divider
+// Usage: <div class="sem-divider">or</div>
+// -----------------------------------------------------------------------------
+
+.sem-divider {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin: 1rem 0;
+
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, .4);
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    border-top: 1px solid rgba(34, 36, 38, .15);
+  }
+
+  // Vertical divider
+  &.sem-divider--vertical {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    margin: 0 1rem;
+    height: 100%;
+
+    &::before,
+    &::after {
+      flex: 1;
+      border-top: none;
+      border-left: 1px solid rgba(34, 36, 38, .15);
+    }
+  }
+
+  // Hidden (just the line, no text)
+  &.sem-divider--hidden {
+    border-top: 1px solid rgba(34, 36, 38, .15);
+    &::before, &::after { display: none; }
+  }
+}
+
+// 5. Statistic widget
+// Usage:
+//   <div class="sem-statistic">
+//     <div class="sem-statistic__value">42</div>
+//     <div class="sem-statistic__label">Downloads</div>
+//   </div>
+// -----------------------------------------------------------------------------
+
+.sem-statistic {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .15rem;
+  margin: 0 1.5rem;
+
+  &__value {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #1b1c1d;
+  }
+
+  &__label {
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, .4);
+  }
+
+  // Mini / small / large size modifiers
+  &--mini   .sem-statistic__value { font-size: 1rem; }
+  &--small  .sem-statistic__value { font-size: 1.75rem; }
+  &--large  .sem-statistic__value { font-size: 4rem; }
+  &--huge   .sem-statistic__value { font-size: 5rem; }
+}
+
+// Statistic color variants
+@each $name, $color in $sem-colors {
+  .sem-statistic-#{$name} {
+    .sem-statistic__value { color: $color; }
+  }
+}
+
+// 6. Dark mode overrides
+// Maintains Semantic vibrancy while keeping contrast accessible.
+// -----------------------------------------------------------------------------
+
+[data-bs-theme="dark"] {
+  // ── Semantic color map (slightly desaturated/lightened for dark backgrounds)
+  $sem-dark-colors: (
+    "red":    #ff695e,
+    "orange": #ff851b,
+    "yellow": #ffe21f,
+    "olive":  #d9e778,
+    "green":  #2ecc40,
+    "teal":   #6dffff,
+    "blue":   #54c8ff,
+    "violet": #a291fb,
+    "purple": #dc73ff,
+    "pink":   #ff8edf,
+    "brown":  #d67c1c,
+    "grey":   #a0a0a0,
+    "black":  #f9fafb,  // inverted
+  );
+
+  // ── Labels
+  @each $name, $color in $sem-dark-colors {
+    .sem-label-#{$name} {
+      background-color: rgba($color, .15);
+      color: $color;
+      border-color: rgba($color, .35);
+
+      &:hover {
+        background-color: rgba($color, .25);
+      }
+    }
+
+    .sem-label-#{$name}--basic {
+      background-color: transparent;
+      color: $color;
+      border-color: rgba($color, .6);
+    }
+  }
+
+  // ── Segments
+  .sem-segment {
+    background-color: #1e1e2e;
+    border-color: rgba(255, 255, 255, .08);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .4);
+    color: rgba(255, 255, 255, .87);
+  }
+
+  @each $name, $color in $sem-dark-colors {
+    .sem-segment-#{$name} {
+      border-top-color: $color;
+    }
+
+    .sem-segment-#{$name}--inverted {
+      background-color: rgba($color, .12);
+      color: $color;
+      border-color: rgba($color, .3);
+    }
+  }
+
+  // ── Divider
+  .sem-divider {
+    color: rgba(255, 255, 255, .4);
+
+    &::before,
+    &::after {
+      border-top-color: rgba(255, 255, 255, .1);
+    }
+  }
+
+  // ── Statistic
+  .sem-statistic {
+    &__value { color: rgba(255, 255, 255, .9); }
+    &__label { color: rgba(255, 255, 255, .4); }
+  }
+
+  @each $name, $color in $sem-dark-colors {
+    .sem-statistic-#{$name} {
+      .sem-statistic__value { color: $color; }
+    }
+  }
+}

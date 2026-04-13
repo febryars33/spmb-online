@@ -1,0 +1,68 @@
+// Variables
+$timeline-border-width: $border-width;
+$timeline-dot-size: 0.85rem;
+$timeline-padding-y: 2rem;
+
+.timeline {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-left: 0.5rem;
+  border-left: $timeline-border-width solid var(--bs-border-color);
+
+  &-item {
+    position: relative;
+    padding-bottom: $timeline-padding-y;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    // Dot Default
+    &::before {
+      content: "";
+      position: absolute;
+      left: calc(-1.5rem - (#{$timeline-border-width} / 2) - (#{$timeline-dot-size} / 2));
+      top: 0.35rem;
+      width: $timeline-dot-size;
+      height: $timeline-dot-size;
+      border-radius: 50%;
+      background: var(--bs-body-bg);
+      border: $timeline-border-width solid var(--bs-secondary); // Default color
+      z-index: 1;
+      transition: all 0.2s ease-in-out;
+    }
+  }
+
+  &-date {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+    color: var(--bs-secondary-color);
+  }
+
+  &-content {
+    background: var(--bs-tertiary-bg);
+    padding: 1.25rem;
+    border-radius: var(--bs-border-radius-lg);
+    box-shadow: var(--bs-box-shadow-sm);
+  }
+
+  // Loop Varian Warna per Item
+  @each $color, $value in $theme-colors {
+    .timeline-item-#{$color} {
+      &::before {
+        border-color: var(--bs-#{$color}) !important;
+        background: var(--bs-#{$color}); // Opsional: isi warna solid agar lebih menonjol
+      }
+      .timeline-date {
+        color: var(--bs-#{$color}) !important;
+      }
+      .timeline-content {
+        border-left: 4px solid var(--bs-#{$color}); // Aksen garis di samping konten
+      }
+    }
+  }
+}
