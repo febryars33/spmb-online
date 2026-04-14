@@ -1,5 +1,6 @@
 import type { Document } from './document';
 import type { ReviewType } from './review_type';
+import type { School } from './school';
 import type { StudentParent } from './student_parent';
 
 export type Candidate = {
@@ -31,6 +32,7 @@ export type Candidate = {
     snapshot: {
         progress: number;
     };
+    school: School | null;
     created_at: string;
     updated_at: string;
 };

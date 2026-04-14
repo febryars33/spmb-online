@@ -251,6 +251,7 @@ const form = useForm({
         { name: 'Juara 1 OSN Matematika', level: 'Provinsi' },
         { name: 'Juara 1 OSN Bahasa Inggris', level: 'Provinsi' },
     ],
+    school: props.candidate.school,
 });
 
 const addAchievement = () => {

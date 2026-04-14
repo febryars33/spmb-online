@@ -92,6 +92,7 @@ onClickOutside(target, () => {
 const onUpdate = (value: Option) => {
     emit('update:modelValue', value.id);
     selected.value = value;
+    show.value = false;
 };
 
 const onClear = () => {

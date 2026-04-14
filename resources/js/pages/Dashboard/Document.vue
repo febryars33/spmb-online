@@ -162,15 +162,6 @@
                 </BOverlay>
             </div>
         </div>
-
-        <div class="mt-5 d-flex justify-content-between">
-            <button
-                type="submit"
-                class="btn btn-sm btn-primary px-5 rounded-pill"
-            >
-                Simpan
-            </button>
-        </div>
     </BCard>
 
     <Teleport v-if="mount" to="body">

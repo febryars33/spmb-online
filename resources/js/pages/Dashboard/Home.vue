@@ -253,7 +253,7 @@
 
 <script lang="ts" setup>
 import { Head, InfiniteScroll, Link, useForm } from '@inertiajs/vue3';
-import { ArrowLeftRight, Clock, Package, Trash, UserPlus } from '@lucide/vue';
+import { ArrowLeftRight, Clock, Trash, UserPlus } from '@lucide/vue';
 import { useModal } from 'bootstrap-vue-next';
 import { onMounted, ref } from 'vue';
 import { toast, Toaster } from 'vue-sonner';

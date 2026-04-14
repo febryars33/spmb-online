@@ -12,7 +12,7 @@
                 >
                     <FileText :size="64" class="text-primary" />
                 </div>
-                <h4 class="fw-bold mb-3">Konfirmasi &amp; Kirim Berkas</h4>
+                <h4 class="fw-bold mb-3">{{ meta.title }}</h4>
                 <p class="text-secondary mb-4 mx-auto" style="max-width: 500px">
                     Pastikan semua data yang Anda masukkan sudah benar. Setelah
                     dikirim, data akan dikunci untuk proses peninjauan oleh
@@ -28,7 +28,12 @@
                                 Nama Calon Siswa:
                             </div>
                             <div class="col-6 fw-bold">
-                                {{ candidate.name }}
+                                <template v-if="candidate.name">
+                                    {{ candidate.name }}
+                                </template>
+                                <span v-else class="fst-italic opacity-50">
+                                    <i>Belum Diisi</i>
+                                </span>
                             </div>
                             <div class="col-6 text-secondary">
                                 Tipe Pendaftaran:
@@ -84,11 +89,17 @@
             </div>
         </div>
     </div>
+
+    <Teleport v-if="mount" to="body">
+        <Toaster />
+    </Teleport>
 </template>
 
 <script lang="ts" setup>
 import { Head, useForm } from '@inertiajs/vue3';
 import { FileText } from '@lucide/vue';
+import { onMounted, ref } from 'vue';
+import { toast, Toaster } from 'vue-sonner';
 import Form from '@/layouts/Form.vue';
 import dashboard from '@/routes/dashboard';
 import type { Meta } from '@/types/meta';
@@ -96,6 +107,12 @@ import type { Candidate } from '@/types/models/candidate';
 
 defineOptions({
     layout: Form,
+});
+
+const mount = ref(false);
+
+onMounted(() => {
+    mount.value = true;
 });
 
 const props = defineProps<{
@@ -114,6 +131,17 @@ const onSubmit = () => {
             form.reset();
             form.agree = false;
             form.clearErrors();
+        },
+        onError: (errors) => {
+            toast.error(errors.message, {
+                style: {
+                    background: 'var(--bs-danger)',
+                    color: '#fff',
+                    border: 'none',
+                    fontFamily: 'Rubik',
+                },
+                position: 'top-right',
+            });
         },
     });
 };

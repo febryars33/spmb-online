@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\API\ProvinceController;
+use App\Http\Controllers\Auth\API\SchoolController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/regionals')->name('regionals.')->group(function () {
@@ -10,3 +11,6 @@ Route::prefix('/regionals')->name('regionals.')->group(function () {
     Route::get('/districts/{regency_id}', 'App\Http\Controllers\DistrictController@index');
     Route::get('/sub-districts/{district_id}', 'App\Http\Controllers\SubDistrictController@index');
 });
+
+Route::apiResource('/schools', SchoolController::class)
+    ->only(['index', 'show']);

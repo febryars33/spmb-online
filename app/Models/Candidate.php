@@ -29,6 +29,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
     'district_id',
     'sub_district_id',
     'enrollment_id',
+    'school_id',
     'birth_date',
     'birth_place',
     'address',
@@ -38,11 +39,6 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
     'birth_certificate_number',
     'is_locked',
     'snapshot',
-])]
-#[Appends([
-    'progress',
-    'counted_fields',
-    'counted_documents',
 ])]
 #[UsePolicy(CandidatePolicy::class)]
 #[ObservedBy(CandidateObserver::class)]
@@ -54,6 +50,7 @@ class Candidate extends Model
      * The relations to eager load on every query.
      */
     protected $with = [
+        'school',
         'religion',
     ];
 
@@ -179,5 +176,15 @@ class Candidate extends Model
             ->using(CandidateReviewType::class)
             ->withPivot(['id', 'note'])
             ->withTimestamps();
+    }
+
+    /**
+     * Get the school that owns the Candidate
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function school(): BelongsTo
+    {
+        return $this->belongsTo(School::class);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Candidate;
 use App\Models\Religion;
+use App\Models\School;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -52,8 +53,8 @@ class FormController extends Controller
         }));
 
         return Inertia::render('Dashboard/Form', [
-            'religions' => Religion::all(),
-            'candidate' => $candidate,
+            'religions' =>  Religion::all(),
+            'candidate' =>  $candidate,
             'meta' => [
                 'title' => 'Formulir Pendaftaran',
                 'description' => 'Halaman formulir pendaftaran yang menampilkan informasi dan data tentang kandidat.',
@@ -110,6 +111,12 @@ class FormController extends Controller
 
     public function update(Request $request, Candidate $candidate)
     {
+        Gate::authorize('update', $candidate);
+
+        $request->merge([
+            'school_id' => null
+        ]);
+
         try {
             if ($candidate->is_locked) {
                 return back()->withErrors([
@@ -117,11 +124,24 @@ class FormController extends Controller
                 ]);
             }
 
+            if (!is_null($request->school)) {
+                $school = $request->array('school');
+                if (is_null($school['id']) && !is_null($school['name'])) {
+                    $school = School::create([
+                        'name' => $school['name'],
+                    ]);
+
+                    $request->request->set('school_id', $school->id);
+                } else {
+                    $request->request->set('school_id', $school['id']);
+                }
+            }
+
             /** @var array $parents */
             $parents = $request->array('parents');
 
             $candidate->update($request->only([
-                'name', 'kk_number', 'nik_number', 'nisn', 'birth_place', 'birth_date', 'address', 'religion_id', 'gender', 'birth_certificate_number',
+                'name', 'kk_number', 'nik_number', 'nisn', 'birth_place', 'birth_date', 'address', 'religion_id', 'school_id', 'gender', 'birth_certificate_number',
             ]));
 
             foreach ($parents as $type => $data) {
@@ -172,6 +192,14 @@ class FormController extends Controller
     public function submit(Request $request, Candidate $candidate)
     {
         Gate::authorize('view', $candidate);
+
+        $snapshot = $candidate->snapshot;
+
+        if ($snapshot['progress'] !== 100) {
+            return back()->withErrors([
+                'message' => 'Silahkan lengkapi Formulir dan Berkas Persyaratan terlebih dahulu sampai 100%.',
+            ]);
+        }
 
         $request->validate([
             'agree' => [

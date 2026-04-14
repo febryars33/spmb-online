@@ -138,32 +138,13 @@
                     Pendidikan Sebelumnya
                 </h4>
                 <div class="row mb-3">
-                    <label
-                        class="col-sm-3 col-form-label"
-                        for="school-origin-name"
-                        >Asal Sekolah</label
-                    >
+                    <label for="school" class="col-sm-3 col-form-label">
+                        Asal Sekolah
+                    </label>
                     <div class="col-sm-9">
-                        <BFormInput
-                            type="text"
-                            id="school-origin-name"
-                            size="sm"
-                            placeholder="Contoh: SMP Negeri 1 Bandung"
-                        />
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label
-                        class="col-sm-3 col-form-label"
-                        for="school-origin-address"
-                        >Alamat Sekolah</label
-                    >
-                    <div class="col-sm-9">
-                        <BFormTextarea
-                            id="school-origin-address"
-                            size="sm"
-                            rows="3"
-                        />
+                        <div class="mb-5">
+                            <SchoolInput v-model="model.school" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -205,6 +186,8 @@
 
 <script lang="ts" setup>
 import type { Religion } from '@/types/models/religion';
+import type { School } from '@/types/models/school';
+import SchoolInput from './SchoolInput.vue';
 import Select from './Select.vue';
 
 interface PersonalData {
@@ -220,6 +203,7 @@ interface PersonalData {
     gender: string | null;
     religion_id: number | null;
     birth_certificate_number: string | null;
+    school: School | null;
 }
 
 const model = defineModel<PersonalData>({
@@ -236,6 +220,7 @@ const model = defineModel<PersonalData>({
         gender: null,
         religion_id: null,
         birth_certificate_number: null,
+        school: null,
     },
 });
 
