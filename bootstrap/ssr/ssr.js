@@ -1,7 +1,7 @@
 import { Fragment, TransitionGroup, computed, createBlock, createCommentVNode, createSSRApp, createTextVNode, createVNode, defineComponent, h, isRef, mergeModels, mergeProps, onMounted, openBlock, ref, renderList, renderSlot, resolveDynamicComponent, toDisplayString, unref, useModel, useSSRContext, useTemplateRef, vModelSelect, vModelText, withCtx, withDirectives, withModifiers } from "vue";
 import { renderToString, ssrGetDirectiveProps, ssrIncludeBooleanAttr, ssrInterpolate, ssrLooseContain, ssrLooseEqual, ssrRenderAttr, ssrRenderAttrs, ssrRenderClass, ssrRenderComponent, ssrRenderDynamicModel, ssrRenderList, ssrRenderSlot, ssrRenderStyle, ssrRenderTeleport, ssrRenderVNode } from "vue/server-renderer";
-import { Head, InfiniteScroll, Link, createInertiaApp, useForm, usePage } from "@inertiajs/vue3";
-import { ArrowLeft, ArrowLeftRight, Calendar, CalendarDays, Check, CircleAlert, CircleCheckBig, CircleCheckBigIcon, CircleQuestionMark, Clock, ClockFading, Construction, CreditCard, Eye, EyeClosed, FileSearchCorner, FileText, FileUp, Files, FormInput, GalleryHorizontalEnd, HandMetal, Image, Lock, Mail, Phone, ScanText, School, Search, Send, SquareStack, Trash, Upload, User, UserPlus, Users } from "@lucide/vue";
+import { Head, InfiniteScroll, Link, createInertiaApp, useForm, useHttp, usePage } from "@inertiajs/vue3";
+import { ArrowLeft, ArrowLeftRight, Calendar, CalendarDays, Check, CircleAlert, CircleCheckBig, CircleCheckBigIcon, CircleQuestionMark, Clock, ClockFading, Construction, CreditCard, Eye, EyeClosed, FileSearchCorner, FileText, FileUp, Files, FormInput, GalleryHorizontalEnd, HandMetal, Image, Info, Lock, Mail, MapPin, Phone, ScanText, School, Search, Send, SquarePen, SquareStack, Trash, Upload, User, UserPlus, Users } from "@lucide/vue";
 import { BOverlay } from "bootstrap-vue-next/components/BOverlay";
 import { BCard, BCardText } from "bootstrap-vue-next/components/BCard";
 import { BApp, useModal } from "bootstrap-vue-next";
@@ -13,6 +13,7 @@ import { BTab, BTabs } from "bootstrap-vue-next/components/BTabs";
 import { BFormTextarea } from "bootstrap-vue-next/components/BFormTextarea";
 import { BFormRadio, BFormRadioGroup } from "bootstrap-vue-next/components/BFormRadio";
 import { BFormInput } from "bootstrap-vue-next/components/BFormInput";
+import { BListGroup, BListGroupItem } from "bootstrap-vue-next/components/BListGroup";
 import { BModal } from "bootstrap-vue-next/components/BModal";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime.js";
@@ -355,11 +356,11 @@ var Login_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCo
 //#endregion
 //#region resources/js/pages/Auth/Login.vue
 var Login_exports = /* @__PURE__ */ __exportAll({ default: () => Login_default });
-var _sfc_setup$21 = Login_vue_vue_type_script_setup_true_lang_default.setup;
+var _sfc_setup$22 = Login_vue_vue_type_script_setup_true_lang_default.setup;
 Login_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
 	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Auth/Login.vue");
-	return _sfc_setup$21 ? _sfc_setup$21(props, ctx) : void 0;
+	return _sfc_setup$22 ? _sfc_setup$22(props, ctx) : void 0;
 };
 var Login_default = Login_vue_vue_type_script_setup_true_lang_default;
 //#endregion
@@ -376,11 +377,11 @@ var _sfc_main = {};
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
 	_push(`<div${ssrRenderAttrs(_attrs)}><p>register</p></div>`);
 }
-var _sfc_setup$20 = _sfc_main.setup;
+var _sfc_setup$21 = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
 	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Auth/Register.vue");
-	return _sfc_setup$20 ? _sfc_setup$20(props, ctx) : void 0;
+	return _sfc_setup$21 ? _sfc_setup$21(props, ctx) : void 0;
 };
 var Register_default = /* @__PURE__ */ _plugin_vue_export_helper_default(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 //#endregion
@@ -464,11 +465,11 @@ var Check_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCo
 //#endregion
 //#region resources/js/pages/Check.vue
 var Check_exports = /* @__PURE__ */ __exportAll({ default: () => Check_default });
-var _sfc_setup$19 = Check_vue_vue_type_script_setup_true_lang_default.setup;
+var _sfc_setup$20 = Check_vue_vue_type_script_setup_true_lang_default.setup;
 Check_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
 	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Check.vue");
-	return _sfc_setup$19 ? _sfc_setup$19(props, ctx) : void 0;
+	return _sfc_setup$20 ? _sfc_setup$20(props, ctx) : void 0;
 };
 var Check_default = Check_vue_vue_type_script_setup_true_lang_default;
 //#endregion
@@ -524,11 +525,11 @@ var Dropzone_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defin
 });
 //#endregion
 //#region resources/js/components/Forms/Dropzone.vue
-var _sfc_setup$18 = Dropzone_vue_vue_type_script_setup_true_lang_default.setup;
+var _sfc_setup$19 = Dropzone_vue_vue_type_script_setup_true_lang_default.setup;
 Dropzone_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
 	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Forms/Dropzone.vue");
-	return _sfc_setup$18 ? _sfc_setup$18(props, ctx) : void 0;
+	return _sfc_setup$19 ? _sfc_setup$19(props, ctx) : void 0;
 };
 var Dropzone_default = Dropzone_vue_vue_type_script_setup_true_lang_default;
 //#endregion
@@ -586,11 +587,11 @@ var Footer_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineC
 });
 //#endregion
 //#region resources/js/components/Footer.vue
-var _sfc_setup$17 = Footer_vue_vue_type_script_setup_true_lang_default.setup;
+var _sfc_setup$18 = Footer_vue_vue_type_script_setup_true_lang_default.setup;
 Footer_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
 	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Footer.vue");
-	return _sfc_setup$17 ? _sfc_setup$17(props, ctx) : void 0;
+	return _sfc_setup$18 ? _sfc_setup$18(props, ctx) : void 0;
 };
 var Footer_default = Footer_vue_vue_type_script_setup_true_lang_default;
 //#endregion
@@ -600,11 +601,11 @@ var Footer_default = Footer_vue_vue_type_script_setup_true_lang_default;
 * @see app/Http/Controllers/Dashboard/HomeController.php:25
 * @route '/dashboard'
 */
-var index = (options) => ({
-	url: index.url(options),
+var index$1 = (options) => ({
+	url: index$1.url(options),
 	method: "get"
 });
-index.definition = {
+index$1.definition = {
 	methods: ["get", "head"],
 	url: "/dashboard"
 };
@@ -613,16 +614,16 @@ index.definition = {
 * @see app/Http/Controllers/Dashboard/HomeController.php:25
 * @route '/dashboard'
 */
-index.url = (options) => {
-	return index.definition.url + queryParams(options);
+index$1.url = (options) => {
+	return index$1.definition.url + queryParams(options);
 };
 /**
 * @see \App\Http\Controllers\Dashboard\HomeController::index
 * @see app/Http/Controllers/Dashboard/HomeController.php:25
 * @route '/dashboard'
 */
-index.get = (options) => ({
-	url: index.url(options),
+index$1.get = (options) => ({
+	url: index$1.url(options),
 	method: "get"
 });
 /**
@@ -630,8 +631,8 @@ index.get = (options) => ({
 * @see app/Http/Controllers/Dashboard/HomeController.php:25
 * @route '/dashboard'
 */
-index.head = (options) => ({
-	url: index.url(options),
+index$1.head = (options) => ({
+	url: index$1.url(options),
 	method: "head"
 });
 /**
@@ -665,7 +666,7 @@ store.post = (options) => ({
 	method: "post"
 });
 var home = {
-	index: Object.assign(index, index),
+	index: Object.assign(index$1, index$1),
 	store: Object.assign(store, store)
 };
 //#endregion
@@ -756,7 +757,7 @@ var document$1 = {
 //#region resources/js/routes/dashboard/form/index.ts
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::guide
-* @see app/Http/Controllers/Dashboard/FormController.php:16
+* @see app/Http/Controllers/Dashboard/FormController.php:17
 * @route '/dashboard/{candidate}'
 */
 var guide = (args, options) => ({
@@ -769,7 +770,7 @@ guide.definition = {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::guide
-* @see app/Http/Controllers/Dashboard/FormController.php:16
+* @see app/Http/Controllers/Dashboard/FormController.php:17
 * @route '/dashboard/{candidate}'
 */
 guide.url = (args, options) => {
@@ -782,7 +783,7 @@ guide.url = (args, options) => {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::guide
-* @see app/Http/Controllers/Dashboard/FormController.php:16
+* @see app/Http/Controllers/Dashboard/FormController.php:17
 * @route '/dashboard/{candidate}'
 */
 guide.get = (args, options) => ({
@@ -791,7 +792,7 @@ guide.get = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::guide
-* @see app/Http/Controllers/Dashboard/FormController.php:16
+* @see app/Http/Controllers/Dashboard/FormController.php:17
 * @route '/dashboard/{candidate}'
 */
 guide.head = (args, options) => ({
@@ -800,7 +801,7 @@ guide.head = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::form
-* @see app/Http/Controllers/Dashboard/FormController.php:40
+* @see app/Http/Controllers/Dashboard/FormController.php:41
 * @route '/dashboard/{candidate}/form'
 */
 var form = (args, options) => ({
@@ -813,7 +814,7 @@ form.definition = {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::form
-* @see app/Http/Controllers/Dashboard/FormController.php:40
+* @see app/Http/Controllers/Dashboard/FormController.php:41
 * @route '/dashboard/{candidate}/form'
 */
 form.url = (args, options) => {
@@ -826,7 +827,7 @@ form.url = (args, options) => {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::form
-* @see app/Http/Controllers/Dashboard/FormController.php:40
+* @see app/Http/Controllers/Dashboard/FormController.php:41
 * @route '/dashboard/{candidate}/form'
 */
 form.get = (args, options) => ({
@@ -835,7 +836,7 @@ form.get = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::form
-* @see app/Http/Controllers/Dashboard/FormController.php:40
+* @see app/Http/Controllers/Dashboard/FormController.php:41
 * @route '/dashboard/{candidate}/form'
 */
 form.head = (args, options) => ({
@@ -844,7 +845,7 @@ form.head = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::document
-* @see app/Http/Controllers/Dashboard/FormController.php:64
+* @see app/Http/Controllers/Dashboard/FormController.php:65
 * @route '/dashboard/{candidate}/document'
 */
 var document = (args, options) => ({
@@ -857,7 +858,7 @@ document.definition = {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::document
-* @see app/Http/Controllers/Dashboard/FormController.php:64
+* @see app/Http/Controllers/Dashboard/FormController.php:65
 * @route '/dashboard/{candidate}/document'
 */
 document.url = (args, options) => {
@@ -870,7 +871,7 @@ document.url = (args, options) => {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::document
-* @see app/Http/Controllers/Dashboard/FormController.php:64
+* @see app/Http/Controllers/Dashboard/FormController.php:65
 * @route '/dashboard/{candidate}/document'
 */
 document.get = (args, options) => ({
@@ -879,7 +880,7 @@ document.get = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::document
-* @see app/Http/Controllers/Dashboard/FormController.php:64
+* @see app/Http/Controllers/Dashboard/FormController.php:65
 * @route '/dashboard/{candidate}/document'
 */
 document.head = (args, options) => ({
@@ -888,7 +889,7 @@ document.head = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::send
-* @see app/Http/Controllers/Dashboard/FormController.php:79
+* @see app/Http/Controllers/Dashboard/FormController.php:80
 * @route '/dashboard/{candidate}/send'
 */
 var send = (args, options) => ({
@@ -901,7 +902,7 @@ send.definition = {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::send
-* @see app/Http/Controllers/Dashboard/FormController.php:79
+* @see app/Http/Controllers/Dashboard/FormController.php:80
 * @route '/dashboard/{candidate}/send'
 */
 send.url = (args, options) => {
@@ -914,7 +915,7 @@ send.url = (args, options) => {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::send
-* @see app/Http/Controllers/Dashboard/FormController.php:79
+* @see app/Http/Controllers/Dashboard/FormController.php:80
 * @route '/dashboard/{candidate}/send'
 */
 send.get = (args, options) => ({
@@ -923,7 +924,7 @@ send.get = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::send
-* @see app/Http/Controllers/Dashboard/FormController.php:79
+* @see app/Http/Controllers/Dashboard/FormController.php:80
 * @route '/dashboard/{candidate}/send'
 */
 send.head = (args, options) => ({
@@ -932,7 +933,7 @@ send.head = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::submit
-* @see app/Http/Controllers/Dashboard/FormController.php:172
+* @see app/Http/Controllers/Dashboard/FormController.php:192
 * @route '/dashboard/{candidate}/submit'
 */
 var submit = (args, options) => ({
@@ -945,7 +946,7 @@ submit.definition = {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::submit
-* @see app/Http/Controllers/Dashboard/FormController.php:172
+* @see app/Http/Controllers/Dashboard/FormController.php:192
 * @route '/dashboard/{candidate}/submit'
 */
 submit.url = (args, options) => {
@@ -958,7 +959,7 @@ submit.url = (args, options) => {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::submit
-* @see app/Http/Controllers/Dashboard/FormController.php:172
+* @see app/Http/Controllers/Dashboard/FormController.php:192
 * @route '/dashboard/{candidate}/submit'
 */
 submit.post = (args, options) => ({
@@ -967,7 +968,7 @@ submit.post = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::review
-* @see app/Http/Controllers/Dashboard/FormController.php:96
+* @see app/Http/Controllers/Dashboard/FormController.php:97
 * @route '/dashboard/{candidate}/review'
 */
 var review = (args, options) => ({
@@ -980,7 +981,7 @@ review.definition = {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::review
-* @see app/Http/Controllers/Dashboard/FormController.php:96
+* @see app/Http/Controllers/Dashboard/FormController.php:97
 * @route '/dashboard/{candidate}/review'
 */
 review.url = (args, options) => {
@@ -993,7 +994,7 @@ review.url = (args, options) => {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::review
-* @see app/Http/Controllers/Dashboard/FormController.php:96
+* @see app/Http/Controllers/Dashboard/FormController.php:97
 * @route '/dashboard/{candidate}/review'
 */
 review.get = (args, options) => ({
@@ -1002,7 +1003,7 @@ review.get = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::review
-* @see app/Http/Controllers/Dashboard/FormController.php:96
+* @see app/Http/Controllers/Dashboard/FormController.php:97
 * @route '/dashboard/{candidate}/review'
 */
 review.head = (args, options) => ({
@@ -1011,7 +1012,7 @@ review.head = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::update
-* @see app/Http/Controllers/Dashboard/FormController.php:111
+* @see app/Http/Controllers/Dashboard/FormController.php:112
 * @route '/dashboard/{candidate}'
 */
 var update = (args, options) => ({
@@ -1024,7 +1025,7 @@ update.definition = {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::update
-* @see app/Http/Controllers/Dashboard/FormController.php:111
+* @see app/Http/Controllers/Dashboard/FormController.php:112
 * @route '/dashboard/{candidate}'
 */
 update.url = (args, options) => {
@@ -1037,7 +1038,7 @@ update.url = (args, options) => {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::update
-* @see app/Http/Controllers/Dashboard/FormController.php:111
+* @see app/Http/Controllers/Dashboard/FormController.php:112
 * @route '/dashboard/{candidate}'
 */
 update.put = (args, options) => ({
@@ -1046,7 +1047,7 @@ update.put = (args, options) => ({
 });
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::destroy
-* @see app/Http/Controllers/Dashboard/FormController.php:143
+* @see app/Http/Controllers/Dashboard/FormController.php:163
 * @route '/dashboard/{candidate}'
 */
 var destroy = (args, options) => ({
@@ -1059,7 +1060,7 @@ destroy.definition = {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::destroy
-* @see app/Http/Controllers/Dashboard/FormController.php:143
+* @see app/Http/Controllers/Dashboard/FormController.php:163
 * @route '/dashboard/{candidate}'
 */
 destroy.url = (args, options) => {
@@ -1072,7 +1073,7 @@ destroy.url = (args, options) => {
 };
 /**
 * @see \App\Http\Controllers\Dashboard\FormController::destroy
-* @see app/Http/Controllers/Dashboard/FormController.php:143
+* @see app/Http/Controllers/Dashboard/FormController.php:163
 * @route '/dashboard/{candidate}'
 */
 destroy.delete = (args, options) => ({
@@ -1182,11 +1183,11 @@ var Navbar_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineC
 });
 //#endregion
 //#region resources/js/components/Navbar.vue
-var _sfc_setup$16 = Navbar_vue_vue_type_script_setup_true_lang_default.setup;
+var _sfc_setup$17 = Navbar_vue_vue_type_script_setup_true_lang_default.setup;
 Navbar_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
 	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Navbar.vue");
-	return _sfc_setup$16 ? _sfc_setup$16(props, ctx) : void 0;
+	return _sfc_setup$17 ? _sfc_setup$17(props, ctx) : void 0;
 };
 var Navbar_default = Navbar_vue_vue_type_script_setup_true_lang_default;
 //#endregion
@@ -1239,11 +1240,11 @@ var SidebarItem_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ de
 });
 //#endregion
 //#region resources/js/components/SidebarItem.vue
-var _sfc_setup$15 = SidebarItem_vue_vue_type_script_setup_true_lang_default.setup;
+var _sfc_setup$16 = SidebarItem_vue_vue_type_script_setup_true_lang_default.setup;
 SidebarItem_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
 	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/SidebarItem.vue");
-	return _sfc_setup$15 ? _sfc_setup$15(props, ctx) : void 0;
+	return _sfc_setup$16 ? _sfc_setup$16(props, ctx) : void 0;
 };
 var SidebarItem_default = /* @__PURE__ */ _plugin_vue_export_helper_default(SidebarItem_vue_vue_type_script_setup_true_lang_default, [["__scopeId", "data-v-19029845"]]);
 //#endregion
@@ -1399,11 +1400,11 @@ var Form_vue_vue_type_script_setup_true_lang_default$1 = /* @__PURE__ */ defineC
 });
 //#endregion
 //#region resources/js/layouts/Form.vue
-var _sfc_setup$14 = Form_vue_vue_type_script_setup_true_lang_default$1.setup;
+var _sfc_setup$15 = Form_vue_vue_type_script_setup_true_lang_default$1.setup;
 Form_vue_vue_type_script_setup_true_lang_default$1.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
 	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/layouts/Form.vue");
-	return _sfc_setup$14 ? _sfc_setup$14(props, ctx) : void 0;
+	return _sfc_setup$15 ? _sfc_setup$15(props, ctx) : void 0;
 };
 var Form_default$1 = Form_vue_vue_type_script_setup_true_lang_default$1;
 //#endregion
@@ -1569,52 +1570,44 @@ var Document_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defin
 							});
 							_push(`<!--]--></div>`);
 						} else _push(`<!---->`);
-						_push(`<div class="mt-5 d-flex justify-content-between"${_scopeId}><button type="submit" class="btn btn-sm btn-primary px-5 rounded-pill"${_scopeId}> Simpan </button></div>`);
-					} else return [
-						createVNode("div", { class: "d-flex justify-content-between align-items-center mb-4" }, [createVNode("div", null, [createVNode("h4", { class: "fw-bold mb-1" }, toDisplayString(__props.meta.title), 1), createVNode("p", { class: "text-secondary small mb-0" }, [
-							createTextVNode(" Unggah berkas dalam format PDF "),
-							createVNode("strong", null, "(Direkomendasikan)"),
-							createTextVNode(" atau Gambar (Maks. 2MB) ")
-						])]), createVNode("span", { class: ["badge rounded-pill px-3 py-2 fw-bold", uploadedCount.value === totalCount.value ? "bg-success-subtle text-success" : "bg-danger-subtle text-danger"] }, toDisplayString(uploadedCount.value) + "/" + toDisplayString(totalCount.value) + " Dokumen Terunggah ", 3)]),
-						mount.value ? (openBlock(), createBlock("div", {
-							key: 0,
-							class: "row g-4"
-						}, [(openBlock(true), createBlock(Fragment, null, renderList(__props.candidate.documentable, (doc) => {
-							return openBlock(), createBlock("div", {
-								key: doc.id,
-								class: "col-md-6"
-							}, [createVNode(_component_BOverlay, {
-								rounded: "lg",
-								variant: "transparent",
-								show: activeOverlayId.value === doc.id
-							}, {
-								default: withCtx(() => [createVNode("div", { class: "card border-0 rounded-5 h-100 shadow-sm" }, [createVNode("div", { class: "p-4" }, [createVNode("div", { class: "d-flex justify-content-between align-items-start mb-3" }, [createVNode("div", null, [createVNode("p", { class: "small fw-bold mb-1" }, [createTextVNode(toDisplayString(doc.document_type.name) + " ", 1), doc.is_required ? (openBlock(), createBlock("sup", {
-									key: 0,
-									class: "text-danger"
-								}, "*")) : createCommentVNode("", true)]), createVNode("div", { class: ["d-flex align-items-center small fw-bold", doc.name ? "text-success" : "text-secondary"] }, [(openBlock(), createBlock(resolveDynamicComponent(doc.name ? unref(CircleCheckBig) : unref(CircleAlert)), {
-									size: 16,
-									class: "me-2"
-								})), createTextVNode(" " + toDisplayString(doc.name ? "Terverifikasi Sistem" : "Belum diunggah"), 1)], 2)]), createVNode("div", { class: ["p-2 rounded-circle", doc.name ? "bg-success-subtle text-success" : "text-primary shadow-sm"] }, [(openBlock(), createBlock(resolveDynamicComponent(doc.name ? unref(Check) : unref(Upload))))], 2)]), doc.name ? (openBlock(), createBlock("div", {
-									key: 0,
-									class: "rounded-4 p-3 border"
-								}, [createVNode("div", { class: "d-flex align-items-center mb-3" }, [createVNode("div", { class: ["p-2 rounded-3 me-3", doc.mime === "application/pdf" ? "bg-danger-subtle text-danger" : "bg-success-subtle text-success"] }, [(openBlock(), createBlock(resolveDynamicComponent(doc.mime === "application/pdf" ? unref(FileText) : unref(Image))))], 2), createVNode("div", { class: "overflow-hidden" }, [createVNode("p", { class: "fw-bold mb-0" }, toDisplayString(doc.mime === "application/pdf" ? "PDF" : "Gambar"), 1), createVNode("small", { class: "text-secondary" }, toDisplayString(formatSize(doc.size)) + " MB ", 1)])]), createVNode("div", { class: "d-flex gap-2" }, [createVNode("button", { class: "btn btn-sm btn-primary flex-grow-1 fw-bold" }, " Lihat "), createVNode("button", {
-									type: "button",
-									class: "btn btn-sm btn-danger",
-									disabled: unref(form).processing || __props.candidate.is_locked,
-									onClick: ($event) => confirmDelete(__props.candidate.id, doc.id, doc.document_type.name)
-								}, [createVNode(unref(Trash), { size: 16 })], 8, ["disabled", "onClick"])])])) : (openBlock(), createBlock(Dropzone_default, {
-									key: 1,
-									"item-id": doc.id,
-									onDropped: handleUpload
-								}, null, 8, ["item-id"]))])])]),
-								_: 2
-							}, 1032, ["show"])]);
-						}), 128))])) : createCommentVNode("", true),
-						createVNode("div", { class: "mt-5 d-flex justify-content-between" }, [createVNode("button", {
-							type: "submit",
-							class: "btn btn-sm btn-primary px-5 rounded-pill"
-						}, " Simpan ")])
-					];
+					} else return [createVNode("div", { class: "d-flex justify-content-between align-items-center mb-4" }, [createVNode("div", null, [createVNode("h4", { class: "fw-bold mb-1" }, toDisplayString(__props.meta.title), 1), createVNode("p", { class: "text-secondary small mb-0" }, [
+						createTextVNode(" Unggah berkas dalam format PDF "),
+						createVNode("strong", null, "(Direkomendasikan)"),
+						createTextVNode(" atau Gambar (Maks. 2MB) ")
+					])]), createVNode("span", { class: ["badge rounded-pill px-3 py-2 fw-bold", uploadedCount.value === totalCount.value ? "bg-success-subtle text-success" : "bg-danger-subtle text-danger"] }, toDisplayString(uploadedCount.value) + "/" + toDisplayString(totalCount.value) + " Dokumen Terunggah ", 3)]), mount.value ? (openBlock(), createBlock("div", {
+						key: 0,
+						class: "row g-4"
+					}, [(openBlock(true), createBlock(Fragment, null, renderList(__props.candidate.documentable, (doc) => {
+						return openBlock(), createBlock("div", {
+							key: doc.id,
+							class: "col-md-6"
+						}, [createVNode(_component_BOverlay, {
+							rounded: "lg",
+							variant: "transparent",
+							show: activeOverlayId.value === doc.id
+						}, {
+							default: withCtx(() => [createVNode("div", { class: "card border-0 rounded-5 h-100 shadow-sm" }, [createVNode("div", { class: "p-4" }, [createVNode("div", { class: "d-flex justify-content-between align-items-start mb-3" }, [createVNode("div", null, [createVNode("p", { class: "small fw-bold mb-1" }, [createTextVNode(toDisplayString(doc.document_type.name) + " ", 1), doc.is_required ? (openBlock(), createBlock("sup", {
+								key: 0,
+								class: "text-danger"
+							}, "*")) : createCommentVNode("", true)]), createVNode("div", { class: ["d-flex align-items-center small fw-bold", doc.name ? "text-success" : "text-secondary"] }, [(openBlock(), createBlock(resolveDynamicComponent(doc.name ? unref(CircleCheckBig) : unref(CircleAlert)), {
+								size: 16,
+								class: "me-2"
+							})), createTextVNode(" " + toDisplayString(doc.name ? "Terverifikasi Sistem" : "Belum diunggah"), 1)], 2)]), createVNode("div", { class: ["p-2 rounded-circle", doc.name ? "bg-success-subtle text-success" : "text-primary shadow-sm"] }, [(openBlock(), createBlock(resolveDynamicComponent(doc.name ? unref(Check) : unref(Upload))))], 2)]), doc.name ? (openBlock(), createBlock("div", {
+								key: 0,
+								class: "rounded-4 p-3 border"
+							}, [createVNode("div", { class: "d-flex align-items-center mb-3" }, [createVNode("div", { class: ["p-2 rounded-3 me-3", doc.mime === "application/pdf" ? "bg-danger-subtle text-danger" : "bg-success-subtle text-success"] }, [(openBlock(), createBlock(resolveDynamicComponent(doc.mime === "application/pdf" ? unref(FileText) : unref(Image))))], 2), createVNode("div", { class: "overflow-hidden" }, [createVNode("p", { class: "fw-bold mb-0" }, toDisplayString(doc.mime === "application/pdf" ? "PDF" : "Gambar"), 1), createVNode("small", { class: "text-secondary" }, toDisplayString(formatSize(doc.size)) + " MB ", 1)])]), createVNode("div", { class: "d-flex gap-2" }, [createVNode("button", { class: "btn btn-sm btn-primary flex-grow-1 fw-bold" }, " Lihat "), createVNode("button", {
+								type: "button",
+								class: "btn btn-sm btn-danger",
+								disabled: unref(form).processing || __props.candidate.is_locked,
+								onClick: ($event) => confirmDelete(__props.candidate.id, doc.id, doc.document_type.name)
+							}, [createVNode(unref(Trash), { size: 16 })], 8, ["disabled", "onClick"])])])) : (openBlock(), createBlock(Dropzone_default, {
+								key: 1,
+								"item-id": doc.id,
+								onDropped: handleUpload
+							}, null, 8, ["item-id"]))])])]),
+							_: 2
+						}, 1032, ["show"])]);
+					}), 128))])) : createCommentVNode("", true)];
 				}),
 				_: 1
 			}, _parent));
@@ -1629,13 +1622,293 @@ var Document_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defin
 //#endregion
 //#region resources/js/pages/Dashboard/Document.vue
 var Document_exports = /* @__PURE__ */ __exportAll({ default: () => Document_default });
-var _sfc_setup$13 = Document_vue_vue_type_script_setup_true_lang_default.setup;
+var _sfc_setup$14 = Document_vue_vue_type_script_setup_true_lang_default.setup;
 Document_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	const ssrContext = useSSRContext();
 	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Dashboard/Document.vue");
-	return _sfc_setup$13 ? _sfc_setup$13(props, ctx) : void 0;
+	return _sfc_setup$14 ? _sfc_setup$14(props, ctx) : void 0;
 };
 var Document_default = Document_vue_vue_type_script_setup_true_lang_default;
+//#endregion
+//#region resources/js/routes/schools/index.ts
+/**
+* @see \App\Http\Controllers\Auth\API\SchoolController::index
+* @see app/Http/Controllers/Auth/API/SchoolController.php:14
+* @route '/api/schools'
+*/
+var index = (options) => ({
+	url: index.url(options),
+	method: "get"
+});
+index.definition = {
+	methods: ["get", "head"],
+	url: "/api/schools"
+};
+/**
+* @see \App\Http\Controllers\Auth\API\SchoolController::index
+* @see app/Http/Controllers/Auth/API/SchoolController.php:14
+* @route '/api/schools'
+*/
+index.url = (options) => {
+	return index.definition.url + queryParams(options);
+};
+/**
+* @see \App\Http\Controllers\Auth\API\SchoolController::index
+* @see app/Http/Controllers/Auth/API/SchoolController.php:14
+* @route '/api/schools'
+*/
+index.get = (options) => ({
+	url: index.url(options),
+	method: "get"
+});
+/**
+* @see \App\Http\Controllers\Auth\API\SchoolController::index
+* @see app/Http/Controllers/Auth/API/SchoolController.php:14
+* @route '/api/schools'
+*/
+index.head = (options) => ({
+	url: index.url(options),
+	method: "head"
+});
+/**
+* @see \App\Http\Controllers\Auth\API\SchoolController::show
+* @see app/Http/Controllers/Auth/API/SchoolController.php:30
+* @route '/api/schools/{school}'
+*/
+var show = (args, options) => ({
+	url: show.url(args, options),
+	method: "get"
+});
+show.definition = {
+	methods: ["get", "head"],
+	url: "/api/schools/{school}"
+};
+/**
+* @see \App\Http\Controllers\Auth\API\SchoolController::show
+* @see app/Http/Controllers/Auth/API/SchoolController.php:30
+* @route '/api/schools/{school}'
+*/
+show.url = (args, options) => {
+	if (typeof args === "string" || typeof args === "number") args = { school: args };
+	if (typeof args === "object" && !Array.isArray(args) && "id" in args) args = { school: args.id };
+	if (Array.isArray(args)) args = { school: args[0] };
+	args = applyUrlDefaults(args);
+	const parsedArgs = { school: typeof args.school === "object" ? args.school.id : args.school };
+	return show.definition.url.replace("{school}", parsedArgs.school.toString()).replace(/\/+$/, "") + queryParams(options);
+};
+/**
+* @see \App\Http\Controllers\Auth\API\SchoolController::show
+* @see app/Http/Controllers/Auth/API/SchoolController.php:30
+* @route '/api/schools/{school}'
+*/
+show.get = (args, options) => ({
+	url: show.url(args, options),
+	method: "get"
+});
+/**
+* @see \App\Http\Controllers\Auth\API\SchoolController::show
+* @see app/Http/Controllers/Auth/API/SchoolController.php:30
+* @route '/api/schools/{school}'
+*/
+show.head = (args, options) => ({
+	url: show.url(args, options),
+	method: "head"
+});
+var schools = {
+	index: Object.assign(index, index),
+	show: Object.assign(show, show)
+};
+//#endregion
+//#region resources/js/components/Forms/SchoolInput.vue?vue&type=script&setup=true&lang.ts
+var SchoolInput_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
+	__name: "SchoolInput",
+	__ssrInlineRender: true,
+	props: { modelValue: {} },
+	emits: ["update:modelValue"],
+	setup(__props, { emit: __emit }) {
+		const emit = __emit;
+		const http = useHttp({
+			search: "",
+			response: { data: [] }
+		});
+		const target = useTemplateRef("target");
+		const show = ref(false);
+		onClickOutside(target, () => {
+			show.value = false;
+			http.search = "";
+			http.resetAndClearErrors();
+		});
+		const onChange = (school) => {
+			show.value = false;
+			http.search = "";
+			http.resetAndClearErrors();
+			emit("update:modelValue", school);
+		};
+		const onSearch = () => {
+			http.get(schools.index().url, { onSuccess: (response) => {
+				console.log(response);
+			} });
+		};
+		const onCreate = () => {
+			http.resetAndClearErrors();
+			show.value = false;
+			emit("update:modelValue", {
+				id: null,
+				name: http.search,
+				address: null
+			});
+		};
+		const open = () => {
+			http.search = "";
+			show.value = true;
+			onSearch();
+		};
+		return (_ctx, _push, _parent, _attrs) => {
+			const _component_BFormInput = BFormInput;
+			const _component_BListGroup = BListGroup;
+			const _component_BListGroupItem = BListGroupItem;
+			_push(`<div${ssrRenderAttrs(mergeProps({
+				ref_key: "target",
+				ref: target
+			}, _attrs))}>`);
+			if (__props.modelValue === null) _push(ssrRenderComponent(_component_BFormInput, {
+				type: "search",
+				placeholder: "Contoh: SMP Negeri 1 Bandung",
+				size: "sm",
+				modelValue: unref(http).search,
+				"onUpdate:modelValue": ($event) => unref(http).search = $event,
+				onClick: open,
+				onInput: onSearch
+			}, null, _parent));
+			else _push(`<!---->`);
+			if (show.value) {
+				_push(`<div class="position-relative mt-2 rounded-3" style="${ssrRenderStyle({
+					maxHeight: "400px",
+					overflowY: "scroll",
+					overflowX: "hidden"
+				})}">`);
+				_push(ssrRenderComponent(_component_BListGroup, null, {
+					default: withCtx((_, _push, _parent, _scopeId) => {
+						if (_push) if (unref(http).processing) _push(ssrRenderComponent(_component_BListGroupItem, null, {
+							default: withCtx((_, _push, _parent, _scopeId) => {
+								if (_push) _push(` Loading... `);
+								else return [createTextVNode(" Loading... ")];
+							}),
+							_: 1
+						}, _parent, _scopeId));
+						else {
+							_push(`<!--[-->`);
+							if (unref(http).response.data.length === 0) _push(ssrRenderComponent(_component_BListGroupItem, { class: "text-center" }, {
+								default: withCtx((_, _push, _parent, _scopeId) => {
+									if (_push) {
+										_push(`<div class="text-center py-5 text-secondary"${_scopeId}>`);
+										_push(ssrRenderComponent(unref(Info), {
+											size: 64,
+											class: "mb-3 opacity-50"
+										}, null, _parent, _scopeId));
+										_push(`<p class="fw-bold mb-1"${_scopeId}>Sekolah Tidak Ditemukan</p><button type="button" class="btn btn-sm px-4 btn-success rounded-pill"${_scopeId}> Gunakan &quot;${ssrInterpolate(unref(http).search)}&quot; </button></div>`);
+									} else return [createVNode("div", { class: "text-center py-5 text-secondary" }, [
+										createVNode(unref(Info), {
+											size: 64,
+											class: "mb-3 opacity-50"
+										}),
+										createVNode("p", { class: "fw-bold mb-1" }, "Sekolah Tidak Ditemukan"),
+										createVNode("button", {
+											type: "button",
+											class: "btn btn-sm px-4 btn-success rounded-pill",
+											onClick: onCreate
+										}, " Gunakan \"" + toDisplayString(unref(http).search) + "\" ", 1)
+									])];
+								}),
+								_: 1
+							}, _parent, _scopeId));
+							else _push(`<!---->`);
+							_push(`<!--[-->`);
+							ssrRenderList(unref(http).response.data, (school) => {
+								_push(ssrRenderComponent(_component_BListGroupItem, {
+									key: school.id,
+									button: "",
+									onClick: ($event) => onChange(school)
+								}, {
+									default: withCtx((_, _push, _parent, _scopeId) => {
+										if (_push) {
+											_push(`<div class="d-flex"${_scopeId}><div class="me-auto"${_scopeId}><h6 class="mb-1"${_scopeId}>${ssrInterpolate(school.name)}</h6><div class="d-flex gap-1"${_scopeId}>`);
+											_push(ssrRenderComponent(unref(MapPin), {
+												size: 16,
+												class: "text-danger"
+											}, null, _parent, _scopeId));
+											_push(`<p class="m-0 small"${_scopeId}>${ssrInterpolate(school.address === null ? "-" : school.address)}</p></div></div></div>`);
+										} else return [createVNode("div", { class: "d-flex" }, [createVNode("div", { class: "me-auto" }, [createVNode("h6", { class: "mb-1" }, toDisplayString(school.name), 1), createVNode("div", { class: "d-flex gap-1" }, [createVNode(unref(MapPin), {
+											size: 16,
+											class: "text-danger"
+										}), createVNode("p", { class: "m-0 small" }, toDisplayString(school.address === null ? "-" : school.address), 1)])])])];
+									}),
+									_: 2
+								}, _parent, _scopeId));
+							});
+							_push(`<!--]--><!--]-->`);
+						}
+						else return [unref(http).processing ? (openBlock(), createBlock(_component_BListGroupItem, { key: 0 }, {
+							default: withCtx(() => [createTextVNode(" Loading... ")]),
+							_: 1
+						})) : (openBlock(), createBlock(Fragment, { key: 1 }, [unref(http).response.data.length === 0 ? (openBlock(), createBlock(_component_BListGroupItem, {
+							key: 0,
+							class: "text-center"
+						}, {
+							default: withCtx(() => [createVNode("div", { class: "text-center py-5 text-secondary" }, [
+								createVNode(unref(Info), {
+									size: 64,
+									class: "mb-3 opacity-50"
+								}),
+								createVNode("p", { class: "fw-bold mb-1" }, "Sekolah Tidak Ditemukan"),
+								createVNode("button", {
+									type: "button",
+									class: "btn btn-sm px-4 btn-success rounded-pill",
+									onClick: onCreate
+								}, " Gunakan \"" + toDisplayString(unref(http).search) + "\" ", 1)
+							])]),
+							_: 1
+						})) : createCommentVNode("", true), (openBlock(true), createBlock(Fragment, null, renderList(unref(http).response.data, (school) => {
+							return openBlock(), createBlock(_component_BListGroupItem, {
+								key: school.id,
+								button: "",
+								onClick: ($event) => onChange(school)
+							}, {
+								default: withCtx(() => [createVNode("div", { class: "d-flex" }, [createVNode("div", { class: "me-auto" }, [createVNode("h6", { class: "mb-1" }, toDisplayString(school.name), 1), createVNode("div", { class: "d-flex gap-1" }, [createVNode(unref(MapPin), {
+									size: 16,
+									class: "text-danger"
+								}), createVNode("p", { class: "m-0 small" }, toDisplayString(school.address === null ? "-" : school.address), 1)])])])]),
+								_: 2
+							}, 1032, ["onClick"]);
+						}), 128))], 64))];
+					}),
+					_: 1
+				}, _parent));
+				_push(`</div>`);
+			} else _push(`<!---->`);
+			if (__props.modelValue) {
+				_push(`<div class="d-flex justify-content-between mt-2"><div class="me-auto"><h6>${ssrInterpolate(__props.modelValue.name)}</h6><div class="d-flex gap-2 align-items-center small">`);
+				_push(ssrRenderComponent(unref(MapPin), {
+					size: 18,
+					class: "text-danger"
+				}, null, _parent));
+				_push(`<span class="text-muted">${ssrInterpolate(__props.modelValue.address || "-")}</span></div></div><div><button type="button" class="btn btn-sm btn-light border text-danger">`);
+				_push(ssrRenderComponent(unref(SquarePen), { size: 16 }, null, _parent));
+				_push(` Ganti </button></div></div>`);
+			} else _push(`<!---->`);
+			_push(`</div>`);
+		};
+	}
+});
+//#endregion
+//#region resources/js/components/Forms/SchoolInput.vue
+var _sfc_setup$13 = SchoolInput_vue_vue_type_script_setup_true_lang_default.setup;
+SchoolInput_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
+	const ssrContext = useSSRContext();
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Forms/SchoolInput.vue");
+	return _sfc_setup$13 ? _sfc_setup$13(props, ctx) : void 0;
+};
+var SchoolInput_default = SchoolInput_vue_vue_type_script_setup_true_lang_default;
 //#endregion
 //#region resources/js/components/Forms/Select.vue?vue&type=script&setup=true&lang.ts
 var Select_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
@@ -1667,15 +1940,15 @@ var Select_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineC
 				class: "position-relative",
 				ref_key: "target",
 				ref: target
-			}, _attrs))} data-v-bf0189c0><div class="form-control form-control-sm d-flex justify-content-between align-items-center cursor-pointer" style="${ssrRenderStyle({ "cursor": "pointer" })}" data-v-bf0189c0><span class="text-truncate me-2" data-v-bf0189c0>${ssrInterpolate(selected.value?.name || "Pilih Opsi")}</span><button type="button" class="btn-close" style="${ssrRenderStyle({ "font-size": "0.65rem" })}" data-v-bf0189c0></button></div>`);
+			}, _attrs))} data-v-7d343e5a><div class="form-control form-control-sm d-flex justify-content-between align-items-center cursor-pointer" style="${ssrRenderStyle({ "cursor": "pointer" })}" data-v-7d343e5a><span class="text-truncate me-2" data-v-7d343e5a>${ssrInterpolate(selected.value?.name || "Pilih Opsi")}</span><button type="button" class="btn-close" style="${ssrRenderStyle({ "font-size": "0.65rem" })}" data-v-7d343e5a></button></div>`);
 			if (show.value) {
 				_push(`<div class="position-absolute w-100 bg-body-tertiary border rounded-2 mt-1 z-3 shadow-sm" style="${ssrRenderStyle({
 					"max-height": "185px",
 					"overflow-y": "auto",
 					"overflow-x": "hidden"
-				})}" data-v-bf0189c0><div class="p-2" data-v-bf0189c0><!--[-->`);
+				})}" data-v-7d343e5a><div class="p-2" data-v-7d343e5a><!--[-->`);
 				ssrRenderList(__props.options, (option, index) => {
-					_push(`<div class="${ssrRenderClass([{ "mb-0": index === __props.options.length - 1 }, "form-check p-1 rounded-1 small"])}" data-v-bf0189c0><input class="form-check-input ms-0 me-2" type="radio"${ssrRenderAttr("name", "radio-group-" + __props.label)}${ssrRenderAttr("id", "radio-" + index)}${ssrRenderAttr("value", option.id)}${ssrIncludeBooleanAttr(__props.modelValue === option.id) ? " checked" : ""} data-v-bf0189c0><label class="form-check-label d-block w-100"${ssrRenderAttr("for", "radio-" + index)} data-v-bf0189c0>${ssrInterpolate(option.name)}</label></div>`);
+					_push(`<div class="${ssrRenderClass([{ "mb-0": index === __props.options.length - 1 }, "form-check p-1 rounded-1 small"])}" data-v-7d343e5a><input class="form-check-input ms-0 me-2" type="radio"${ssrRenderAttr("name", "radio-group-" + __props.label)}${ssrRenderAttr("id", "radio-" + index)}${ssrRenderAttr("value", option.id)}${ssrIncludeBooleanAttr(__props.modelValue === option.id) ? " checked" : ""} data-v-7d343e5a><label class="form-check-label d-block w-100"${ssrRenderAttr("for", "radio-" + index)} data-v-7d343e5a>${ssrInterpolate(option.name)}</label></div>`);
 				});
 				_push(`<!--]--></div></div>`);
 			} else _push(`<!---->`);
@@ -1691,7 +1964,7 @@ Select_vue_vue_type_script_setup_true_lang_default.setup = (props, ctx) => {
 	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Forms/Select.vue");
 	return _sfc_setup$12 ? _sfc_setup$12(props, ctx) : void 0;
 };
-var Select_default = /* @__PURE__ */ _plugin_vue_export_helper_default(Select_vue_vue_type_script_setup_true_lang_default, [["__scopeId", "data-v-bf0189c0"]]);
+var Select_default = /* @__PURE__ */ _plugin_vue_export_helper_default(Select_vue_vue_type_script_setup_true_lang_default, [["__scopeId", "data-v-7d343e5a"]]);
 //#endregion
 //#region resources/js/components/Forms/PersonalData.vue?vue&type=script&setup=true&lang.ts
 var PersonalData_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineComponent({
@@ -1710,7 +1983,8 @@ var PersonalData_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ d
 			address: null,
 			gender: null,
 			religion_id: null,
-			birth_certificate_number: null
+			birth_certificate_number: null,
+			school: null
 		} },
 		"modelModifiers": {}
 	}),
@@ -1827,20 +2101,12 @@ var PersonalData_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ d
 				modelValue: model.value.birth_certificate_number,
 				"onUpdate:modelValue": ($event) => model.value.birth_certificate_number = $event
 			}, ssrGetDirectiveProps(_ctx, vUppercase)), null, _parent));
-			_push(`</div></div></div><div class="mb-3"><h4 class="text-primary-emphasis text-primary-emphasis border-start border-primary ps-2"> Pendidikan Sebelumnya </h4><div class="row mb-3"><label class="col-sm-3 col-form-label" for="school-origin-name">Asal Sekolah</label><div class="col-sm-9">`);
-			_push(ssrRenderComponent(_component_BFormInput, {
-				type: "text",
-				id: "school-origin-name",
-				size: "sm",
-				placeholder: "Contoh: SMP Negeri 1 Bandung"
+			_push(`</div></div></div><div class="mb-3"><h4 class="text-primary-emphasis text-primary-emphasis border-start border-primary ps-2"> Pendidikan Sebelumnya </h4><div class="row mb-3"><label for="school" class="col-sm-3 col-form-label"> Asal Sekolah </label><div class="col-sm-9"><div class="mb-5">`);
+			_push(ssrRenderComponent(SchoolInput_default, {
+				modelValue: model.value.school,
+				"onUpdate:modelValue": ($event) => model.value.school = $event
 			}, null, _parent));
-			_push(`</div></div><div class="row mb-3"><label class="col-sm-3 col-form-label" for="school-origin-address">Alamat Sekolah</label><div class="col-sm-9">`);
-			_push(ssrRenderComponent(_component_BFormTextarea, {
-				id: "school-origin-address",
-				size: "sm",
-				rows: "3"
-			}, null, _parent));
-			_push(`</div></div></div></div><div class="mb-5"><h4 class="text-primary-emphasis border-start border-primary ps-2"> Status Tempat Tinggal dan Alamat </h4><div class="row mb-3"><label class="col-sm-3 col-form-label" for="address">Alamat Lengkap</label><div class="col-sm-9">`);
+			_push(`</div></div></div></div></div><div class="mb-5"><h4 class="text-primary-emphasis border-start border-primary ps-2"> Status Tempat Tinggal dan Alamat </h4><div class="row mb-3"><label class="col-sm-3 col-form-label" for="address">Alamat Lengkap</label><div class="col-sm-9">`);
 			_push(ssrRenderComponent(_component_BFormTextarea, {
 				id: "address",
 				modelValue: model.value.address,
@@ -2076,7 +2342,8 @@ var Form_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 			}, {
 				name: "Juara 1 OSN Bahasa Inggris",
 				level: "Provinsi"
-			}]
+			}],
+			school: props.candidate.school
 		});
 		const addAchievement = () => {
 			if (!temp.value.name || !temp.value.level) return;
@@ -3121,6 +3388,10 @@ var Send_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 		meta: {}
 	},
 	setup(__props) {
+		const mount = ref(false);
+		onMounted(() => {
+			mount.value = true;
+		});
 		const form = useForm({ agree: false });
 		return (_ctx, _push, _parent, _attrs) => {
 			_push(`<!--[-->`);
@@ -3139,10 +3410,18 @@ var Send_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ */ defineCom
 				size: 64,
 				class: "text-primary"
 			}, null, _parent));
-			_push(`</div><h4 class="fw-bold mb-3">Konfirmasi &amp; Kirim Berkas</h4><p class="text-secondary mb-4 mx-auto" style="${ssrRenderStyle({ "max-width": "500px" })}"> Pastikan semua data yang Anda masukkan sudah benar. Setelah dikirim, data akan dikunci untuk proses peninjauan oleh panitia PPDB. </p><div class="card border-0 rounded-4 mb-4 text-start bg-body-tertiary shadow-sm"><div class="card-body"><h6 class="fw-bold mb-3">Ringkasan Pendaftaran:</h6><div class="row g-2 small"><div class="col-6 text-secondary"> Nama Calon Siswa: </div><div class="col-6 fw-bold">${ssrInterpolate(__props.candidate.name)}</div><div class="col-6 text-secondary"> Tipe Pendaftaran: </div><div class="col-6 fw-bold">${ssrInterpolate(__props.candidate.type === "new" ? "Siswa Baru" : "Siswa Pindahan")}</div><div class="col-6 text-secondary"> Status Kelengkapan: </div><div class="col-6 fw-bold text-success">${ssrInterpolate(__props.candidate.snapshot.progress)}</div></div></div></div><form><div class="form-check d-inline-block text-start mb-4"><input class="${ssrRenderClass([{ "is-invalid": unref(form).errors.agree }, "form-check-input"])}" id="agree" type="checkbox"${ssrIncludeBooleanAttr(Array.isArray(unref(form).agree) ? ssrLooseContain(unref(form).agree, null) : unref(form).agree) ? " checked" : ""}><label class="form-check-label small" for="agree"> Saya menyatakan bahwa data yang saya masukkan adalah benar dan dapat dipertanggungjawabkan. </label>`);
+			_push(`</div><h4 class="fw-bold mb-3">${ssrInterpolate(__props.meta.title)}</h4><p class="text-secondary mb-4 mx-auto" style="${ssrRenderStyle({ "max-width": "500px" })}"> Pastikan semua data yang Anda masukkan sudah benar. Setelah dikirim, data akan dikunci untuk proses peninjauan oleh panitia PPDB. </p><div class="card border-0 rounded-4 mb-4 text-start bg-body-tertiary shadow-sm"><div class="card-body"><h6 class="fw-bold mb-3">Ringkasan Pendaftaran:</h6><div class="row g-2 small"><div class="col-6 text-secondary"> Nama Calon Siswa: </div><div class="col-6 fw-bold">`);
+			if (__props.candidate.name) _push(`<!--[-->${ssrInterpolate(__props.candidate.name)}<!--]-->`);
+			else _push(`<span class="fst-italic opacity-50"><i>Belum Diisi</i></span>`);
+			_push(`</div><div class="col-6 text-secondary"> Tipe Pendaftaran: </div><div class="col-6 fw-bold">${ssrInterpolate(__props.candidate.type === "new" ? "Siswa Baru" : "Siswa Pindahan")}</div><div class="col-6 text-secondary"> Status Kelengkapan: </div><div class="col-6 fw-bold text-success">${ssrInterpolate(__props.candidate.snapshot.progress)}</div></div></div></div><form><div class="form-check d-inline-block text-start mb-4"><input class="${ssrRenderClass([{ "is-invalid": unref(form).errors.agree }, "form-check-input"])}" id="agree" type="checkbox"${ssrIncludeBooleanAttr(Array.isArray(unref(form).agree) ? ssrLooseContain(unref(form).agree, null) : unref(form).agree) ? " checked" : ""}><label class="form-check-label small" for="agree"> Saya menyatakan bahwa data yang saya masukkan adalah benar dan dapat dipertanggungjawabkan. </label>`);
 			if (unref(form).errors.agree) _push(`<div class="invalid-feedback"> Anda harus menyetujui sebelum mengirimkan. </div>`);
 			else _push(`<!---->`);
-			_push(`</div><div class="d-flex justify-content-center gap-3"><button class="btn btn-outline-secondary px-4 rounded-pill"> Kembali </button><button type="submit" class="btn btn-primary px-5 rounded-pill"${ssrIncludeBooleanAttr(!unref(form).agree || unref(form).processing) ? " disabled" : ""}> Kirim Sekarang </button></div></form></div></div></div><!--]-->`);
+			_push(`</div><div class="d-flex justify-content-center gap-3"><button class="btn btn-outline-secondary px-4 rounded-pill"> Kembali </button><button type="submit" class="btn btn-primary px-5 rounded-pill"${ssrIncludeBooleanAttr(!unref(form).agree || unref(form).processing) ? " disabled" : ""}> Kirim Sekarang </button></div></form></div></div></div>`);
+			if (mount.value) ssrRenderTeleport(_push, (_push) => {
+				_push(ssrRenderComponent(unref(Toaster), null, null, _parent));
+			}, "body", false, _parent);
+			else _push(`<!---->`);
+			_push(`<!--]-->`);
 		};
 	}
 });

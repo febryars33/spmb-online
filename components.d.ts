@@ -24,9 +24,7 @@ declare module 'vue' {
     BModal: typeof import('bootstrap-vue-next/components/BModal')['BModal']
     BOverlay: typeof import('bootstrap-vue-next/components/BOverlay')['BOverlay']
     BProgress: typeof import('bootstrap-vue-next/components/BProgress')['BProgress']
-    BSpinner: typeof import('bootstrap-vue-next/components/BSpinner')['BSpinner']
     BTab: typeof import('bootstrap-vue-next/components/BTabs')['BTab']
-    BTable: typeof import('bootstrap-vue-next/components/BTable')['BTable']
     BTabs: typeof import('bootstrap-vue-next/components/BTabs')['BTabs']
   }
 }

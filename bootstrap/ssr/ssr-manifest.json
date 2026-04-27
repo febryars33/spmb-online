@@ -90,6 +90,20 @@
     "/build/assets/youtube-48-Dp9a8xPi.png",
     "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
+  "resources/js/components/Forms/SchoolInput.vue": [
+    "/build/assets/facebook-48-CIEVyuPs.png",
+    "/build/assets/instagram-48-0hFP1FUJ.png",
+    "/build/assets/tiktok-48-D0cvbkfR.png",
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
+  ],
+  "resources/js/components/Forms/SchoolInput.vue?vue&type=script&setup=true&lang.ts": [
+    "/build/assets/facebook-48-CIEVyuPs.png",
+    "/build/assets/instagram-48-0hFP1FUJ.png",
+    "/build/assets/tiktok-48-D0cvbkfR.png",
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
+  ],
   "resources/js/components/Forms/Select.vue": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
@@ -104,7 +118,7 @@
     "/build/assets/youtube-48-Dp9a8xPi.png",
     "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
-  "resources/js/components/Forms/Select.vue?vue&type=style&index=0&scoped=bf0189c0&lang.css": [
+  "resources/js/components/Forms/Select.vue?vue&type=style&index=0&scoped=7d343e5a&lang.css": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
@@ -392,6 +406,13 @@
     "/build/assets/internet-of-things-DFpkiZzo.png"
   ],
   "resources/js/routes/index.ts": [
+    "/build/assets/facebook-48-CIEVyuPs.png",
+    "/build/assets/instagram-48-0hFP1FUJ.png",
+    "/build/assets/tiktok-48-D0cvbkfR.png",
+    "/build/assets/youtube-48-Dp9a8xPi.png",
+    "/build/assets/internet-of-things-DFpkiZzo.png"
+  ],
+  "resources/js/routes/schools/index.ts": [
     "/build/assets/facebook-48-CIEVyuPs.png",
     "/build/assets/instagram-48-0hFP1FUJ.png",
     "/build/assets/tiktok-48-D0cvbkfR.png",
