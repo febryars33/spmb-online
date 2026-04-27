@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Data\PaymentData;
 use App\Exceptions\PaymentRequestException;
-use App\Repository\TransactionRepository;
+use App\Repositories\TransactionRepository;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
